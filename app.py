@@ -7,8 +7,9 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 import dash_table
 import plotly.graph_objs as go
+import plotly.express as px
 import dash_daq as daq
-
+import numpy as np
 import functions as mf
 import pandas as pd
 
@@ -24,13 +25,18 @@ APP_PATH = str(pathlib.Path(__file__).parent.resolve())
 df = pd.read_csv(os.path.join(APP_PATH, os.path.join("data", "spc_data.csv")))
 
 #BEGIN DATA LOADING 
+MAPBOXKEY = os.getenv('MAPBOXKEY')
+
+
 
 sneezeData2020 =pd.read_csv('data/2020Sneezes.csv',sep=";")
 sneezeData2021 =pd.read_csv('data/2021Sneezes.csv',sep=";")
 mf.dataBreakdown(sneezeData2020)
 mf.dataBreakdown(sneezeData2021)
 dataTotal = sneezeData2021.append(sneezeData2020)
-currentSneezeCount = sneezeData2020['Cumulative'].tail(1)
+headers = list(dataTotal.columns.values.tolist())
+
+currentSneezeCount = sneezeData2021['Cumulative'].tail(1)
 
 
 params = list(df)
@@ -47,7 +53,6 @@ suffix_indicator = "_indicator"
 
 totalSum = currentSneezeCount
 
-
 def build_banner():
     return html.Div(
         id="banner",
@@ -62,7 +67,7 @@ def build_banner():
                 ],
             ),
             html.Div(
-                id="card-1",
+                
                 children=[
                     html.H6("Total Sneezes This Year"),
                     daq.LEDDisplay(
@@ -113,7 +118,7 @@ def build_tabs():
                     ),
                     dcc.Tab(
                         id="Control-chart-tab",
-                        label="Control Charts Dashboard",
+                        label="Data Visualizations",
                         value="tab2",
                         className="custom-tab",
                         selected_className="custom-tab--selected",
@@ -316,11 +321,23 @@ def build_quick_stats_panel():
         className="row",
         children=[
             html.Div(
-                id="monthBarChart",
-                className="four columns",
+                id="card-1",
                 children=[
-                    
-                    generate_month_compare_bar(),
+                html.P(id="line-graph-text",
+                    children=["Yearly Comparison"]),
+                daq.StopButton(id="time-button", size=160, n_clicks=0),
+                html.Div(
+                    id="year-graph",
+                    children=[
+                    generate_year_line_graph(),
+                    ]
+                ),
+                html.Div(
+                    id="month-graph",
+                    children=[
+                    generate_month_line_graph(),
+                    ]
+                )
                 ],
             ),
            
@@ -329,19 +346,11 @@ def build_quick_stats_panel():
             html.Div(
                 id="card-2",
                 children=[
-                    html.P("Time to completion"),
-                    daq.Gauge(
-                        id="progress-gauge",
-                        max=max_length * 2,
-                        min=0,
-                        showCurrentValue=True,  # default size 200 pixel
-                    ),
+                    html.P("Where in the World has Gage Sneezed?"),
+                    generate_sneeze_map()
                 ],
             ),
-            html.Div(
-                id="utility-card",
-                children=[daq.StopButton(id="stop-button", size=160, n_clicks=0)],
-            ),
+           
         ],
     )
 
@@ -368,7 +377,7 @@ def build_top_panel(stopped_interval):
                             html.Div(
                                 id="metric-rows",
                                 children=[
-                                    generate_metric_row_helper(stopped_interval, 1),
+                                    
                                     generate_metric_row_helper(stopped_interval, 2),
                                     generate_metric_row_helper(stopped_interval, 3),
                                     generate_metric_row_helper(stopped_interval, 4),
@@ -393,30 +402,7 @@ def build_top_panel(stopped_interval):
         ],
     )
 
-def generate_month_compare_bar():
-    return dcc.Graph(
-        id="monthBarChart",
-        figure={
-            "data": [
-                {
-                    "labels": [],
-                    "values": [],
-                    "type": "pie",
-                    "marker": {"line": {"color": "white", "width": 1}},
-                    "hoverinfo": "label",
-                    "textinfo": "label",
-                }
-            ],
-            "layout": {
-                "margin": dict(l=20, r=20, t=20, b=20),
-                "showlegend": True,
-                "paper_bgcolor": "rgba(0,0,0,0)",
-                "plot_bgcolor": "rgba(0,0,0,0)",
-                "font": {"color": "white"},
-                "autosize": True,
-            },
-        },
-    )
+
 
 def generate_piechart():
     return dcc.Graph(
@@ -639,6 +625,67 @@ def build_chart_panel():
         ],
     )
 
+def generate_year_line_graph():
+    week2020 = mf.buildWeekSums(sneezeData2020)
+
+
+    data = [
+    go.Scatter(x=sneezeData2020['Month Day'], y=sneezeData2020['Cumulative'], mode= 'lines',name="2020"),
+    go.Scatter(x=sneezeData2021['Month Day'], y=sneezeData2021['Cumulative'], mode= 'lines',name="2021")]
+    layout = go.Layout(
+        title=go.layout.Title(),
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        autosize=True,
+        xaxis=dict(tickformat="%m/%d")
+        )
+   
+
+    return html.Div(
+
+    dcc.Graph(figure=go.Figure(data=data,layout=layout))
+   
+    )
+   
+def generate_month_line_graph():
+    week2020 = pd.DataFrame(mf.buildWeekSums(sneezeData2020))
+    week2021 = pd.DataFrame(mf.buildWeekSums(sneezeData2021))
+
+    data = [
+    go.Scatter(x=week2020['Week Number'], y=week2020['sum'], mode= 'lines',name="2020"),
+    go.Scatter(x=week2021['Week Number'], y=week2021['sum'], mode= 'lines',name="2021")]
+    layout = go.Layout(
+        title=go.layout.Title(),
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        autosize=True,
+        #xaxis=dict(tickformat="%m/%d")
+        )
+   
+    return html.Div(
+
+    dcc.Graph(figure=go.Figure(data=data,layout=layout))
+   
+    )
+    
+def generate_sneeze_map():
+    fig = go.Figure(go.Scattermapbox(
+        lat=dataTotal['Latitude'],
+        lon=dataTotal['Longitude'],
+        mode='markers',
+        marker=go.scattermapbox.Marker(
+        size=9,
+        ),
+        
+        text=dataTotal['Timestamp']
+    )
+    )
+    fig.update_layout(mapbox_style="dark",
+    mapbox_accesstoken=MAPBOXKEY,
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor= 'rgba(0,0,0,0)',)
+ 
+    return html.Div(dcc.Graph(figure=fig))
 
 def generate_graph(interval, specs_dict, col):
     stats = state_dict[col]
@@ -961,11 +1008,29 @@ def update_interval_state(tab_switch, cur_interval, disabled, cur_stage):
 
 
 # Callbacks for stopping interval update
+
+
 @app.callback(
-    [Output("interval-component", "disabled"), Output("stop-button", "buttonText")],
-    [Input("stop-button", "n_clicks")],
-    [State("interval-component", "disabled")],
-)
+    [Output("year-graph", "style"), 
+    Output('month-graph', 'style'),
+    Output('line-graph-text', 'children'),
+    Output("time-button", "children")],
+    #dash.dependencies.Output('year-graph', 'style'),
+    [dash.dependencies.Input('time-button', 'n_clicks')],
+    )
+
+
+
+def button_toggle(n_clicks):
+    if n_clicks % 2 == 1:
+        return {'display': 'none'},{'display': 'block'},"Week to Week Comparison","Switch to Year"
+    else:
+        return {'display': 'block'},{'display': 'none'},"Year to Year Comparison","Switch to Month"
+
+
+
+
+
 def stop_production(n_clicks, current):
     if n_clicks == 0:
         return True, "start"

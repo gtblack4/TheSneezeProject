@@ -9,6 +9,7 @@ dateFormat = "%I:%M %p %m/%d/%Y"
 #TODO finish this function to get the number of days elapsed in the year
 
 def dataBreakdown(sneezedata):
+	sneezedata['Timestamp'] = pd.to_datetime(sneezedata['Timestamp'])
 	sneezedata['Day of Week'] = pd.to_datetime(sneezedata['Timestamp']).dt.dayofweek
 	sneezedata['Day of Year'] = pd.to_datetime(sneezedata['Timestamp']).dt.dayofyear
 	sneezedata['Day of Month'] = pd.to_datetime(sneezedata['Timestamp']).dt.day
@@ -16,10 +17,14 @@ def dataBreakdown(sneezedata):
 	sneezedata['Month'] = pd.to_datetime(sneezedata['Timestamp']).dt.month
 	sneezedata['Year'] = pd.to_datetime(sneezedata['Timestamp']).dt.year
 	sneezedata['Cumulative'] = sneezedata['Number of Sneezes'].cumsum(skipna=False)
+	sneezedata['Month Day'] = pd.to_datetime(sneezedata['Timestamp']).dt.strftime('1900-%m-%d')
 	sneezedata['Month Cum'] = sneezedata.groupby(['Year','Month'])['Number of Sneezes'].cumsum()
 	if ('GeoCode' in sneezedata.columns):	
 		sneezedata[['Latitude','Longitude']] = sneezedata['GeoCode'].str.split(",", expand=True)
-
+		sneezedata['Latitude'].apply(lambda x: float(x)).round()
+		sneezedata['Longitude'].apply(lambda x: float(x)).round()
+	#sneezedata = sneezedata.sort_values(by='Month Day')
+	#sneezedata = sneezedata.sort_values(by='Timestamp')
 
 
 def buildMonthArray(sneezedata):
@@ -30,7 +35,7 @@ def buildMonthArray(sneezedata):
 
 def buildDayArray(sneezedata):
 	dayArray =[0]*367
-	print(dayArray)
+
 	for row in sneezedata.iterrows():
 		dayArray[int(row[1]['Day of Year'])] += int(row[1]['Number of Sneezes'])
 	return dayArray
@@ -39,7 +44,7 @@ def buildDayArray(sneezedata):
 
 def getDaysElapsed():
 	today = datetime.date.today()
-	print(today)
+
 
 	return today
 
@@ -159,3 +164,7 @@ def cumulativeComparison(allSneezeData):
 		row[twenty] = row['Number of Sneezes'].cumsum()
 		twenty += 1
 		
+def buildWeekSums(sneezedata):
+	weekdata = []
+	weekdata = sneezedata.groupby('Week Number')['Number of Sneezes'].sum().to_frame(name='sum').reset_index()
+	return weekdata

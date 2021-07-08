@@ -274,7 +274,9 @@ body {
 #stop-button > div > button:hover {
   color: #91dfd2 !important;
 }
-
+#time-button > div > button:hover {
+  color: #91dfd2 !important;
+}
 /* Tab1 content
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -537,6 +539,20 @@ body {
 }
 
 #stop-button > div > button:hover {
+  color: #91dfd2 !important;
+  border-color: white !important;
+  background-color: #1d202d !important;
+}
+#time-button > div > button {
+  color: white !important;
+  background-color: #1d202d !important;
+  border: 1px solid #4B5460 !important;
+  border-radius: 4px;
+  height: 40px;
+  line-height: 40px;
+}
+
+#time-button > div > button:hover {
   color: #91dfd2 !important;
   border-color: white !important;
   background-color: #1d202d !important;
