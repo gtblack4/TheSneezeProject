@@ -1103,9 +1103,9 @@ def update_interval_state(tab_switch, cur_interval, disabled, cur_stage):
 
 def button_toggle(n_clicks):
     if n_clicks % 2 == 1:
-        return {'visibility': 'hidden','display':'none'},{'display': 'block'},"Yearly Cumulative"
+        return {'display':'none'},{'display': 'block'},"Yearly Cumulative"
     else:
-        return {'display': 'block'},{'visibility': 'hidden','display':'none'},"Week by Week"
+        return {'display': 'block'},{'display':'none'},"Week by Week"
 
 
 
