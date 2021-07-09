@@ -73,7 +73,7 @@ def build_banner():
                     daq.LEDDisplay(
                         id="operator-led",
                         value=totalSum,
-                        color="#92e0d3",
+                        color="#32c95b",
                         backgroundColor="#1e2130",
                         size=50,
                     ),
@@ -323,9 +323,10 @@ def build_quick_stats_panel():
             html.Div(
                 id="card-1",
                 children=[
-                html.P(id="line-graph-text",
-                    children=["Yearly Comparison"]),
-                daq.StopButton(id="time-button", size=160, n_clicks=0),
+                html.Div(id = "graph-label",
+                    children=[
+                daq.StopButton(id="time-button", size=160, n_clicks=0),]),
+
                 html.Div(
                     id="year-graph",
                     children=[
@@ -347,7 +348,12 @@ def build_quick_stats_panel():
                 id="card-2",
                 children=[
                     html.P("Where in the World has Gage Sneezed?"),
+                    html.Div(
+                    id="map-graph",
+                    children=[
                     generate_sneeze_map()
+                    ]
+                    )
                 ],
             ),
            
@@ -630,43 +636,99 @@ def generate_year_line_graph():
 
 
     data = [
-    go.Scatter(x=sneezeData2020['Month Day'], y=sneezeData2020['Cumulative'], mode= 'lines',name="2020"),
-    go.Scatter(x=sneezeData2021['Month Day'], y=sneezeData2021['Cumulative'], mode= 'lines',name="2021")]
+        go.Scatter(
+            x=sneezeData2020['Month Day'],
+            y=sneezeData2020['Cumulative'], 
+            mode= 'lines',
+            name="2020",
+            line=dict(
+                color='rgb(102, 255, 102)',
+                width=4
+            )
+        ),
+        go.Scatter(
+            x=sneezeData2021['Month Day'], 
+            y=sneezeData2021['Cumulative'], 
+            mode= 'lines',
+            name="2021", 
+            line=dict(
+                color='rgb(0, 153, 51)',
+                width=4
+            ),
+        )
+    ]
     layout = go.Layout(
-        title=go.layout.Title(),
+      
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor= 'rgba(0,0,0,0)',
+        showlegend=True,
         autosize=True,
-        xaxis=dict(tickformat="%m/%d")
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        margin=dict(t=0, b=0, l=0, r=0),
+
+        xaxis=dict(tickformat="%m/%d",color="white"),
+        yaxis=dict(color="white")
         )
    
 
-    return html.Div(
-
-    dcc.Graph(figure=go.Figure(data=data,layout=layout))
+    return dcc.Graph(figure=go.Figure(data=data,layout=layout))
    
-    )
+    
    
 def generate_month_line_graph():
     week2020 = pd.DataFrame(mf.buildWeekSums(sneezeData2020))
     week2021 = pd.DataFrame(mf.buildWeekSums(sneezeData2021))
 
     data = [
-    go.Scatter(x=week2020['Week Number'], y=week2020['sum'], mode= 'lines',name="2020"),
-    go.Scatter(x=week2021['Week Number'], y=week2021['sum'], mode= 'lines',name="2021")]
+    go.Scatter(
+        x=week2020['Week Number'],
+        y=week2020['sum'],
+        mode= 'lines',
+        name="2020",
+        line=dict(
+            color='rgb(102, 255, 102)',
+            width=4
+        )
+    ),
+    go.Scatter(
+        x=week2021['Week Number'], 
+        y=week2021['sum'], 
+        mode= 'lines',
+        name="2021",
+        line=dict(
+            color='rgb(0, 153, 51)',
+            width=4
+            )
+        )
+    ]
     layout = go.Layout(
-        title=go.layout.Title(),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor= 'rgba(0,0,0,0)',
+        showlegend=True,
         autosize=True,
+      
+
         #xaxis=dict(tickformat="%m/%d")
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+
+        margin=dict(t=0, b=0, l=0, r=0),
         )
    
-    return html.Div(
-
-    dcc.Graph(figure=go.Figure(data=data,layout=layout))
+    return dcc.Graph(figure=go.Figure(data=data,layout=layout))
    
-    )
+    
     
 def generate_sneeze_map():
     fig = go.Figure(go.Scattermapbox(
@@ -674,7 +736,7 @@ def generate_sneeze_map():
         lon=dataTotal['Longitude'],
         hovertext=dataTotal["Timestamp"],
         marker=go.scattermapbox.Marker(
-            size=9,
+        size=9,
 
         ),
 
@@ -684,8 +746,11 @@ def generate_sneeze_map():
     mapbox_accesstoken=MAPBOXKEY,
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor= 'rgba(0,0,0,0)',
+    autosize=True,
+    margin=dict(t=0, b=0, l=0, r=0),
     )
     fig.update_layout(
+
     autosize=True,
     hovermode='closest',
     showlegend=False,
@@ -694,10 +759,10 @@ def generate_sneeze_map():
         bearing=0,
         center=dict(
             lat=40,
-            lon=-80
+            lon=-84
         ),
         pitch=0,
-        zoom=5,
+        zoom=4,
 
     ),
     )
@@ -1028,8 +1093,7 @@ def update_interval_state(tab_switch, cur_interval, disabled, cur_stage):
 
 @app.callback(
     [Output("year-graph", "style"), 
-    Output('month-graph', 'style'),
-    Output('line-graph-text', 'children'),
+    Output('month-graph', "style"),
     Output("time-button", "children")],
     #dash.dependencies.Output('year-graph', 'style'),
     [dash.dependencies.Input('time-button', 'n_clicks')],
@@ -1039,9 +1103,9 @@ def update_interval_state(tab_switch, cur_interval, disabled, cur_stage):
 
 def button_toggle(n_clicks):
     if n_clicks % 2 == 1:
-        return {'display': 'none'},{'display': 'block'},"Week to Week Comparison","Switch to Year"
+        return {'visibility': 'hidden','display':'none'},{'display': 'block'},"Yearly Cumulative"
     else:
-        return {'display': 'block'},{'display': 'none'},"Year to Year Comparison","Switch to Month"
+        return {'display': 'block'},{'visibility': 'hidden','display':'none'},"Week by Week"
 
 
 
