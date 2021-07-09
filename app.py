@@ -13,6 +13,7 @@ import numpy as np
 import functions as mf
 import pandas as pd
 
+
 app = dash.Dash(
     __name__,
     meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}],
@@ -26,7 +27,6 @@ df = pd.read_csv(os.path.join(APP_PATH, os.path.join("data", "spc_data.csv")))
 
 #BEGIN DATA LOADING 
 MAPBOXKEY = os.getenv('MAPBOXKEY')
-
 
 
 sneezeData2020 =pd.read_csv('data/2020Sneezes.csv',sep=";")
@@ -672,19 +672,35 @@ def generate_sneeze_map():
     fig = go.Figure(go.Scattermapbox(
         lat=dataTotal['Latitude'],
         lon=dataTotal['Longitude'],
-        mode='markers',
+        hovertext=dataTotal["Timestamp"],
         marker=go.scattermapbox.Marker(
-        size=9,
+            size=9,
+
         ),
-        
-        text=dataTotal['Timestamp']
+
     )
     )
     fig.update_layout(mapbox_style="dark",
     mapbox_accesstoken=MAPBOXKEY,
     paper_bgcolor='rgba(0,0,0,0)',
-    plot_bgcolor= 'rgba(0,0,0,0)',)
- 
+    plot_bgcolor= 'rgba(0,0,0,0)',
+    )
+    fig.update_layout(
+    autosize=True,
+    hovermode='closest',
+    showlegend=False,
+    mapbox=dict(
+        accesstoken=MAPBOXKEY,
+        bearing=0,
+        center=dict(
+            lat=40,
+            lon=-80
+        ),
+        pitch=0,
+        zoom=5,
+
+    ),
+    )
     return html.Div(dcc.Graph(figure=fig))
 
 def generate_graph(interval, specs_dict, col):
