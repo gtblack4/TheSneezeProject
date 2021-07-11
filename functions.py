@@ -10,7 +10,7 @@ dateFormat = "%I:%M %p %m/%d/%Y"
 
 def dataBreakdown(sneezedata):
 	sneezedata['Timestamp'] = pd.to_datetime(sneezedata['Timestamp'])
-	sneezedata['Day of Week'] = pd.to_datetime(sneezedata['Timestamp']).dt.dayofweek
+	sneezedata['Day of Week'] = pd.to_datetime(sneezedata['Timestamp']).dt.day_name()
 	sneezedata['Day of Year'] = pd.to_datetime(sneezedata['Timestamp']).dt.dayofyear
 	sneezedata['Day of Month'] = pd.to_datetime(sneezedata['Timestamp']).dt.day
 	sneezedata['Week Number'] = pd.to_datetime(sneezedata['Timestamp']).dt.isocalendar().week
@@ -118,11 +118,7 @@ def dayBreakdown2(sneezedata):
 		'Daily Sum' : [dayofweek[6],dayofweek[0],dayofweek[1],dayofweek[2],dayofweek[3],dayofweek[4],dayofweek[5]]
 		})
 
-	dayBreakdown = alt.Chart(dayBreakdown).mark_bar().encode(
-	x=alt.X('Day of Week:N', sort=None),
-	y=alt.Y('Daily Sum:Q'),
-	color=alt.Color('Day of Week',legend = None)
-	).properties(width=350)
+	
 	return dayBreakdown
 
 

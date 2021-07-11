@@ -27,6 +27,7 @@ df = pd.read_csv(os.path.join(APP_PATH, os.path.join("data", "spc_data.csv")))
 
 #BEGIN DATA LOADING 
 MAPBOXKEY = os.getenv('MAPBOXKEY')
+MAPBOXKEY = 'pk.eyJ1IjoiZ3RibGFjazQiLCJhIjoiY2txdmdkdW9lMDk3MDJ2bnp0MzVhazM2cCJ9.-i6gkNqdpDeZ-NIrdiYjvA'
 
 
 sneezeData2020 =pd.read_csv('data/2020Sneezes.csv',sep=";")
@@ -37,7 +38,6 @@ dataTotal = sneezeData2021.append(sneezeData2020)
 headers = list(dataTotal.columns.values.tolist())
 
 currentSneezeCount = sneezeData2021['Cumulative'].tail(1)
-
 
 params = list(df)
 max_length = len(df)
@@ -402,16 +402,53 @@ def build_top_panel(stopped_interval):
                 className="four columns",
                 children=[
                     generate_section_banner("% OOC per Parameter"),
-                    generate_piechart(),
+                    html.P("Select a Year:"),
+                    dcc.Dropdown(
+                        id='weekday-dropdown', 
+                        value='All Years', 
+                        options=[{'value': x, 'label': x} 
+                                 for x in ["All Years",'2021','2020']],
+                        clearable=False
+                    ),
+                    dcc.Graph(id ='weekday-pie-chart',figure = generate_piechart()),
                 ],
             ),
         ],
     )
 
-
-
 def generate_piechart():
+    # value == "All Years":
+    #     value = [2020,2021] 
+    # else:
+    #     value = [int(value)]
+    # df = dataTotal[dataTotal['Year'].isin(value)]
+  
+    data = [
+        go.Pie(
+           labels=dataTotal['Day of Week'],
+           values=dataTotal['Number of Sneezes'],
+           name="WeekDay Breakdown",   
+           )
+    ,]
+    layout = go.Layout(
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        showlegend=True,
+        autosize=True,
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        margin=dict(t=0, b=0, l=0, r=0),
+    )
+    return go.Figure(data=data,layout=layout)
+
+def generate_piechart2():
     return dcc.Graph(
+
         id="piechart",
         figure={
             "data": [
@@ -728,9 +765,9 @@ def generate_month_line_graph():
    
     return dcc.Graph(figure=go.Figure(data=data,layout=layout))
    
-    
-    
+
 def generate_sneeze_map():
+    
     fig = go.Figure(go.Scattermapbox(
         lat=dataTotal['Latitude'],
         lon=dataTotal['Longitude'],
@@ -1349,13 +1386,55 @@ def update_control_chart(interval, n1, n2, n3, n4, n5, n6, n7, data, cur_fig):
             curr_id = cur_fig["data"][0]["name"]
             return generate_graph(interval, data, curr_id)
 
-
 # Update piechart
+
+@app.callback(
+    Output(component_id="weekday-pie-chart", component_property="figure"),
+    [Input(component_id="weekday-dropdown", component_property="value")]
+)
+
+def update_weekday_piechart(value):
+    print(value)
+    print(dataTotal)
+    print(dataTotal['Year'])
+    if value == "All Years":
+        value = [2020,2021] 
+    else:
+        value = [int(value)]
+    df = dataTotal[dataTotal['Year'].isin(value)]
+    print('farts')
+    print(df)
+    data = [
+        go.Pie(
+           labels=df['Day of Week'],
+           values=df['Number of Sneezes'],
+           name="WeekDay Breakdown",   
+           )
+    ,]
+    layout = go.Layout(
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        showlegend=True,
+        autosize=True,
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        margin=dict(t=0, b=0, l=0, r=0),
+    )
+    #layout =[]
+    return go.Figure(data=data,layout=layout)
+
+
 @app.callback(
     output=Output("piechart", "figure"),
     inputs=[Input("interval-component", "n_intervals")],
     state=[State("value-setter-store", "data")],
 )
+
 def update_piechart(interval, stored_data):
     if interval == 0:
         return {
