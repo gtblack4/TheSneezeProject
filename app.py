@@ -367,7 +367,7 @@ def build_top_panel(stopped_interval):
                                 children=[
                                     build_sneeze_stats_row("How many sneezes go unblessed?",generate_blessed_sneezes(),1),
                                     build_sneeze_stats_row("Sneeze fit size",generate_fit_count(),1),
-                                    generate_metric_row_helper(stopped_interval, 2),
+                                    build_sneeze_stats_row("Sneeze fit location",generate_location_graph(),1),
                                     generate_metric_row_helper(stopped_interval, 3),
                                     # generate_metric_row_helper(stopped_interval, 4),
                                     # generate_metric_row_helper(stopped_interval, 5),
@@ -401,7 +401,9 @@ def build_sneeze_stats_row(text,graph,position):
             html.Div(
                 id="sneeze-stats-title",
                 children=[
-              html.P(text)
+              html.P(
+                id="sneeze-stats-title-text",
+                children=[text])
               ]
             ),
             html.Div(
@@ -416,52 +418,33 @@ def build_sneeze_stats_row(text,graph,position):
 def generate_sneeze_time():
     print('fart')
 def generate_location_graph():
-    print('toot')
-def generate_fit_count():
-    sneezeFit = pd.DataFrame(dataTotal['Number of Sneezes'].value_counts())
-    data2 = []
-    sneezeFit = sneezeFit.sort_index()
-    for row in sneezeFit.index:
-        data2.append(
+    sneezeLocation = pd.DataFrame(dataTotal['Location'].value_counts())
+    data = []
+    tickvalues = [0]
+    count = 0
+    sneezeLocation = sneezeLocation.sort_index()
+    for row in sneezeLocation.index:
+
+
+        tickvalues.append(int(int(sneezeLocation['Location'][row])+int(tickvalues[count])))
+        data.append(
         go.Bar(
         y=['Sneezes'],
-        x=[sneezeFit['Number of Sneezes'][row]],
+        x=[sneezeLocation['Location'][row]],
         name=row,
         orientation='h',
         ))
-    data = [
-    
-    
-        go.Bar(
-        y=['Sneezes'],
-        x=[sneezeFit['Number of Sneezes'][2]],
-        name='2',
-        orientation='h',
-        # marker=dict(
-        #     color='rgba(246, 78, 139, 0.6)',
-        #     line=dict(color='rgba(246, 78, 139, 1.0)', width=3)
-        #     )
-        ),
-        go.Bar(
-        y=['Sneezes'],
-        x=[sneezeFit['Number of Sneezes'][1]],
-        name='1',
-        orientation='h',
-        # marker=dict(
-        #     color='rgba(58, 71, 80, 0.6)',
-        #     line=dict(color='rgba(246, 78, 139, 1.0)', width=3)
-        #     )
-        ),
-]
-
-    
+        count = count+1
+   
     layout = go.Layout(barmode='stack',
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor= 'rgba(0,0,0,0)',
-            showlegend=True,
+            showlegend=False,
             autosize=True,
-          
-
+            yaxis = dict(showticklabels=False),
+            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=tickvalues,showgrid = True,
+ 
+  tickangle = 0)),
             #xaxis=dict(tickformat="%m/%d")
             legend=dict(
                 orientation="h",
@@ -476,7 +459,52 @@ def generate_fit_count():
             margin=dict(t=0, b=0, l=0, r=0),
         )
     config = {'displayModeBar': False}
-    return dcc.Graph(id="fit-count-chart", figure = go.Figure(data=data2,layout=layout),config=config)
+    return dcc.Graph(id="location-count-chart", figure = go.Figure(data=data,layout=layout),config=config)
+
+def generate_fit_count():
+    sneezeFit = pd.DataFrame(dataTotal['Number of Sneezes'].value_counts())
+    data = []
+    tickvalues = [0]
+    count = 0
+    sneezeFit = sneezeFit.sort_index()
+   
+    for row in sneezeFit.index:
+        
+
+        tickvalues.append(int(int(sneezeFit['Number of Sneezes'][row])+int(tickvalues[count])))
+        data.append(
+        go.Bar(
+        y=['Sneezes'],
+        x=[sneezeFit['Number of Sneezes'][row]],
+        name=row,
+        orientation='h',
+        ))
+        count = count+1
+   
+    layout = go.Layout(barmode='stack',
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor= 'rgba(0,0,0,0)',
+            showlegend=True,
+            autosize=True,
+            yaxis = dict(showticklabels=False),
+            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=tickvalues,showgrid = True,
+ 
+  tickangle = 0)),
+            #xaxis=dict(tickformat="%m/%d")
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1,
+                font=dict(
+                    color="white"
+                ),
+            ),
+            margin=dict(t=0, b=0, l=0, r=0),
+        )
+    config = {'displayModeBar': False}
+    return dcc.Graph(id="fit-count-chart", figure = go.Figure(data=data,layout=layout),config=config)
 
 
 def generate_blessed_sneezes():
@@ -514,6 +542,8 @@ def generate_blessed_sneezes():
       
 
         #xaxis=dict(tickformat="%m/%d")
+        yaxis = dict(showticklabels=False),
+        xaxis = (dict(tickvals=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed']+blessedSum['Blessed'])], ticktext=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed'])],showgrid = True, tickangle = 0)),
         legend=dict(
             orientation="h",
             yanchor="bottom",
