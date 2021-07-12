@@ -7,7 +7,12 @@ import calendar
 dateFormat = "%I:%M %p %m/%d/%Y"
 
 #TODO finish this function to get the number of days elapsed in the year
-
+def blessCount(s):
+	if s > 0:
+		return "Blessed"
+	else:
+		return "Unblessed"
+	
 def dataBreakdown(sneezedata):
 	sneezedata['Timestamp'] = pd.to_datetime(sneezedata['Timestamp'])
 	sneezedata['Day of Week'] = pd.to_datetime(sneezedata['Timestamp']).dt.day_name()
@@ -23,10 +28,10 @@ def dataBreakdown(sneezedata):
 		sneezedata[['Latitude','Longitude']] = sneezedata['GeoCode'].str.split(",", expand=True)
 		sneezedata['Latitude'].apply(lambda x: float(x)).round()
 		sneezedata['Longitude'].apply(lambda x: float(x)).round()
+	sneezedata['Blessed'] = sneezedata['Number of Blesses'].apply(blessCount)
 	#sneezedata = sneezedata.sort_values(by='Month Day')
 	#sneezedata = sneezedata.sort_values(by='Timestamp')
-
-
+	print("fart")
 def buildMonthArray(sneezedata):
 	monthArray =[0,0,0,0,0,0,0,0,0,0,0,0,0]
 	for row in sneezedata.iterrows():

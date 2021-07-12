@@ -222,6 +222,30 @@ body {
   background-color: #1e2130 !important;
 }
 
+#blessed-chart {
+    width: 100%;
+  background-color: #1e2130 !important;
+      height: 80px;
+    line-height: 30px;
+    text-align: center;
+}
+
+#fit-count-chart {
+    width: 100%;
+  background-color: #1e2130 !important;
+      height: 80px;
+    line-height: 30px;
+    text-align: center;
+}
+
+
+#blessed-chart > div > div{
+    width: 100%;
+  background-color: #1e2130 !important;
+      height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
 #quick-stats.row {
   display: flex;
   flex-direction: column;
@@ -246,10 +270,11 @@ body {
   margin: 0;
   border-left: #1E2130 solid 0.8rem;
   flex: 1 1 auto;
+
 }
 
 #piechart.plot-container plotly {
-  height: 100%;
+  height: 10%;
 }
 
 #card-1, #card-2, #utility-card {
@@ -276,6 +301,9 @@ body {
 }
 #time-button > div > button:hover {
   color: #91dfd2 !important;
+}
+#switch-button  {
+  content: "Poop";
 }
 /* Tab1 content
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -529,6 +557,20 @@ body {
   background-color: #1d202d !important;
 }
 
+#switch-button > div > button {
+  color: white !important;
+  background-color: #1d202d !important;
+  border: 1px solid #4B5460 !important;
+  border-radius: 4px;
+  height: 40px;
+  line-height: 40px;
+}
+
+#switch-button > div > button:hover {
+  color: #91dfd2 !important;
+  border-color: white !important;
+  background-color: #1d202d !important;
+}
 #graph-label > div {
   display: inline-block;
 }
@@ -553,6 +595,19 @@ body {
   background-color: #1d202d !important;
 }
 
+#sneeze-stats-row{
+  height: 8rem;
+  width: 100%;
+}
+#sneeze-stats-title{
+   height: 8rem;
+  width: 15%;
+}
+#sneeze-stats-graph{
+  height: 8rem;
+  width: 85%;
+}
+
 #card-1 P, #card-2 P {
   margin: 2rem;
   color: inherit;
@@ -568,11 +623,21 @@ body {
 #card-2 > div{
   width: 90%;
 }
-
+#weekday-pie-chart-div > div{
+margin-top: 0;
+margin-bottom: 0;
+}
 #card-2 .scale, #card-2 .needle, #card-2 .needle-knob {
   display: none !important;
 }
-
+#date-range-text{
+  align-items: left;
+  width: 50%;
+}
+#weekday-dropdown{
+  align-items: right;
+  width: 50%;
+}
 /* Tab 2 metric row
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .metric-row-button {
@@ -707,7 +772,10 @@ body {
   #ooc-piechart-outer {
     border-left: none;
   }
-
+#ooc-piechart-outer >div {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
   #quick-stats {
     border-right: none;
   }

@@ -365,4 +365,11 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 7/5/2021 12:13:47;5;Parking Lot;Change in Brightness (Natural);1;1;Charlee;;;07/05/2021 23:13:52;41.4855563,-81.7226373;1416 W 52nd St, Cleveland, OH 44102, USA
 7/5/2021 14:22:15;3;Parking Lot;Change in Brightness (Natural);1;1;Charlee ;;;07/06/2021 1:22:19;41.4859232,-81.7223538;5107 Detroit Rd, Cleveland, OH 44102, USA
 7/5/2021 14:32:15;2;City Street;Change in Brightness (Natural);0;0;;;;07/06/2021 1:32:18;41.4868125,-81.7176349;1417 W 45th St, Cleveland, OH 44102, USA
-7/6/2021 15:55:31;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;
+7/6/2021 15:55:31;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;07/10/2021 9:45:32;41.5099084,-81.581175;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+7/9/2021 19:23:52;4;Car (Driving);Change in Brightness (Natural);0;0;;;;07/10/2021 6:23:56;41.4981714,-81.6950908;301 W Superior Ave, Cleveland, OH 44113, USA
+7/9/2021 22:45:29;2;Someone else's house;Smoke;1;1;Charlee ;;;07/10/2021 19:53:39;41.0992384,-80.7628021;5499 Mahoning Ave, Austintown, OH 44515, USA
+7/10/2021 8:03:05;5;Car (Driving);Change in Brightness (Natural);0;0;;;;07/10/2021 19:03:10;41.3689279,-81.5162445;125 Broadway Ave, Bedford, OH 44146, USA
+7/10/2021 11:40:07;4;Park;Change in Brightness (Natural);1;5;Scott, Ryan, Troy, Brad, Riley;;;07/11/2021 21:58:56;41.527072,-81.5892876;1643 Eddy Rd, East Cleveland, OH 44112, USA
+7/11/2021 10:58:53;4;Car (Driving);Change in Brightness (Natural);1;4;;;;07/12/2021 2:33:27;41.4988783,-81.6933424;100 Public Square, Cleveland, OH 44113, USA
+7/11/2021 15:33:23;4;City Street;Change in Brightness (Natural);1;Public Space;Charlee;;;07/12/2021 3:23:57;41.4979979,-81.6937521;245-235 W Prospect Ave, Cleveland, OH 44115, USA
+7/11/2021 16:23:53;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;

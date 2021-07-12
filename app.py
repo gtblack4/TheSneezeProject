@@ -82,10 +82,10 @@ def build_banner():
             html.Div(
                 id="banner-logo",
                 children=[
-                    html.A(
-                        html.Button(children="ENTERPRISE DEMO"),
-                        href="https://plotly.com/get-demo/",
-                    ),
+                    # html.A(
+                    #     html.Button(children="ENTERPRISE DEMO"),
+                    #     href="https://plotly.com/get-demo/",
+                    # ),
                     html.Button(
                         id="learn-more-button", children="LEARN MORE", n_clicks=0
                     ),
@@ -287,23 +287,17 @@ def generate_modal():
                         children=dcc.Markdown(
                             children=(
                                 """
-                        ###### What is this mock app about?
+                        ###### What is this dashboard all about?
 
-                        This is a dashboard for monitoring real-time process quality along manufacture production line.
+                        I built this dashboard for real-time monitoring of my sneezes.
 
-                        ###### What does this app shows
+                        ###### But why?
 
-                        Click on buttons in `Parameter` column to visualize details of measurement trendlines on the bottom panel.
 
-                        The sparkline on top panel and control chart on bottom panel show Shewhart process monitor using mock data.
-                        The trend is updated every other second to simulate real-time measurements. Data falling outside of six-sigma control limit are signals indicating 'Out of Control(OOC)', and will
-                        trigger alerts instantly for a detailed checkup.
-                        
-                        Operators may stop measurement by clicking on `Stop` button, and edit specification parameters by clicking specification tab.
 
                         ###### Source Code
 
-                        You can find the source code of this app on our [Github repository](https://github.com/plotly/dash-sample-apps/tree/main/apps/dash-manufacture-spc-dashboard).
+                        You can find the source code of this app on my [Github repository](https://github.com/gtblack4/TheSneezeProject).
 
                     """
                             )
@@ -325,24 +319,12 @@ def build_quick_stats_panel():
                 children=[
                 html.Div(id = "graph-label",
                     children=[
-                daq.StopButton(id="time-button", size=160, n_clicks=0),]),
-
-                html.Div(
-                    id="year-graph",
-                    children=[
-                    generate_year_line_graph(),
-                    ]
-                ),
-                html.Div(
-                    id="month-graph",
-                    children=[
-                    generate_month_line_graph(),
-                    ]
-                )
+                html.Button('Cumulative',id="switch-button", n_clicks=0,style=dict(color='white')),
+                  ]),
+                html.Div(id="line-graphs"),
                 ],
             ),
            
-
 
             html.Div(
                 id="card-2",
@@ -375,21 +357,22 @@ def build_top_panel(stopped_interval):
                 id="metric-summary-session",
                 className="eight columns",
                 children=[
-                    generate_section_banner("Process Control Metrics Summary"),
+                    generate_section_banner("Quick Stats"),
                     html.Div(
                         id="metric-div",
                         children=[
-                            generate_metric_list_header(),
+#                            generate_metric_list_header(),
                             html.Div(
                                 id="metric-rows",
                                 children=[
-                                    
+                                    build_sneeze_stats_row("How many sneezes go unblessed?",generate_blessed_sneezes(),1),
+                                    build_sneeze_stats_row("Sneeze fit size",generate_fit_count(),1),
                                     generate_metric_row_helper(stopped_interval, 2),
                                     generate_metric_row_helper(stopped_interval, 3),
-                                    generate_metric_row_helper(stopped_interval, 4),
-                                    generate_metric_row_helper(stopped_interval, 5),
-                                    generate_metric_row_helper(stopped_interval, 6),
-                                    generate_metric_row_helper(stopped_interval, 7),
+                                    # generate_metric_row_helper(stopped_interval, 4),
+                                    # generate_metric_row_helper(stopped_interval, 5),
+                                    # generate_metric_row_helper(stopped_interval, 6),
+                                    # generate_metric_row_helper(stopped_interval, 7),
                                 ],
                             ),
                         ],
@@ -401,20 +384,150 @@ def build_top_panel(stopped_interval):
                 id="ooc-piechart-outer",
                 className="four columns",
                 children=[
-                    generate_section_banner("% OOC per Parameter"),
-                    html.P("Select a Year:"),
-                    dcc.Dropdown(
-                        id='weekday-dropdown', 
-                        value='All Years', 
-                        options=[{'value': x, 'label': x} 
-                                 for x in ["All Years",'2021','2020']],
-                        clearable=False
-                    ),
-                    dcc.Graph(id ='weekday-pie-chart',figure = generate_piechart()),
+                   generate_section_banner("Weekday Breakdown"),
+                    
+                    
+                    html.Div(id='weekday-pie-chart-div', children =  generate_piechart()),
                 ],
             ),
         ],
     )
+def build_sneeze_stats_row(text,graph,position):
+      return html.Div(
+        id="sneeze-stats-row",
+        className="row metric-row",
+
+        children=[
+            html.Div(
+                id="sneeze-stats-title",
+                children=[
+              html.P(text)
+              ]
+            ),
+            html.Div(
+                id="sneeze-stats-graph",
+                children=[
+                graph
+                ]
+            )
+         
+            ])
+
+def generate_sneeze_time():
+    print('fart')
+def generate_location_graph():
+    print('toot')
+def generate_fit_count():
+    sneezeFit = pd.DataFrame(dataTotal['Number of Sneezes'].value_counts())
+    data2 = []
+    sneezeFit = sneezeFit.sort_index()
+    for row in sneezeFit.index:
+        data2.append(
+        go.Bar(
+        y=['Sneezes'],
+        x=[sneezeFit['Number of Sneezes'][row]],
+        name=row,
+        orientation='h',
+        ))
+    data = [
+    
+    
+        go.Bar(
+        y=['Sneezes'],
+        x=[sneezeFit['Number of Sneezes'][2]],
+        name='2',
+        orientation='h',
+        # marker=dict(
+        #     color='rgba(246, 78, 139, 0.6)',
+        #     line=dict(color='rgba(246, 78, 139, 1.0)', width=3)
+        #     )
+        ),
+        go.Bar(
+        y=['Sneezes'],
+        x=[sneezeFit['Number of Sneezes'][1]],
+        name='1',
+        orientation='h',
+        # marker=dict(
+        #     color='rgba(58, 71, 80, 0.6)',
+        #     line=dict(color='rgba(246, 78, 139, 1.0)', width=3)
+        #     )
+        ),
+]
+
+    
+    layout = go.Layout(barmode='stack',
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor= 'rgba(0,0,0,0)',
+            showlegend=True,
+            autosize=True,
+          
+
+            #xaxis=dict(tickformat="%m/%d")
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1,
+                font=dict(
+                    color="white"
+                ),
+            ),
+            margin=dict(t=0, b=0, l=0, r=0),
+        )
+    config = {'displayModeBar': False}
+    return dcc.Graph(id="fit-count-chart", figure = go.Figure(data=data2,layout=layout),config=config)
+
+
+def generate_blessed_sneezes():
+    
+    blessedSum = dataTotal.groupby(dataTotal['Blessed'])['Number of Sneezes'].sum()
+    #blessedSum.rename(columns = {'Blessed':'Count'})
+
+    data = [go.Bar(
+    y=['Sneezes'],
+    x=[blessedSum[0]],
+    name='Blessed',
+    orientation='h',
+    marker=dict(
+        color='rgba(246, 78, 139, 0.6)',
+        line=dict(color='rgba(246, 78, 139, 1.0)', width=3)
+        )
+    ),
+    go.Bar(
+        y=['Sneezes'],
+        x=[blessedSum[1]],
+        name='Unblessed',
+        orientation='h',
+        marker=dict(
+            color='rgba(58, 71, 80, 0.6)',
+            line=dict(color='rgba(58, 71, 80, 1.0)', width=3)
+            )
+        ),
+
+    ]
+    layout = go.Layout(barmode='stack',
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        showlegend=True,
+        autosize=True,
+      
+
+        #xaxis=dict(tickformat="%m/%d")
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1,
+            font=dict(
+                color="white"
+            ),
+        ),
+        margin=dict(t=0, b=0, l=0, r=0),
+    )
+    config = {'displayModeBar': False}
+    return dcc.Graph(id="blessed-chart", figure = go.Figure(data=data,layout=layout),config=config)
 
 def generate_piechart():
     # value == "All Years":
@@ -425,26 +538,30 @@ def generate_piechart():
   
     data = [
         go.Pie(
-           labels=dataTotal['Day of Week'],
-           values=dataTotal['Number of Sneezes'],
-           name="WeekDay Breakdown",   
+            labels=dataTotal['Day of Week'],
+            values=dataTotal['Number of Sneezes'],
+            name="WeekDay Breakdown",   
+            
            )
     ,]
     layout = go.Layout(
         paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor= 'rgba(0,0,0,0)',
+        
         showlegend=True,
         autosize=True,
+
         legend=dict(
+            font= dict(color = 'white'),
             orientation="h",
             yanchor="bottom",
             y=1.02,
             xanchor="right",
             x=1
         ),
-        margin=dict(t=0, b=0, l=0, r=0),
+        margin=dict(t=0, b=100, l=0, r=0),
     )
-    return go.Figure(data=data,layout=layout)
+    config = {'displayModeBar': False}
+    return dcc.Graph(id ='weekday-pie-chart',figure =go.Figure(data=data,layout=layout),config=config)
 
 def generate_piechart2():
     return dcc.Graph(
@@ -474,7 +591,7 @@ def generate_piechart2():
 
 
 # Build header
-def generate_metric_list_header():
+def generate_sneeze_header():
     return generate_metric_row(
         "metric_header",
         {"height": "3rem", "margin": "1rem 0", "textAlign": "center"},
@@ -486,7 +603,9 @@ def generate_metric_list_header():
         {"id": "m_header_6", "children": "Pass/Fail"},
     )
 
-
+def generate_rows(graphType,index):
+    return generate
+    item = params[index]
 def generate_metric_row_helper(stopped_interval, index):
     item = params[index]
 
@@ -669,7 +788,6 @@ def build_chart_panel():
     )
 
 def generate_year_line_graph():
-    week2020 = mf.buildWeekSums(sneezeData2020)
 
 
     data = [
@@ -680,7 +798,7 @@ def generate_year_line_graph():
             name="2020",
             line=dict(
                 color='rgb(102, 255, 102)',
-                width=4
+                width=3
             )
         ),
         go.Scatter(
@@ -690,7 +808,7 @@ def generate_year_line_graph():
             name="2021", 
             line=dict(
                 color='rgb(0, 153, 51)',
-                width=4
+                width=3
             ),
         )
     ]
@@ -705,7 +823,11 @@ def generate_year_line_graph():
             yanchor="bottom",
             y=1.02,
             xanchor="right",
-            x=1
+            x=1,
+            font=dict(
+                color="white"
+            ),
+
         ),
         margin=dict(t=0, b=0, l=0, r=0),
 
@@ -713,8 +835,8 @@ def generate_year_line_graph():
         yaxis=dict(color="white")
         )
    
-
-    return dcc.Graph(figure=go.Figure(data=data,layout=layout))
+    config = {'displayModeBar': False}
+    return dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config)
    
     
    
@@ -730,7 +852,7 @@ def generate_month_line_graph():
         name="2020",
         line=dict(
             color='rgb(102, 255, 102)',
-            width=4
+            width=3
         )
     ),
     go.Scatter(
@@ -740,7 +862,7 @@ def generate_month_line_graph():
         name="2021",
         line=dict(
             color='rgb(0, 153, 51)',
-            width=4
+            width=3
             )
         )
     ]
@@ -757,13 +879,17 @@ def generate_month_line_graph():
             yanchor="bottom",
             y=1.02,
             xanchor="right",
-            x=1
+            x=1,
+            font=dict(
+
+            color="white"
+        ),
         ),
 
         margin=dict(t=0, b=0, l=0, r=0),
         )
-   
-    return dcc.Graph(figure=go.Figure(data=data,layout=layout))
+    config = {'displayModeBar': False}
+    return dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config)
    
 
 def generate_sneeze_map():
@@ -1135,9 +1261,6 @@ def update_interval_state(tab_switch, cur_interval, disabled, cur_stage):
     #dash.dependencies.Output('year-graph', 'style'),
     [dash.dependencies.Input('time-button', 'n_clicks')],
     )
-
-
-
 def button_toggle(n_clicks):
     if n_clicks % 2 == 1:
         return {'display':'none'},{'display': 'block'},"Yearly Cumulative"
@@ -1145,7 +1268,17 @@ def button_toggle(n_clicks):
         return {'display': 'block'},{'display':'none'},"Week by Week"
 
 
+@app.callback(
 
+    [Output("switch-button","children"),Output("line-graphs","children")],
+    [dash.dependencies.Input('switch-button','n_clicks')]
+)
+def line_graph_switch(n_clicks):
+    if n_clicks % 2 == 1:
+        return "Week by Week",generate_month_line_graph()
+    else:
+        return "Yearly Cumulative",generate_year_line_graph()
+        
 
 
 def stop_production(n_clicks, current):
@@ -1394,16 +1527,13 @@ def update_control_chart(interval, n1, n2, n3, n4, n5, n6, n7, data, cur_fig):
 )
 
 def update_weekday_piechart(value):
-    print(value)
-    print(dataTotal)
-    print(dataTotal['Year'])
+  
     if value == "All Years":
         value = [2020,2021] 
     else:
         value = [int(value)]
     df = dataTotal[dataTotal['Year'].isin(value)]
-    print('farts')
-    print(df)
+
     data = [
         go.Pie(
            labels=df['Day of Week'],
@@ -1426,63 +1556,13 @@ def update_weekday_piechart(value):
         margin=dict(t=0, b=0, l=0, r=0),
     )
     #layout =[]
-    return go.Figure(data=data,layout=layout)
+    config = {'displayModeBar': False}
+    return go.Figure(data=data,layout=layout,config=config)
 
 
-@app.callback(
-    output=Output("piechart", "figure"),
-    inputs=[Input("interval-component", "n_intervals")],
-    state=[State("value-setter-store", "data")],
-)
 
-def update_piechart(interval, stored_data):
-    if interval == 0:
-        return {
-            "data": [],
-            "layout": {
-                "font": {"color": "white"},
-                "paper_bgcolor": "rgba(0,0,0,0)",
-                "plot_bgcolor": "rgba(0,0,0,0)",
-            },
-        }
 
-    if interval >= max_length:
-        total_count = max_length - 1
-    else:
-        total_count = interval - 1
 
-    values = []
-    colors = []
-    for param in params[1:]:
-        ooc_param = (stored_data[param]["ooc"][total_count] * 100) + 1
-        values.append(ooc_param)
-        if ooc_param > 6:
-            colors.append("#f45060")
-        else:
-            colors.append("#91dfd2")
-
-    new_figure = {
-        "data": [
-            {
-                "labels": params[1:],
-                "values": values,
-                "type": "pie",
-                "marker": {"colors": colors, "line": dict(color="white", width=2)},
-                "hoverinfo": "label",
-                "textinfo": "label",
-            }
-        ],
-        "layout": {
-            "margin": dict(t=20, b=50),
-            "uirevision": True,
-            "font": {"color": "white"},
-            "showlegend": False,
-            "paper_bgcolor": "rgba(0,0,0,0)",
-            "plot_bgcolor": "rgba(0,0,0,0)",
-            "autosize": True,
-        },
-    }
-    return new_figure
 
 
 # Running the server
