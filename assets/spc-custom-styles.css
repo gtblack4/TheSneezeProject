@@ -892,3 +892,12 @@ margin-bottom: 0;
     margin-left: 0;
   }
 }
+.owl-carousel {
+-ms-touch-action: pan-y;
+touch-action: pan-y;
+}
+or
+.owl-carousel {
+-ms-touch-action: none;
+touch-action: none;
+}

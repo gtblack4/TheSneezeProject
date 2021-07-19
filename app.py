@@ -988,6 +988,7 @@ def generate_month_line_graph():
         yaxis2=dict(color="blue",nticks=0, anchor="free",overlaying="y2", side="right",showgrid=False, showticklabels=False,),
         
         )
+    fig.update_layout(autotypenumbers='convert types')
     config = {'displayModeBar': False}
 
 
