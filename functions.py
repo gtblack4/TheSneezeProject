@@ -165,7 +165,23 @@ def cumulativeComparison(allSneezeData):
 		row[twenty] = row['Number of Sneezes'].cumsum()
 		twenty += 1
 		
+def buildWeekSums2(sneezedata):
+	weekdata = []
+
+	weekdata = sneezedata.groupby('Month')['Number of Sneezes'].sum().to_frame(name='sum').reset_index()
+	weekdata['date'] = pd.to_datetime('1900-' + weekdata['Month'].astype(str) + '-01')
+	#print(weekdata)
+	#weekdata['Month Day'] = pd.to_datetime(sneezedata['Timestamp']).dt.strftime('%m/%d/%Y')
+	return weekdata
+
 def buildWeekSums(sneezedata):
 	weekdata = []
-	weekdata = sneezedata.groupby('Week Number')['Number of Sneezes'].sum().to_frame(name='sum').reset_index()
+
+	weekdata = sneezedata.groupby('Month Day')['Number of Sneezes'].sum().to_frame(name='sum').reset_index()
+	weekdata['7 Day Average'] = weekdata.iloc[:,1].rolling(window=14).mean()
+	print(weekdata)
+
+	#weekdata['date'] = pd.to_datetime('1900-' + weekdata['Day of Year'].astype(str) + '-01')
+	#print(weekdata)
+	#weekdata['Month Day'] = pd.to_datetime(sneezedata['Timestamp']).dt.strftime('%m/%d/%Y')
 	return weekdata

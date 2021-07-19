@@ -222,30 +222,30 @@ body {
   background-color: #1e2130 !important;
 }
 
-#blessed-chart {
+/*#blessed-chart {
     width: 100%;
   background-color: #1e2130 !important;
       height: 80px;
     line-height: 30px;
     text-align: center;
-}
+}*/
 
-#fit-count-chart {
+/*#fit-count-chart {
     width: 100%;
   background-color: #1e2130 !important;
       height: 80px;
     line-height: 30px;
     text-align: center;
-}
+}*/
 
 
-#blessed-chart > div > div{
+/*#blessed-chart > div > div{
     width: 100%;
   background-color: #1e2130 !important;
       height: 30px;
     line-height: 30px;
     text-align: center;
-}
+}*/
 #quick-stats.row {
   display: flex;
   flex-direction: column;
@@ -619,7 +619,7 @@ transform: translateY(-50%);
   
 }
 @media only screen and (max-width: 600px) {
-  .infolayer{
+ #sneeze-stats-row .infolayer{
     display: none;
   }
 #sneeze-stats-row{
@@ -635,19 +635,19 @@ transform: translateY(-50%);
 }
 #sneeze-stats-title-text{
  line-height: 1;
+ width: 80px;
 
  }
 
  #sneeze-stats-graph{
-   display: block;
+  display: block;
   height: 8rem;
-  width: 50%;
+  width: 100%;
 }
 #sneeze-stats-graph > div{
   height: 8rem;
   width: 100%;
-  
-}
+  }
 }
 
 

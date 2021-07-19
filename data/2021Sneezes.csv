@@ -130,7 +130,7 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 3/6/2021 15:03:49;2;Parking Lot;Change in Brightness (Natural);1;1;Chloey;;;03/07/2021 3:08:12;41.4873466,-81.7494624;00135001, Cleveland, OH 44102, USA
 3/7/2021 11:05:16;3;Your Home;Change in Brightness (Natural);1;1;Scott;Cats;;03/12/2021 5:31:45;41.4980027,-81.693995;230 W Huron Rd, Cleveland, OH 44113, USA
 3/7/2021 11:59:07;3;City Street;Change in Brightness (Natural);1;1;Scott;Cats;;03/07/2021 23:59:11;41.4988062,-81.690092;2062 E 4th St, Cleveland, OH 44115, USA
-3/7/2021 12:16:10;9;Car (Driving);Change in Brightness (Natural);0;0;;;;03/08/2021 23:27:40;41.497985,-81.6939521;230 W Huron Rd, Cleveland, OH 44113, USA
+3/7/2021 12:16:10;6;Car (Driving);Change in Brightness (Natural);0;0;;;;03/08/2021 23:27:40;41.497985,-81.6939521;230 W Huron Rd, Cleveland, OH 44113, USA
 3/8/2021 11:27:36;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;03/11/2021 3:01:47;41.497995,-81.6939873;230 W Huron Rd, Cleveland, OH 44113, USA
 3/8/2021 14:22:21;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;03/09/2021 3:20:58;41.4980013,-81.6939361;230 W Huron Rd, Cleveland, OH 44113, USA
 3/8/2021 15:20:54;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;03/09/2021 20:16:27;41.4979647,-81.6939622;230 W Huron Rd, Cleveland, OH 44113, USA
@@ -372,4 +372,16 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 7/10/2021 11:40:07;4;Park;Change in Brightness (Natural);1;5;Scott, Ryan, Troy, Brad, Riley;;;07/11/2021 21:58:56;41.527072,-81.5892876;1643 Eddy Rd, East Cleveland, OH 44112, USA
 7/11/2021 10:58:53;4;Car (Driving);Change in Brightness (Natural);1;4;;;;07/12/2021 2:33:27;41.4988783,-81.6933424;100 Public Square, Cleveland, OH 44113, USA
 7/11/2021 15:33:23;4;City Street;Change in Brightness (Natural);1;Public Space;Charlee;;;07/12/2021 3:23:57;41.4979979,-81.6937521;245-235 W Prospect Ave, Cleveland, OH 44115, USA
-7/11/2021 16:23:53;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;
+7/11/2021 16:23:53;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;07/14/2021 3:38:17;41.5010521,-81.6798967;1700 US-20, Cleveland, OH 44115, USA
+7/13/2021 16:32:53;2;City Street;Change in Brightness (Natural);0;Public Space;;;;07/14/2021 3:32:58;41.5002545,-81.6866385;905 US-20, Cleveland, OH 44115, USA
+7/14/2021 12:22:23;3;Parking Garage;Change in Brightness (Natural);1;1;Stranger, Dan;;;07/14/2021 23:22:27;41.4967928,-81.6938704;230 W Huron Rd, Cleveland, OH 44113, USA
+7/14/2021 13:11:49;3;Office;Change in Brightness (Artificial);0;0;;;;07/15/2021 0:12:07;41.4972377,-81.6935155;1660 W 2nd St, Cleveland, OH 44113, USA
+7/15/2021 16:31:20;2;City Street;Change in Brightness (Natural);1;Public Space;Stranger;;;07/16/2021 11:38:29;41.498011,-81.6937284;245-235 W Prospect Ave, Cleveland, OH 44115, USA
+7/16/2021 0:38:26;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;07/17/2021 0:06:33;41.5011045,-81.6787602;Euclid Av & E 18th St, Cleveland, OH, USA
+7/16/2021 13:06:30;3;City Street;Other (Add in Notes);0;Public Space;;;;07/17/2021 7:56:20;41.4980154,-81.6937279;245-235 W Prospect Ave, Cleveland, OH 44115, USA
+7/17/2021 17:58:32;3;Your Home;Change in Brightness (Natural);1;1;Charlee ;Cats;;07/18/2021 7:34:08;41.497986,-81.6937258;200 W Prospect Ave, Cleveland, OH 44115, USA
+7/17/2021 20:34:05;1;Your Home;Change in Brightness (Natural);1;1;;Cats;Charlee;07/18/2021 19:33:08;41.4876855,-81.5955951;12600 Larchmere Blvd, Cleveland, OH 44120, USA
+7/18/2021 8:33:04;5;Parking Lot;Change in Brightness (Natural);1;2;Charlee, Jojo;;;07/19/2021 7:35:18;41.4979985,-81.6937193;245-235 W Prospect Ave, Cleveland, OH 44115, USA
+7/18/2021 18:07:40;4;City Street;Change in Brightness (Natural);1;Public Space;Charlee;;;07/19/2021 5:07:45;41.4995303,-81.6902895;402 US-20, Cleveland, OH 44114, USA
+7/18/2021 20:35:15;1;Your Home;Change in Brightness (Artificial);1;1;;Cats;Charlee ;07/20/2021 1:15:03;41.4980177,-81.6937236;245-235 W Prospect Ave, Cleveland, OH 44115, USA
+7/19/2021 14:15:00;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;

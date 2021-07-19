@@ -12,7 +12,8 @@ import dash_daq as daq
 import numpy as np
 import functions as mf
 import pandas as pd
-
+import math
+from plotly.subplots import make_subplots
 
 app = dash.Dash(
     __name__,
@@ -50,8 +51,8 @@ suffix_ooc_n = "_OOC_number"
 suffix_ooc_g = "_OOC_graph"
 suffix_indicator = "_indicator"
 
-
 totalSum = currentSneezeCount
+
 
 def build_banner():
     return html.Div(
@@ -368,7 +369,8 @@ def build_top_panel(stopped_interval):
                                     build_sneeze_stats_row("How many sneezes go unblessed?",generate_blessed_sneezes(),1),
                                     build_sneeze_stats_row("Sneeze fit size",generate_fit_count(),1),
                                     build_sneeze_stats_row("Sneeze fit location",generate_location_graph(),1),
-                                    generate_metric_row_helper(stopped_interval, 3),
+                                    #build_sneeze_stats_row("Time of Day ",generate_time_heat_graph(),1),
+                                    
                                     # generate_metric_row_helper(stopped_interval, 4),
                                     # generate_metric_row_helper(stopped_interval, 5),
                                     # generate_metric_row_helper(stopped_interval, 6),
@@ -392,6 +394,17 @@ def build_top_panel(stopped_interval):
             ),
         ],
     )
+def generate_time_heat_graph():
+    sneezeHours = []
+    for x in range(0,24):
+        sneezeHours.append(x)
+    
+    fig = go.Figure(data=go.Heatmap(
+                    x=pd.to_datetime(dataTotal['Timestamp']).dt.strftime('%h'),
+                    z=dataTotal['Number of Sneezes']))
+    config = {'displayModeBar': False}
+    return dcc.Graph(id="fit-count-chart", figure = fig,config=config)
+
 def build_sneeze_stats_row(text,graph,position):
       return html.Div(
         id="sneeze-stats-row",
@@ -423,6 +436,10 @@ def generate_location_graph():
     tickvalues = [0]
     count = 0
     sneezeLocation = sneezeLocation.sort_index()
+
+    sneezeLocation = sneezeLocation.sort_values('Location',ascending=False)
+
+
     for row in sneezeLocation.index:
 
 
@@ -442,9 +459,7 @@ def generate_location_graph():
             showlegend=False,
             autosize=True,
             yaxis = dict(showticklabels=False),
-            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=tickvalues,showgrid = True,
- 
-  tickangle = 0)),
+            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=tickvalues,showgrid = True, tickangle = 0)),
             #xaxis=dict(tickformat="%m/%d")
             legend=dict(
                 orientation="h",
@@ -469,8 +484,6 @@ def generate_fit_count():
     sneezeFit = sneezeFit.sort_index()
    
     for row in sneezeFit.index:
-        
-
         tickvalues.append(int(int(sneezeFit['Number of Sneezes'][row])+int(tickvalues[count])))
         data.append(
         go.Bar(
@@ -497,6 +510,7 @@ def generate_fit_count():
                 y=1.02,
                 xanchor="right",
                 x=1,
+                traceorder='normal',
                 font=dict(
                     color="white"
                 ),
@@ -543,7 +557,8 @@ def generate_blessed_sneezes():
 
         #xaxis=dict(tickformat="%m/%d")
         yaxis = dict(showticklabels=False),
-        xaxis = (dict(tickvals=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed']+blessedSum['Blessed'])], ticktext=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed'])],showgrid = True, tickangle = 0)),
+        xaxis = (dict(tickvals=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed']+blessedSum['Blessed'])], ticktext=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed'])],
+            showgrid = True, tickangle = 0)),
         legend=dict(
             orientation="h",
             yanchor="bottom",
@@ -868,35 +883,86 @@ def generate_year_line_graph():
     config = {'displayModeBar': False}
     return dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config)
    
-    
+def day_length(day_of_year, latitude):
+    P = math.asin(0.39795 * math.cos(0.2163108 + 2 * math.atan(0.9671396 * math.tan(.00860 * (day_of_year - 186)))))
+    pi = math.pi
+    day_light_hours = 24 - (24 / pi) * math.acos((math.sin(0.8333 * pi / 180) + math.sin(latitude * pi / 180) * math.sin(P)) / (math.cos(latitude * pi / 180) * math.cos(P)))
+    return day_light_hours
+
+
+def build_daylight_array():
+    min_light = 24.0
+    max_light = 0.0
+    latitude = 42.3605
+    dayLightHour = pd.DataFrame()
+  
+    for day in range(1,365):
+        length_hours = day_length(day,latitude)
+        length_hours = [pd.to_datetime(day-1, unit='D',origin=str(1900)),length_hours]
+ 
+        dayLightHour = dayLightHour.append([length_hours])
+     
    
+    return dayLightHour
+
 def generate_month_line_graph():
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+    dayLightHours = pd.DataFrame(build_daylight_array())
     week2020 = pd.DataFrame(mf.buildWeekSums(sneezeData2020))
     week2021 = pd.DataFrame(mf.buildWeekSums(sneezeData2021))
-
-    data = [
-    go.Scatter(
-        x=week2020['Week Number'],
-        y=week2020['sum'],
+  
+    fig.add_trace(
+        go.Scatter(
+        x=pd.to_datetime(week2020['Month Day']).dt.strftime('%Y/%-m/%d'),
+        y=week2020['7 Day Average'],
         mode= 'lines',
         name="2020",
         line=dict(
             color='rgb(102, 255, 102)',
-            width=3
-        )
+            width=2
+        ),
+        
     ),
+        secondary_y=False,
+    )
+   
+   
+    fig.add_trace(
     go.Scatter(
-        x=week2021['Week Number'], 
-        y=week2021['sum'], 
+        x=pd.to_datetime(week2021['Month Day']).dt.strftime('%Y/%-m/%d'), 
+        y=week2021['7 Day Average'], 
         mode= 'lines',
         name="2021",
         line=dict(
             color='rgb(0, 153, 51)',
             width=3
             )
-        )
-    ]
-    layout = go.Layout(
+        ),
+        secondary_y=False,
+    )
+    fig.add_trace(
+        go.Scatter(
+        x=pd.to_datetime(dayLightHours[0]).dt.strftime('%Y/%-m/%d'),
+        y=dayLightHours[1],
+        mode= 'lines',
+        name="Cleveland DayLight hours",
+        line=dict(
+            color='rgb(255,255,0)',
+            width=2
+        ),
+        yaxis='y2',
+
+    ),
+        
+        secondary_y=True,
+
+    )
+    #regression = pd.ols(y=week2021['date'], x=week2021['sum'])
+    #print(regression)
+
+
+    fig.update_layout(
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor= 'rgba(0,0,0,0)',
         showlegend=True,
@@ -917,9 +983,71 @@ def generate_month_line_graph():
         ),
 
         margin=dict(t=0, b=0, l=0, r=0),
+        xaxis=dict(tickformat="%b",color="white",nticks=12),
+        yaxis=dict(tickvals = [0, 1,2, 3,4, 5,6, 7,8, 9,10, 11],color="white",nticks=20),
+        yaxis2=dict(color="blue",nticks=0, anchor="free",overlaying="y2", side="right",showgrid=False, showticklabels=False,),
+        
         )
     config = {'displayModeBar': False}
-    return dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config)
+
+
+    return dcc.Graph(figure=fig,config=config)
+# def generate_month_line_graph2():
+
+#     dayLightHours = pd.DataFrame(build_daylight_array())
+
+#     week2020 = pd.DataFrame(mf.buildWeekSums(sneezeData2020))
+#     week2021 = pd.DataFrame(mf.buildWeekSums(sneezeData2021))
+
+#     data = [
+   
+#     go.Scatter(
+#         x=week2020['Week Number'],
+#         y=week2020['sum'],
+#         mode= 'lines',
+#         name="2020",
+#         line=dict(
+#             color='rgb(102, 255, 102)',
+#             width=3
+#         )
+#     ),
+#     go.Scatter(
+#         x=week2021['Week Number'], 
+#         y=week2021['sum'], 
+#         mode= 'lines',
+#         name="2021",
+#         line=dict(
+#             color='rgb(0, 153, 51)',
+#             width=3
+#             )
+#         )
+#     ]
+#     layout = go.Layout(
+#         paper_bgcolor='rgba(0,0,0,0)',
+#         plot_bgcolor= 'rgba(0,0,0,0)',
+#         showlegend=True,
+#         autosize=True,
+      
+
+#         #xaxis=dict(tickformat="%m/%d")
+#         legend=dict(
+#             orientation="h",
+#             yanchor="bottom",
+#             y=1.02,
+#             xanchor="right",
+#             x=1,
+#             font=dict(
+
+#             color="white"
+#         ),
+#         ),
+
+#         margin=dict(t=0, b=0, l=0, r=0),
+#         )
+#     config = {'displayModeBar': False}
+
+
+#     return dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config)
    
 
 def generate_sneeze_map():
@@ -1295,7 +1423,7 @@ def button_toggle(n_clicks):
     if n_clicks % 2 == 1:
         return {'display':'none'},{'display': 'block'},"Yearly Cumulative"
     else:
-        return {'display': 'block'},{'display':'none'},"Week by Week"
+        return {'display': 'block'},{'display':'none'},"2 Week Moving Average"
 
 
 @app.callback(
@@ -1305,7 +1433,7 @@ def button_toggle(n_clicks):
 )
 def line_graph_switch(n_clicks):
     if n_clicks % 2 == 1:
-        return "Week by Week",generate_month_line_graph()
+        return "2 Week Moving Average",generate_month_line_graph()
     else:
         return "Yearly Cumulative",generate_year_line_graph()
         
@@ -1322,6 +1450,9 @@ def stop_production(n_clicks, current):
     Output("markdown", "style"),
     [Input("learn-more-button", "n_clicks"), Input("markdown_close", "n_clicks")],
 )
+
+
+
 def update_click_output(button_click, close_click):
     ctx = dash.callback_context
 
