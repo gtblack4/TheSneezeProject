@@ -1424,7 +1424,7 @@ def button_toggle(n_clicks):
     if n_clicks % 2 == 1:
         return {'display':'none'},{'display': 'block'},"Yearly Cumulative"
     else:
-        return {'display': 'block'},{'display':'none'},"2 Week Moving Average"
+        return {'display': 'block'},{'display':'none'},"14 Day Moving Average"
 
 
 @app.callback(
@@ -1434,7 +1434,7 @@ def button_toggle(n_clicks):
 )
 def line_graph_switch(n_clicks):
     if n_clicks % 2 == 1:
-        return "2 Week Moving Average",generate_month_line_graph()
+        return "14 Day Moving Average",generate_month_line_graph()
     else:
         return "Yearly Cumulative",generate_year_line_graph()
         
