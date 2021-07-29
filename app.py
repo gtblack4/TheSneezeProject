@@ -1422,9 +1422,10 @@ def update_interval_state(tab_switch, cur_interval, disabled, cur_stage):
     )
 def button_toggle(n_clicks):
     if n_clicks % 2 == 1:
-        return {'display':'none'},{'display': 'block'},"Yearly Cumulative"
-    else:
         return {'display': 'block'},{'display':'none'},"14 Day Moving Average"
+
+    else:
+        return {'display':'none'},{'display': 'block'},"Yearly Cumulative"
 
 
 @app.callback(
@@ -1434,9 +1435,10 @@ def button_toggle(n_clicks):
 )
 def line_graph_switch(n_clicks):
     if n_clicks % 2 == 1:
-        return "14 Day Moving Average",generate_month_line_graph()
-    else:
         return "Yearly Cumulative",generate_year_line_graph()
+    else:
+        return "14 Day Moving Average",generate_month_line_graph()
+    #switchback
         
 
 
