@@ -31,7 +31,7 @@ def dataBreakdown(sneezedata):
 	sneezedata['Blessed'] = sneezedata['Number of Blesses'].apply(blessCount)
 	#sneezedata = sneezedata.sort_values(by='Month Day')
 	#sneezedata = sneezedata.sort_values(by='Timestamp')
-	print("fart")
+
 def buildMonthArray(sneezedata):
 	monthArray =[0,0,0,0,0,0,0,0,0,0,0,0,0]
 	for row in sneezedata.iterrows():
@@ -179,7 +179,7 @@ def buildWeekSums(sneezedata):
 
 	weekdata = sneezedata.groupby('Month Day')['Number of Sneezes'].sum().to_frame(name='sum').reset_index()
 	weekdata['7 Day Average'] = weekdata.iloc[:,1].rolling(window=14).mean()
-	print(weekdata)
+
 
 	#weekdata['date'] = pd.to_datetime('1900-' + weekdata['Day of Year'].astype(str) + '-01')
 	#print(weekdata)
