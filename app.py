@@ -917,36 +917,36 @@ def generate_month_line_graph():
     )
    
    
-    fig.add_trace(
-    go.Scatter(
-        x=pd.to_datetime(week2021['Month Day']).dt.strftime('%Y/%-m/%d'), 
-        y=week2021['7 Day Average'], 
-        mode= 'lines',
-        name="2021",
-        line=dict(
-            color='rgb(0, 153, 51)',
-            width=3
-            )
-        ),
-        secondary_y=False,
-    )
-    fig.add_trace(
-        go.Scatter(
-        x=pd.to_datetime(dayLightHours[0]).dt.strftime('%Y/%-m/%d'),
-        y=dayLightHours[1],
-        mode= 'lines',
-        name="Cleveland DayLight hours",
-        line=dict(
-            color='rgb(255,255,0)',
-            width=2
-        ),
-        yaxis='y2',
+    # fig.add_trace(
+    # go.Scatter(
+    #     x=pd.to_datetime(week2021['Month Day']).dt.strftime('%Y/%-m/%d'), 
+    #     y=week2021['7 Day Average'], 
+    #     mode= 'lines',
+    #     name="2021",
+    #     line=dict(
+    #         color='rgb(0, 153, 51)',
+    #         width=3
+    #         )
+    #     ),
+    #     secondary_y=False,
+    # )
+    # fig.add_trace(
+    #     go.Scatter(
+    #     x=pd.to_datetime(dayLightHours[0]).dt.strftime('%Y/%-m/%d'),
+    #     y=dayLightHours[1],
+    #     mode= 'lines',
+    #     name="Cleveland DayLight hours",
+    #     line=dict(
+    #         color='rgb(255,255,0)',
+    #         width=2
+    #     ),
+    #     yaxis='y2',
 
-    ),
+    # ),
         
-        secondary_y=True,
+    #     secondary_y=True,
 
-    )
+    # )
     #regression = pd.ols(y=week2021['date'], x=week2021['sum'])
     #print(regression)
 
