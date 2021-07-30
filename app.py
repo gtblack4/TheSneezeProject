@@ -901,20 +901,20 @@ def generate_month_line_graph():
     week2020 = pd.DataFrame(mf.buildWeekSums(sneezeData2020))
     week2021 = pd.DataFrame(mf.buildWeekSums(sneezeData2021))
   
-    fig.add_trace(
-        go.Scatter(
-        x=pd.to_datetime(week2020['Month Day']).dt.strftime('%Y/%-m/%d'),
-        y=week2020['7 Day Average'],
-        mode= 'lines',
-        name="2020",
-        line=dict(
-            color='rgb(102, 255, 102)',
-            width=2
-        ),
+    # fig.add_trace(
+    #     go.Scatter(
+    #     x=pd.to_datetime(week2020['Month Day']).dt.strftime('%Y/%-m/%d'),
+    #     y=week2020['7 Day Average'],
+    #     mode= 'lines',
+    #     name="2020",
+    #     line=dict(
+    #         color='rgb(102, 255, 102)',
+    #         width=2
+    #     ),
         
-    ),
-        secondary_y=False,
-    )
+    # ),
+    #     secondary_y=False,
+    # )
    
    
     # fig.add_trace(
@@ -930,25 +930,25 @@ def generate_month_line_graph():
     #     ),
     #     secondary_y=False,
     # )
-    # fig.add_trace(
-    #     go.Scatter(
-    #     x=pd.to_datetime(dayLightHours[0]).dt.strftime('%Y/%-m/%d'),
-    #     y=dayLightHours[1],
-    #     mode= 'lines',
-    #     name="Cleveland DayLight hours",
-    #     line=dict(
-    #         color='rgb(255,255,0)',
-    #         width=2
-    #     ),
-    #     yaxis='y2',
+    fig.add_trace(
+        go.Scatter(
+        x=pd.to_datetime(dayLightHours[0]).dt.strftime('%Y/%-m/%d'),
+        y=dayLightHours[1],
+        mode= 'lines',
+        name="Cleveland DayLight hours",
+        line=dict(
+            color='rgb(255,255,0)',
+            width=2
+        ),
+        yaxis='y2',
 
-    # ),
+    ),
         
-    #     secondary_y=True,
+        secondary_y=True,
 
-    # )
-    #regression = pd.ols(y=week2021['date'], x=week2021['sum'])
-    #print(regression)
+    )
+    # regression = pd.ols(y=week2021['date'], x=week2021['sum'])
+    # print(regression)
 
 
     fig.update_layout(
@@ -1720,4 +1720,4 @@ def update_weekday_piechart(value):
 
 # Running the server
 if __name__ == "__main__":
-    app.run_server(debug=False, port=8050)
+    app.run_server(debug=True, port=8050)
