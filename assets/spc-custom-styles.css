@@ -595,7 +595,7 @@ body {
   background-color: #1d202d !important;
 }
 
-#sneeze-stats-row{
+#metric-rows > div{
   height: 8rem;
   width: 100%;
 }
@@ -619,10 +619,10 @@ transform: translateY(-50%);
   
 }
 @media only screen and (max-width: 600px) {
- #sneeze-stats-row .infolayer{
+ #metric-rows > div .infolayer{
     display: none;
   }
-#sneeze-stats-row{
+#metric-rows > div{
 
   height: 4rem;
   width: 100%;
@@ -891,13 +891,4 @@ margin-bottom: 0;
   #Control-chart-tab.custom-tab {
     margin-left: 0;
   }
-}
-.owl-carousel {
--ms-touch-action: pan-y;
-touch-action: pan-y;
-}
-or
-.owl-carousel {
--ms-touch-action: none;
-touch-action: none;
 }

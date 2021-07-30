@@ -184,59 +184,59 @@ def init_value_setter_store():
     return state_dict
 
 
-def build_tab_1():
-    return [
-        # Manually select metrics
-        html.Div(
-            id="set-specs-intro-container",
-            # className='twelve columns',
-            children=html.P(
-                "Use historical control limits to establish a benchmark, or set new values."
-            ),
-        ),
-        html.Div(
-            id="settings-menu",
-            children=[
-                html.Div(
-                    id="metric-select-menu",
-                    # className='five columns',
-                    children=[
-                        html.Label(id="metric-select-title", children="Select Metrics"),
-                        html.Br(),
-                        dcc.Dropdown(
-                            id="metric-select-dropdown",
-                            options=list(
-                                {"label": param, "value": param} for param in params[1:]
-                            ),
-                            value=params[1],
-                        ),
-                    ],
-                ),
-                html.Div(
-                    id="value-setter-menu",
-                    # className='six columns',
-                    children=[
-                        html.Div(id="value-setter-panel"),
-                        html.Br(),
-                        html.Div(
-                            id="button-div",
-                            children=[
-                                html.Button("Update", id="value-setter-set-btn"),
-                                html.Button(
-                                    "View current setup",
-                                    id="value-setter-view-btn",
-                                    n_clicks=0,
-                                ),
-                            ],
-                        ),
-                        html.Div(
-                            id="value-setter-view-output", className="output-datatable"
-                        ),
-                    ],
-                ),
-            ],
-        ),
-    ]
+# def build_tab_1():
+#     return [
+#         # Manually select metrics
+#         html.Div(
+#             id="set-specs-intro-container",
+#             # className='twelve columns',
+#             children=html.P(
+#                 "Use historical control limits to establish a benchmark, or set new values."
+#             ),
+#         ),
+#         html.Div(
+#             id="settings-menu",
+#             children=[
+#                 html.Div(
+#                     id="metric-select-menu",
+#                     # className='five columns',
+#                     children=[
+#                         html.Label(id="metric-select-title", children="Select Metrics"),
+#                         html.Br(),
+#                         dcc.Dropdown(
+#                             id="metric-select-dropdown",
+#                             options=list(
+#                                 {"label": param, "value": param} for param in params[1:]
+#                             ),
+#                             value=params[1],
+#                         ),
+#                     ],
+#                 ),
+#                 html.Div(
+#                     id="value-setter-menu",
+#                     # className='six columns',
+#                     children=[
+#                         html.Div(id="value-setter-panel"),
+#                         html.Br(),
+#                         html.Div(
+#                             id="button-div",
+#                             children=[
+#                                 html.Button("Update", id="value-setter-set-btn"),
+#                                 html.Button(
+#                                     "View current setup",
+#                                     id="value-setter-view-btn",
+#                                     n_clicks=0,
+#                                 ),
+#                             ],
+#                         ),
+#                         html.Div(
+#                             id="value-setter-view-output", className="output-datatable"
+#                         ),
+#                     ],
+#                 ),
+#             ],
+#         ),
+#     ]
 
 
 ud_usl_input = daq.NumericInput(
@@ -367,8 +367,8 @@ def build_top_panel(stopped_interval):
                                 id="metric-rows",
                                 children=[
                                     build_sneeze_stats_row("How many sneezes go unblessed?",generate_blessed_sneezes(),1),
-                                    build_sneeze_stats_row("Sneeze fit size",generate_fit_count(),1),
-                                    build_sneeze_stats_row("Sneeze fit location",generate_location_graph(),1),
+                                    build_sneeze_stats_row("Sneeze fit size",generate_fit_count(),2),
+                                    build_sneeze_stats_row("Sneeze fit location",generate_location_graph(),3),
                                     #build_sneeze_stats_row("Time of Day ",generate_time_heat_graph(),1),
                                     
                                     # generate_metric_row_helper(stopped_interval, 4),
@@ -406,8 +406,11 @@ def generate_time_heat_graph():
     return dcc.Graph(id="fit-count-chart", figure = fig,config=config)
 
 def build_sneeze_stats_row(text,graph,position):
+      position = "sneeze-stats-row-" + str(position)
+      print(position)
       return html.Div(
-        id="sneeze-stats-row",
+        
+        id=position,
         className="row metric-row",
 
         children=[
@@ -636,116 +639,103 @@ def generate_piechart2():
 
 
 # Build header
-def generate_sneeze_header():
-    return generate_metric_row(
-        "metric_header",
-        {"height": "3rem", "margin": "1rem 0", "textAlign": "center"},
-        {"id": "m_header_1", "children": html.Div("Parameter")},
-        {"id": "m_header_2", "children": html.Div("Count")},
-        {"id": "m_header_3", "children": html.Div("Sparkline")},
-        {"id": "m_header_4", "children": html.Div("OOC%")},
-        {"id": "m_header_5", "children": html.Div("%OOC")},
-        {"id": "m_header_6", "children": "Pass/Fail"},
-    )
 
-def generate_rows(graphType,index):
-    return generate
-    item = params[index]
-def generate_metric_row_helper(stopped_interval, index):
-    item = params[index]
 
-    div_id = item + suffix_row
-    button_id = item + suffix_button_id
-    sparkline_graph_id = item + suffix_sparkline_graph
-    count_id = item + suffix_count
-    ooc_percentage_id = item + suffix_ooc_n
-    ooc_graph_id = item + suffix_ooc_g
-    indicator_id = item + suffix_indicator
+# def generate_metric_row_helper(stopped_interval, index):
+#     item = params[index]
 
-    return generate_metric_row(
-        div_id,
-        None,
-        {
-            "id": item,
-            "className": "metric-row-button-text",
-            "children": html.Button(
-                id=button_id,
-                className="metric-row-button",
-                children=item,
-                title="Click to visualize live SPC chart",
-                n_clicks=0,
-            ),
-        },
-        {"id": count_id, "children": "0"},
-        {
-            "id": item + "_sparkline",
-            "children": dcc.Graph(
-                id=sparkline_graph_id,
-                style={"width": "100%", "height": "95%"},
-                config={
-                    "staticPlot": False,
-                    "editable": False,
-                    "displayModeBar": False,
-                },
-                figure=go.Figure(
-                    {
-                        "data": [
-                            {
-                                "x": state_dict["Batch"]["data"].tolist()[
-                                    :stopped_interval
-                                ],
-                                "y": state_dict[item]["data"][:stopped_interval],
-                                "mode": "lines+markers",
-                                "name": item,
-                                "line": {"color": "#f4d44d"},
-                            }
-                        ],
-                        "layout": {
-                            "uirevision": True,
-                            "margin": dict(l=0, r=0, t=4, b=4, pad=0),
-                            "xaxis": dict(
-                                showline=False,
-                                showgrid=False,
-                                zeroline=False,
-                                showticklabels=False,
-                            ),
-                            "yaxis": dict(
-                                showline=False,
-                                showgrid=False,
-                                zeroline=False,
-                                showticklabels=False,
-                            ),
-                            "paper_bgcolor": "rgba(0,0,0,0)",
-                            "plot_bgcolor": "rgba(0,0,0,0)",
-                        },
-                    }
-                ),
-            ),
-        },
-        {"id": ooc_percentage_id, "children": "0.00%"},
-        {
-            "id": ooc_graph_id + "_container",
-            "children": daq.GraduatedBar(
-                id=ooc_graph_id,
-                color={
-                    "ranges": {
-                        "#92e0d3": [0, 3],
-                        "#f4d44d ": [3, 7],
-                        "#f45060": [7, 15],
-                    }
-                },
-                showCurrentValue=False,
-                max=15,
-                value=0,
-            ),
-        },
-        {
-            "id": item + "_pf",
-            "children": daq.Indicator(
-                id=indicator_id, value=True, color="#91dfd2", size=12
-            ),
-        },
-    )
+#     div_id = item + suffix_row
+#     button_id = item + suffix_button_id
+#     sparkline_graph_id = item + suffix_sparkline_graph
+#     count_id = item + suffix_count
+#     ooc_percentage_id = item + suffix_ooc_n
+#     ooc_graph_id = item + suffix_ooc_g
+#     indicator_id = item + suffix_indicator
+
+#     return generate_metric_row(
+#         div_id,
+#         None,
+#         {
+#             "id": item,
+#             "className": "metric-row-button-text",
+#             "children": html.Button(
+#                 id=button_id,
+#                 className="metric-row-button",
+#                 children=item,
+#                 title="Click to visualize live SPC chart",
+#                 n_clicks=0,
+#             ),
+#         },
+#         {"id": count_id, "children": "0"},
+#         {
+#             "id": item + "_sparkline",
+#             "children": dcc.Graph(
+#                 id=sparkline_graph_id,
+#                 style={"width": "100%", "height": "95%"},
+#                 config={
+#                     "staticPlot": False,
+#                     "editable": False,
+#                     "displayModeBar": False,
+#                 },
+#                 figure=go.Figure(
+#                     {
+#                         "data": [
+#                             {
+#                                 "x": state_dict["Batch"]["data"].tolist()[
+#                                     :stopped_interval
+#                                 ],
+#                                 "y": state_dict[item]["data"][:stopped_interval],
+#                                 "mode": "lines+markers",
+#                                 "name": item,
+#                                 "line": {"color": "#f4d44d"},
+#                             }
+#                         ],
+#                         "layout": {
+#                             "uirevision": True,
+#                             "margin": dict(l=0, r=0, t=4, b=4, pad=0),
+#                             "xaxis": dict(
+#                                 showline=False,
+#                                 showgrid=False,
+#                                 zeroline=False,
+#                                 showticklabels=False,
+#                             ),
+#                             "yaxis": dict(
+#                                 showline=False,
+#                                 showgrid=False,
+#                                 zeroline=False,
+#                                 showticklabels=False,
+#                             ),
+#                             "paper_bgcolor": "rgba(0,0,0,0)",
+#                             "plot_bgcolor": "rgba(0,0,0,0)",
+#                         },
+#                     }
+#                 ),
+#             ),
+#         },
+#         {"id": ooc_percentage_id, "children": "0.00%"},
+#         {
+#             "id": ooc_graph_id + "_container",
+#             "children": daq.GraduatedBar(
+#                 id=ooc_graph_id,
+#                 color={
+#                     "ranges": {
+#                         "#92e0d3": [0, 3],
+#                         "#f4d44d ": [3, 7],
+#                         "#f45060": [7, 15],
+#                     }
+#                 },
+#                 showCurrentValue=False,
+#                 max=15,
+#                 value=0,
+#             ),
+#         },
+#         {
+#             "id": item + "_pf",
+#             "children": daq.Indicator(
+#                 id=indicator_id, value=True, color="#91dfd2", size=12
+#             ),
+#         },
+#     )
 
 
 def generate_metric_row(id, style, col1, col2, col3, col4, col5, col6):
@@ -802,33 +792,33 @@ def build_chart_panel():
         id="control-chart-container",
         className="twelve columns",
         children=[
-            generate_section_banner("Live SPC Chart"),
-            dcc.Graph(
-                id="control-chart-live",
-                figure=go.Figure(
-                    {
-                        "data": [
-                            {
-                                "x": [],
-                                "y": [],
-                                "mode": "lines+markers",
-                                "name": params[1],
-                            }
-                        ],
-                        "layout": {
-                            "paper_bgcolor": "rgba(0,0,0,0)",
-                            "plot_bgcolor": "rgba(0,0,0,0)",
-                            "xaxis": dict(
-                                showline=False, showgrid=False, zeroline=False
-                            ),
-                            "yaxis": dict(
-                                showgrid=False, showline=False, zeroline=False
-                            ),
-                            "autosize": True,
-                        },
-                    }
-                ),
-            ),
+            generate_section_banner("Some Other Graphs"),
+            # dcc.Graph(
+            #     id="control-chart-live",
+            #     figure=go.Figure(
+            #         {
+            #             "data": [
+            #                 {
+            #                     "x": [],
+            #                     "y": [],
+            #                     "mode": "lines+markers",
+            #                     "name": params[1],
+            #                 }
+            #             ],
+            #             "layout": {
+            #                 "paper_bgcolor": "rgba(0,0,0,0)",
+            #                 "plot_bgcolor": "rgba(0,0,0,0)",
+            #                 "xaxis": dict(
+            #                     showline=False, showgrid=False, zeroline=False
+            #                 ),
+            #                 "yaxis": dict(
+            #                     showgrid=False, showline=False, zeroline=False
+            #                 ),
+            #                 "autosize": True,
+            #             },
+            #         }
+            #     ),
+            # ),
         ],
     )
 
@@ -984,7 +974,7 @@ def generate_month_line_graph():
 
         margin=dict(t=0, b=0, l=0, r=0),
         xaxis=dict(tickformat="%b",color="white",nticks=12),
-        yaxis=dict(tickvals = [0, 1,2, 3,4, 5,6, 7,8, 9,10, 11],color="white",nticks=20),
+        yaxis=dict(tickvals = [0,1,2,3,4, 5,6,7,8,9,10,11],color="white",nticks=20),
         yaxis2=dict(color="blue",nticks=0, anchor="free",overlaying="y2", side="right",showgrid=False, showticklabels=False,),
         
         )
