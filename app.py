@@ -1685,10 +1685,10 @@ def update_control_chart(interval, n1, n2, n3, n4, n5, n6, n7, data, cur_fig):
 
 # Update piechart
 
-@app.callback(
-    Output(component_id="weekday-pie-chart", component_property="figure"),
-    [Input(component_id="weekday-dropdown", component_property="value")]
-)
+# @app.callback(
+#     Output(component_id="weekday-pie-chart", component_property="figure"),
+#     [Input(component_id="weekday-dropdown", component_property="value")]
+# )
 
 def update_weekday_piechart(value):
   
