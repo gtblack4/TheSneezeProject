@@ -933,7 +933,7 @@ def generate_month_line_graph():
     # )
     fig.add_trace(
         go.Scatter(
-        x=pd.to_datetime(dayLightHours[0]).dt.strftime('%Y/%-m/%d'),
+        x=pd.to_datetime(dayLightHours[0]).dt.strftime('%m/%d'),
         y=dayLightHours[1],
         mode= 'lines',
         name="Cleveland DayLight hours",
