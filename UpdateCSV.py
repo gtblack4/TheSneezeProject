@@ -9,8 +9,8 @@ import functions as mf
 gc = gspread.service_account(filename='service_account.json')
 
 worksheet2020 = gc.open('2020 Sneeze Survey')
-test= pd.DataFrame(worksheet2020.sheet1.get_all_values())
-test.to_json("data/test.json", orient='records', lines =True)
+# test= pd.DataFrame(worksheet2020.sheet1.get_all_values())
+# test.to_json("data/test.json", orient='records', lines =True)
 array2020 = np.array(worksheet2020.sheet1.get_all_values())
 
 
