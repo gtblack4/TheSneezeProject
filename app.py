@@ -866,7 +866,7 @@ def generate_year_line_graph():
         ),
         margin=dict(t=0, b=0, l=0, r=0),
 
-        xaxis=dict(tickformat="%m/%d",color="white"),
+        xaxis=dict(tickformat="%b",color="white",nticks=12),
         yaxis=dict(color="white")
         )
    
@@ -902,38 +902,38 @@ def generate_month_line_graph():
     week2020 = pd.DataFrame(mf.buildWeekSums(sneezeData2020))
     week2021 = pd.DataFrame(mf.buildWeekSums(sneezeData2021))
   
-    # fig.add_trace(
-    #     go.Scatter(
-    #     x=pd.to_datetime(week2020['Month Day']).dt.strftime('%Y/%-m/%d'),
-    #     y=week2020['7 Day Average'],
-    #     mode= 'lines',
-    #     name="2020",
-    #     line=dict(
-    #         color='rgb(102, 255, 102)',
-    #         width=2
-    #     ),
-        
-    # ),
-    #     secondary_y=False,
-    # )
-   
-   
-    # fig.add_trace(
-    # go.Scatter(
-    #     x=pd.to_datetime(week2021['Month Day']).dt.strftime('%Y/%-m/%d'), 
-    #     y=week2021['7 Day Average'], 
-    #     mode= 'lines',
-    #     name="2021",
-    #     line=dict(
-    #         color='rgb(0, 153, 51)',
-    #         width=3
-    #         )
-    #     ),
-    #     secondary_y=False,
-    # )
     fig.add_trace(
         go.Scatter(
-        x=pd.to_datetime(dayLightHours[0]).dt.strftime('%m/%d'),
+        x=pd.to_datetime(week2020['Month Day']),
+        y=week2020['7 Day Average'],
+        mode= 'lines',
+        name="2020",
+        line=dict(
+            color='rgb(102, 255, 102)',
+            width=2
+        ),
+        
+    ),
+        secondary_y=False,
+    )
+   
+   
+    fig.add_trace(
+    go.Scatter(
+        x=pd.to_datetime(week2021['Month Day']),
+        y=week2021['7 Day Average'], 
+        mode= 'lines',
+        name="2021",
+        line=dict(
+            color='rgb(0, 153, 51)',
+            width=3
+            )
+        ),
+        secondary_y=False,
+    )
+    fig.add_trace(
+        go.Scatter(
+        x=pd.to_datetime(dayLightHours[0]),
         y=dayLightHours[1],
         mode= 'lines',
         name="Cleveland DayLight hours",
@@ -973,7 +973,7 @@ def generate_month_line_graph():
         ),
 
         margin=dict(t=0, b=0, l=0, r=0),
-        xaxis=dict(tickformat="%m/%d",color="white",nticks=12),
+        xaxis=dict(tickformat="%b",color="white",nticks=12),
         yaxis=dict(tickvals = [0,1,2,3,4, 5,6,7,8,9,10,11],color="white",nticks=20),
         yaxis2=dict(color="blue",nticks=0, anchor="free",overlaying="y2", side="right",showgrid=False, showticklabels=False,),
         
