@@ -792,6 +792,7 @@ def build_chart_panel():
         className="twelve columns",
         children=[
             generate_section_banner("Some Other Graphs"),
+            generate_month_line_graph(),
             # dcc.Graph(
             #     id="control-chart-live",
             #     figure=go.Figure(
