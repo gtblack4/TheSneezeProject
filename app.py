@@ -972,7 +972,7 @@ def generate_month_line_graph():
         ),
 
         margin=dict(t=0, b=0, l=0, r=0),
-        xaxis=dict(tickformat="%b",color="white",nticks=12),
+        xaxis=dict(tickformat="%m/%d",color="white",nticks=12),
         yaxis=dict(tickvals = [0,1,2,3,4, 5,6,7,8,9,10,11],color="white",nticks=20),
         yaxis2=dict(color="blue",nticks=0, anchor="free",overlaying="y2", side="right",showgrid=False, showticklabels=False,),
         
