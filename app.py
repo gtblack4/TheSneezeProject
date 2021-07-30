@@ -112,7 +112,7 @@ def build_tabs():
                 children=[
                     dcc.Tab(
                         id="Specs-tab",
-                        label="Specification Settings",
+                        label="Fun Facts",
                         value="tab1",
                         className="custom-tab",
                         selected_className="custom-tab--selected",
@@ -407,7 +407,6 @@ def generate_time_heat_graph():
 
 def build_sneeze_stats_row(text,graph,position):
       position = "sneeze-stats-row-" + str(position)
-      print(position)
       return html.Div(
         
         id=position,
