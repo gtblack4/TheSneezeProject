@@ -369,7 +369,7 @@ def build_top_panel(stopped_interval):
                                     build_sneeze_stats_row("How many sneezes go unblessed?",generate_blessed_sneezes(),1),
                                     build_sneeze_stats_row("Sneeze fit size",generate_fit_count(),2),
                                     build_sneeze_stats_row("Sneeze fit location",generate_location_graph(),3),
-                                    #build_sneeze_stats_row("Time of Day ",generate_time_heat_graph(),1),
+                                    build_sneeze_stats_row("Time of Day ",generate_time_plot(),4),
                                     
                                     # generate_metric_row_helper(stopped_interval, 4),
                                     # generate_metric_row_helper(stopped_interval, 5),
@@ -400,7 +400,7 @@ def generate_time_heat_graph():
         sneezeHours.append(x)
     
     fig = go.Figure(data=go.Heatmap(
-                    x=pd.to_datetime(dataTotal['Timestamp']).dt.strftime('%h'),
+                    x=pd.to_datetime(dataTotal['Timestamp']).dt.strftime('%H:%M'),
                     z=dataTotal['Number of Sneezes']))
     config = {'displayModeBar': False}
     return dcc.Graph(id="fit-count-chart", figure = fig,config=config)
@@ -792,35 +792,77 @@ def build_chart_panel():
         className="twelve columns",
         children=[
             generate_section_banner("Some Other Graphs"),
-            generate_month_line_graph(),
-            # dcc.Graph(
-            #     id="control-chart-live",
-            #     figure=go.Figure(
-            #         {
-            #             "data": [
-            #                 {
-            #                     "x": [],
-            #                     "y": [],
-            #                     "mode": "lines+markers",
-            #                     "name": params[1],
-            #                 }
-            #             ],
-            #             "layout": {
-            #                 "paper_bgcolor": "rgba(0,0,0,0)",
-            #                 "plot_bgcolor": "rgba(0,0,0,0)",
-            #                 "xaxis": dict(
-            #                     showline=False, showgrid=False, zeroline=False
-            #                 ),
-            #                 "yaxis": dict(
-            #                     showgrid=False, showline=False, zeroline=False
-            #                 ),
-            #                 "autosize": True,
-            #             },
-            #         }
-            #     ),
-            # ),
+            generate_time_plot(),     
         ],
     )
+def genereate_weekday_graph():
+    data = [
+        go.Scatter(
+            x=pd.to_datetime(sneezeData2021['Timestamp']).dt.strftime('%H:%M'),
+            y=sneezeData2021['Number of Sneezes'],
+            mode='markers',)
+        ]
+    layout = go.Layout(
+      
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        showlegend=True,
+        autosize=True,
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1,
+            font=dict(
+                color="white"
+            ),
+
+        ),
+        margin=dict(t=0, b=0, l=0, r=0),
+
+        xaxis=dict(color="white",nticks=24),
+        yaxis=dict(color="white") 
+        )
+    config = {'displayModeBar': False}
+    return dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config)
+
+def generate_time_plot():
+#.dt.strftime('%H')
+    data = [
+    go.Histogram2d(
+            x=pd.to_datetime(dataTotal['Timestamp']).dt.strftime('%H'),
+            z=dataTotal['Number of Sneezes'],
+            y=dataTotal['Year'],
+            colorscale='blugrn'
+            )
+        ]
+    layout = go.Layout(
+      
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        showlegend=True,
+        autosize=True,
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1,
+            font=dict(
+                color="white"
+            ),
+
+        ),
+        margin=dict(t=0, b=0, l=0, r=0),
+
+        #xaxis=dict(tickformat="%H:%M",color="white"),
+        yaxis=dict(tickformat='Y',color="white",nticks=3),
+      
+        )
+    config = {'displayModeBar': False}
+    return dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config)
+
 
 def generate_year_line_graph():
 
@@ -867,7 +909,7 @@ def generate_year_line_graph():
         margin=dict(t=0, b=0, l=0, r=0),
 
         xaxis=dict(tickformat="%b",color="white",nticks=12),
-        yaxis=dict(color="white")
+        yaxis=dict(color="white") 
         )
    
     config = {'displayModeBar': False}

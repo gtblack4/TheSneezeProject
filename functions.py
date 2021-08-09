@@ -24,6 +24,7 @@ def dataBreakdown(sneezedata):
 	sneezedata['Cumulative'] = sneezedata['Number of Sneezes'].cumsum(skipna=False)
 	sneezedata['Month Day'] = pd.to_datetime(sneezedata['Timestamp']).dt.strftime('1900-%m-%d')
 	sneezedata['Month Cum'] = sneezedata.groupby(['Year','Month'])['Number of Sneezes'].cumsum()
+	sneezedata['Time'] = pd.to_datetime(sneezedata['Timestamp']).dt.time
 	if ('GeoCode' in sneezedata.columns):	
 		sneezedata[['Latitude','Longitude']] = sneezedata['GeoCode'].str.split(",", expand=True)
 		sneezedata['Latitude'].apply(lambda x: float(x)).round()

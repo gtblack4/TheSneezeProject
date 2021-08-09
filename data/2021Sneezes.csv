@@ -384,4 +384,29 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 7/18/2021 8:33:04;5;Parking Lot;Change in Brightness (Natural);1;2;Charlee, Jojo;;;07/19/2021 7:35:18;41.4979985,-81.6937193;245-235 W Prospect Ave, Cleveland, OH 44115, USA
 7/18/2021 18:07:40;4;City Street;Change in Brightness (Natural);1;Public Space;Charlee;;;07/19/2021 5:07:45;41.4995303,-81.6902895;402 US-20, Cleveland, OH 44114, USA
 7/18/2021 20:35:15;1;Your Home;Change in Brightness (Artificial);1;1;;Cats;Charlee ;07/20/2021 1:15:03;41.4980177,-81.6937236;245-235 W Prospect Ave, Cleveland, OH 44115, USA
-7/19/2021 14:15:00;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;
+7/19/2021 14:15:00;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;07/20/2021 4:04:16;41.4982176,-81.6938263;50 Public Square, Cleveland, OH 44113, USA
+7/20/2021 11:54:45;3;City Street;Change in Brightness (Natural);1;Public Space;Stranger ;;;07/20/2021 22:54:50;41.4981314,-81.6937271;50 Public Square, Cleveland, OH 44113, USA
+7/20/2021 15:11:34;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;07/21/2021 7:08:33;41.5100675,-81.5811191;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+7/21/2021 7:54:55;4;Car (Driving);Change in Brightness (Natural);0;0;;;;07/21/2021 18:54:59;41.5100446,-81.5811484;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+7/22/2021 14:19:06;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;07/23/2021 22:41:09;38.2986139,-80.8337698;106 Merchant Walk, Summersville, WV 26651, USA
+7/23/2021 11:41:05;5;Parking Lot;Change in Brightness (Natural);1;1;Charlee;;;07/24/2021 1:41:00;38.2984136,-80.8338753;106 Merchant Walk, Summersville, WV 26651, USA
+7/23/2021 15:04:19;3;Hotel;Change in Brightness (Natural);3;1;Charlee ;Cats;;07/24/2021 4:02:54;38.3055933,-80.8337998;900 N Industrial Dr, Summersville, WV 26651, USA
+7/24/2021 17:02:02;5;Parking Lot;Change in Brightness (Natural);1;1;Charlee;;;07/25/2021 5:15:54;38.2434249,-80.866318;Unnamed Road, Mt Lookout, WV 26678, USA
+7/24/2021 18:15:51;1;Park;Change in Brightness (Natural);1;1;Daniel;;;07/25/2021 20:42:52;38.3036945,-80.9152145;4172 Turnpike Rd, Summersville, WV 26651, USA
+7/25/2021 9:42:48;3;Car (Passenger);Change in Brightness (Natural);1;1;Charlee ;;;07/26/2021 8:09:35;40.1749095,-81.5517319;I-77, Kimbolton, OH 43749, USA
+7/25/2021 12:45:55;4;Car (Passenger);Change in Brightness (Natural);1;1;Charlee ;;;07/25/2021 23:46:02;38.2677785,-80.9333116;1816 Whitewater Rd, Summersville, WV 26651, USA
+7/26/2021 12:38:36;4;Car (Driving);Change in Brightness (Natural);0;0;;;;07/26/2021 23:38:40;41.4968452,-81.6928867;124 W Huron Rd, Cleveland, OH 44113, USA
+7/26/2021 14:37:43;3;Car (Driving);Change in Brightness (Natural);1;1;Charlee ;;;07/27/2021 2:22:01;41.5017757,-81.639237;7087 Carnegie Ave, Cleveland, OH 44103, USA
+7/26/2021 15:21:58;3;Car (Driving);Change in Brightness (Natural);0;0;;;;07/27/2021 6:19:36;41.4981989,-81.6961576;549 W Superior Ave, Cleveland, OH 44113, USA
+7/26/2021 19:19:32;2;Car (Driving);Change in Brightness (Natural);0;0;;;;07/27/2021 7:36:42;41.510025,-81.5811352;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+7/27/2021 8:54:44;5;Car (Driving);Change in Brightness (Natural);0;0;;;;07/27/2021 22:15:32;41.5100018,-81.581082;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+7/27/2021 11:15:29;2;Someone else's house;Unknown;2;0;;;;07/28/2021 0:32:42;41.5100342,-81.5811179;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+7/27/2021 13:32:38;2;Someone else's house;Unknown;0;0;;;;07/28/2021 5:29:29;41.49795,-81.6937862;Tower City-Public Sq Stn, Cleveland, OH 44113, USA
+7/28/2021 8:52:48;5;Car (Driving);Change in Brightness (Natural);0;0;;;;07/28/2021 19:52:52;41.4983431,-81.694009;50 Public Square, Cleveland, OH 44113, USA
+7/29/2021 15:07:50;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;07/30/2021 6:43:46;41.493503,-81.7062216;1303 Washington Ave, Cleveland, OH 44113, USA
+7/30/2021 11:42:09;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;07/30/2021 23:39:30;41.4982628,-81.6936642;50 Public Square, Cleveland, OH 44113, USA
+7/30/2021 16:16:30;2;Car (Driving);Change in Brightness (Natural);0;0;;;;07/31/2021 21:30:01;41.4979321,-81.6937898;Tower City-Public Sq Stn, Cleveland, OH 44113, USA
+7/31/2021 10:43:39;4;Car (Driving);Change in Brightness (Natural);0;0;;;;07/31/2021 21:43:42;41.4967809,-81.6938891;230 W Huron Rd, Cleveland, OH 44113, USA
+8/1/2021 15:09:09;5;Parking Lot;Change in Brightness (Natural);2;Public Space;Stranger, Charlee;;;08/02/2021 2:09:13;41.4512846,-81.4869121;4000 Park Ave, Chagrin Falls, OH 44022, USA
+8/1/2021 16:28:04;4;City Street;Change in Brightness (Natural);1;1;Charlee ;;;08/02/2021 6:06:31;41.5012095,-81.6761162;2020 Euclid Ave, Cleveland, OH 44103, USA
+8/1/2021 19:37:30;4;City Street;Change in Brightness (Natural);1;1;Charlee;;;08/02/2021 7:09:07;41.5098904,-81.5811356;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
