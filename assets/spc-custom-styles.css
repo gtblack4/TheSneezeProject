@@ -142,7 +142,7 @@ body {
   cursor: pointer;
 }
 
-#Specs-tab.custom-tab, #Control-chart-tab.custom-tab {
+#facts-tab.custom-tab, #Control-chart-tab.custom-tab {
   background-color: #161a28;
   letter-spacing: 1px;
   color: inherit;
@@ -156,14 +156,16 @@ body {
   height: 18px;
 }
 
-#Specs-tab.custom-tab--selected, #Control-chart-tab.custom-tab--selected {
+#facts-tab.custom-tab--selected, #Control-chart-tab.custom-tab--selected {
   border-bottom: #91dfd2 solid 4px !important;
 }
 
-#Specs-tab.custom-tab {
+#fact-tab.custom-tab {
   margin-right: 3px;
 }
-
+#facts-div {
+  padding: 1rem 2rem 1rem 1rem;
+}
 #Control-chart-tab.custom-tab {
   margin-left: 3px;
 }
@@ -186,7 +188,33 @@ body {
   max-width: 100%;
   /*width: 100%;*/
 }
+#sneeze-facts-rows > div{
 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 8rem;
+}
+
+#sneeze-facts-title {
+  position: left;
+
+  width: 70%;
+}
+#sneeze-facts-title-text{
+position: left;
+}
+#sneeze-facts-value {
+  color: green;
+  text-align: left;
+  width: 30%;
+}
+#sneeze-facts-value-text {
+
+  text-align: left;
+
+}
 #metric_header > div {
   font-weight: bold;
   font-size: 1.35rem;
@@ -308,7 +336,7 @@ body {
 /* Tab1 content
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-#set-specs-intro-container {
+#fun-facts-container {
   font-weight: bold;
   margin: 8rem 5rem 1rem;
   font-size: 1.6rem;
@@ -752,7 +780,7 @@ margin-bottom: 0;
     height: auto;
   }
 
-  #set-specs-intro-container {
+  #fun-facts-container {
     margin: 4rem 2rem 0rem 2rem;
     font-size: inherit;
   }

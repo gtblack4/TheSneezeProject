@@ -111,7 +111,7 @@ def build_tabs():
                 className="custom-tabs",
                 children=[
                     dcc.Tab(
-                        id="Specs-tab",
+                        id="facts-tab",
                         label="Fun Facts",
                         value="tab1",
                         className="custom-tab",
@@ -183,8 +183,60 @@ def init_value_setter_store():
     state_dict = init_df()
     return state_dict
 
+def build_tab_1():
+    return [
+        # Manually select metrics
 
-# def build_tab_1():
+        html.Div(
+            id="fun-facts-container",
+            #className="eight columns",
+            children=[
+                generate_section_banner("A collection of fun information about my sneezes."),
+                html.Div(
+                    id="facts-div",
+                    children=[
+                        #                            generate_metric_list_header(),
+                        html.Div(
+                            id="sneeze-facts-rows",
+                            children=[
+                                build_sneeze_facts_rows("What day had the most sneezes?", sneeziestDay(), 1),
+                                build_sneeze_facts_rows("What % of days did  sneeze?", sneeziestDay(), 2),
+                            ],
+                        ),
+                    ],
+                ),
+            ],
+        ),
+    ]
+def build_sneeze_facts_rows(title,value,position):
+    position = "sneeze-facts-row-" + str(position)
+    return html.Div(
+        id=position,
+        #className="row metric-row",
+
+        children=[
+            html.Div(
+                id="sneeze-facts-title",
+                children=[
+                    html.P(
+                        id="sneeze-facts-title-text",
+                        children=[title])
+                ]
+            ),
+            html.Div(
+                id="sneeze-facts-value",
+                children=[
+                    html.P(
+                        id="sneeze-facts-value-text",
+                        children=[value]
+                    )
+
+                ]
+            )
+
+        ])
+
+# def build_tab_11():
 #     return [
 #         # Manually select metrics
 #         html.Div(
@@ -389,7 +441,7 @@ def build_top_panel(stopped_interval):
                    generate_section_banner("Weekday Breakdown"),
                     
                     
-                    html.Div(id='weekday-pie-chart-div', children =  generate_piechart()),
+                    html.Div(id='weekday-pie-chart-div', children = generate_piechart()),
                 ],
             ),
         ],
@@ -432,6 +484,10 @@ def build_sneeze_stats_row(text,graph,position):
 
 def generate_sneeze_time():
     print('fart')
+
+def sneeziestDay():
+    return 100
+
 def generate_location_graph():
     sneezeLocation = pd.DataFrame(dataTotal['Location'].value_counts())
     data = []
