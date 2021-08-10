@@ -24,7 +24,7 @@ server = app.server
 app.config["suppress_callback_exceptions"] = True
 
 APP_PATH = str(pathlib.Path(__file__).parent.resolve())
-df = pd.read_csv(os.path.join(APP_PATH, os.path.join("data", "spc_data.csv")))
+
 
 #Map box key, should probabyl make this private, but its free so *shrug* 
 MAPBOXKEY = os.getenv('MAPBOXKEY')
@@ -271,11 +271,11 @@ def build_top_panel(stopped_interval):
                 children=[
                     generate_section_banner("Quick Stats"),
                     html.Div(
-                        id="metric-div",
+                        id="quick-graph-div",
                         children=[
 #                            generate_metric_list_header(),
                             html.Div(
-                                id="metric-rows",
+                                id="bar-graph-rows",
                                 children=[
                                     build_sneeze_stats_row("How many sneezes go unblessed?",generate_blessed_sneezes(),1),
                                     build_sneeze_stats_row("Sneeze fit size",generate_fit_count(),2),
@@ -378,19 +378,75 @@ def projectLength():
 
 
 
+
+
+#***********QUICK STATS GRAPH FUNCTIONS*******************
+def generate_blessed_sneezes():
+    
+    blessedSum = dataTotal.groupby(dataTotal['Blessed'])['Number of Sneezes'].sum()
+    #blessedSum.rename(columns = {'Blessed':'Count'})
+
+    data = [go.Bar(
+    y=['Sneezes'],
+    x=[blessedSum[0]],
+    width=[1,1],
+    name='Blessed',
+    orientation='h',
+    marker=dict(
+        color='rgba(246, 78, 139, 0.6)',
+        line=dict(color='rgba(246, 78, 139, 1.0)', width=3)
+        )
+    ),
+    go.Bar(
+        y=['Sneezes'],
+        x=[blessedSum[1]],
+        width=[1,1],
+        name='Unblessed',
+        orientation='h',
+        marker=dict(
+            color='rgba(58, 71, 80, 0.6)',
+            line=dict(color='rgba(58, 71, 80, 1.0)', width=3)
+            )
+        ),
+
+    ]
+    layout = go.Layout(barmode='stack',
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor= 'rgba(0,0,0,0)',
+        showlegend=True,
+        autosize=True,
+      
+
+        #xaxis=dict(tickformat="%m/%d")
+        yaxis = dict(showticklabels=False),
+        xaxis = dict(tickvals=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed']+blessedSum['Blessed'])], ticktext=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed'])],
+            showgrid = True, tickangle = 0, color = 'white',ticklabelposition='outside left',ticklabeloverflow='hide past div'),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1,
+            font=dict(
+                color="white"
+            ),
+        ),
+        margin=dict(t=15, b=15, l=0, r=0),
+        #margin=dict(t=0, b=0, l=0, r=0),
+    )
+    config = {'displayModeBar': False}
+    return dcc.Graph(id="blessed-chart", figure = go.Figure(data=data,layout=layout),config=config)
+
+
 def generate_location_graph():
     sneezeLocation = pd.DataFrame(dataTotal['Location'].value_counts())
     data = []
     tickvalues = [0]
     count = 0
     sneezeLocation = sneezeLocation.sort_index()
-
     sneezeLocation = sneezeLocation.sort_values('Location',ascending=False)
 
-
     for row in sneezeLocation.index:
-
-
         tickvalues.append(int(int(sneezeLocation['Location'][row])+int(tickvalues[count])))
         data.append(
         go.Bar(
@@ -400,6 +456,7 @@ def generate_location_graph():
         orientation='h',
         ))
         count = count+1
+
    
     layout = go.Layout(barmode='stack',
             paper_bgcolor='rgba(0,0,0,0)',
@@ -407,7 +464,7 @@ def generate_location_graph():
             showlegend=False,
             autosize=True,
             yaxis = dict(showticklabels=False),
-            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=tickvalues,showgrid = True, tickangle = 0)),
+            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=tickvalues,showgrid = True, tickangle = 0,color='white',ticklabelposition='outside left',ticklabeloverflow='hide past div')),
             #xaxis=dict(tickformat="%m/%d")
             legend=dict(
                 orientation="h",
@@ -419,7 +476,7 @@ def generate_location_graph():
                     color="white"
                 ),
             ),
-            margin=dict(t=0, b=0, l=0, r=0),
+            margin=dict(t=15, b=15, l=0, r=0),
         )
     config = {'displayModeBar': False}
     return dcc.Graph(id="location-count-chart", figure = go.Figure(data=data,layout=layout),config=config)
@@ -439,6 +496,8 @@ def generate_fit_count():
         x=[sneezeFit['Number of Sneezes'][row]],
         name=row,
         orientation='h',
+        width=[3]
+
         ))
         count = count+1
    
@@ -448,12 +507,11 @@ def generate_fit_count():
             showlegend=True,
             autosize=True,
             yaxis = dict(showticklabels=False),
-            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=tickvalues,showgrid = True,
- 
-  tickangle = 0)),
+            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=tickvalues,showgrid = True, tickangle = 0,color = 'white',ticklabelposition='outside left',ticklabeloverflow='hide past div')),
             #xaxis=dict(tickformat="%m/%d")
             legend=dict(
                 orientation="h",
+
                 yanchor="bottom",
                 y=1.02,
                 xanchor="right",
@@ -463,72 +521,14 @@ def generate_fit_count():
                     color="white"
                 ),
             ),
-            margin=dict(t=0, b=0, l=0, r=0),
+            margin=dict(t=15, b=15, l=0, r=0),
+            #margin=dict(t=0, b=0, l=0, r=0),
         )
     config = {'displayModeBar': False}
     return dcc.Graph(id="fit-count-chart", figure = go.Figure(data=data,layout=layout),config=config)
 
-
-def generate_blessed_sneezes():
-    
-    blessedSum = dataTotal.groupby(dataTotal['Blessed'])['Number of Sneezes'].sum()
-    #blessedSum.rename(columns = {'Blessed':'Count'})
-
-    data = [go.Bar(
-    y=['Sneezes'],
-    x=[blessedSum[0]],
-    name='Blessed',
-    orientation='h',
-    marker=dict(
-        color='rgba(246, 78, 139, 0.6)',
-        line=dict(color='rgba(246, 78, 139, 1.0)', width=3)
-        )
-    ),
-    go.Bar(
-        y=['Sneezes'],
-        x=[blessedSum[1]],
-        name='Unblessed',
-        orientation='h',
-        marker=dict(
-            color='rgba(58, 71, 80, 0.6)',
-            line=dict(color='rgba(58, 71, 80, 1.0)', width=3)
-            )
-        ),
-
-    ]
-    layout = go.Layout(barmode='stack',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor= 'rgba(0,0,0,0)',
-        showlegend=True,
-        autosize=True,
-      
-
-        #xaxis=dict(tickformat="%m/%d")
-        yaxis = dict(showticklabels=False),
-        xaxis = (dict(tickvals=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed']+blessedSum['Blessed'])], ticktext=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed'])],
-            showgrid = True, tickangle = 0)),
-        legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="right",
-            x=1,
-            font=dict(
-                color="white"
-            ),
-        ),
-        margin=dict(t=0, b=0, l=0, r=0),
-    )
-    config = {'displayModeBar': False}
-    return dcc.Graph(id="blessed-chart", figure = go.Figure(data=data,layout=layout),config=config)
-
 def generate_piechart():
-    # value == "All Years":
-    #     value = [2020,2021] 
-    # else:
-    #     value = [int(value)]
-    # df = dataTotal[dataTotal['Year'].isin(value)]
-  
+
     data = [
         go.Pie(
             labels=dataTotal['Day of Week'],
@@ -555,6 +555,7 @@ def generate_piechart():
     )
     config = {'displayModeBar': False}
     return dcc.Graph(id ='weekday-pie-chart',figure =go.Figure(data=data,layout=layout),config=config)
+#*********************************************************************************************************************
 
 
 def build_chart_panel():
@@ -564,24 +565,29 @@ def build_chart_panel():
         children=[
             generate_section_banner("Some Other Graphs"),
             html.P("I need to figure out what to put here"),     
+            generate_time_plot()
         ],
     )
 
 def generate_time_plot():
 #.dt.strftime('%H')
+    timeFrame = dataTotal.sort_values(by='Hour')
+    timeFrame['Hour'] = pd.to_datetime(timeFrame['Hour']).dt.strftime("%I:00 %p")
     data = [
     go.Histogram2d(
-            x=pd.to_datetime(dataTotal['Timestamp']).dt.strftime('%H'),
-            z=dataTotal['Number of Sneezes'],
-            y=dataTotal['Year'],
-            colorscale='blugrn'
+            x=timeFrame['Hour'],
+            z=timeFrame['Number of Sneezes'],
+            y=timeFrame['Year'],
+            colorscale='blugrn',
+            showscale=False,
             )
         ]
+
     layout = go.Layout(
       
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor= 'rgba(0,0,0,0)',
-        showlegend=True,
+        showlegend=False,
         autosize=True,
         legend=dict(
             orientation="h",
@@ -594,9 +600,10 @@ def generate_time_plot():
             ),
 
         ),
-        margin=dict(t=0, b=0, l=0, r=0),
+        
+        margin=dict(t=0, b=0, l=0, r=15),
 
-        #xaxis=dict(tickformat="%H:%M",color="white"),
+        xaxis=dict(tickformat="%I:00",color="white",nticks=4),
         yaxis=dict(tickformat='Y',color="white",nticks=3),
       
         )
@@ -798,10 +805,10 @@ def generate_sneeze_map():
         bearing=0,
         center=dict(
             lat=40,
-            lon=-84
+            lon=-81.5
         ),
         pitch=0,
-        zoom=4,
+        zoom=4.5,
 
     ),
     )

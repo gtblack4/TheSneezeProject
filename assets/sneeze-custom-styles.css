@@ -196,7 +196,7 @@ body {
   align-items: center;
   height: 8rem;
 }
-#sneeze-facts-rows > div:hover {
+.sneeze-facts-rows:hover {
   background-color: #0F1328;
 }
 #sneeze-facts-title {
@@ -625,7 +625,7 @@ position: left;
   background-color: #1d202d !important;
 }
 
-#metric-rows > div{
+#bar-graph-rows > div{
   height: 8rem;
   width: 100%;
 }
@@ -649,10 +649,10 @@ transform: translateY(-50%);
   
 }
 @media only screen and (max-width: 600px) {
- #metric-rows > div .infolayer{
+ #bar-graph-rows > div .infolayer{
     display: none;
   }
-#metric-rows > div{
+#bar-graph-rows > div{
 
   height: 4rem;
   width: 100%;
@@ -729,14 +729,14 @@ margin-bottom: 0;
   color: white !important;
 }
 
-#metric-div {
-  padding: 1rem 2rem 1rem 1rem;
+#quick-graph-div {
+  padding: 1rem 0rem 1rem 1rem;
 }
 
-#metric-rows {
+#bar-graph-rows {
   overflow-y: scroll;
   width: 100%;
-  height: 30rem;
+  height: 35rem;
 }
 
 /*
@@ -867,7 +867,7 @@ margin-bottom: 0;
     left: -9999px;
   }
 
-  #metric-rows {
+  #bar-graph-rows {
     height: fit-content;
   }
 
@@ -884,7 +884,7 @@ margin-bottom: 0;
     border-bottom: 1px solid #1E2130;
   }
 
-  #metric-rows .column, #metric-rows .columns {
+  #bar-graph-rows .column, #bar-graph-rows .columns {
     width: 100% !important;
     height: 100%;
     float: none;
@@ -893,7 +893,7 @@ margin-bottom: 0;
     position: relative;
   }
 
-  #metric-rows .column:before, #metric-rows .columns:before {
+  #bar-graph-rows .column:before, #bar-graph-rows .columns:before {
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
