@@ -196,7 +196,9 @@ body {
   align-items: center;
   height: 8rem;
 }
-
+#sneeze-facts-rows > div:hover {
+  background-color: #0F1328;
+}
 #sneeze-facts-title {
   position: left;
 
