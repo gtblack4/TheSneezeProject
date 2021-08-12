@@ -277,10 +277,11 @@ def build_top_panel(stopped_interval):
                             html.Div(
                                 id="bar-graph-rows",
                                 children=[
+
                                     build_sneeze_stats_row("How many sneezes go unblessed?",generate_blessed_sneezes(),1),
                                     build_sneeze_stats_row("Sneeze fit size",generate_fit_count(),2),
                                     build_sneeze_stats_row("Sneeze fit location",generate_location_graph(),3),
-                                    build_sneeze_stats_row("Time of Day ",generate_time_plot(),4),
+                                    #build_sneeze_stats_row("Time of Day ",generate_time_plot(),4),
                                 
                                 ],
                             ),
@@ -317,7 +318,7 @@ def build_sneeze_stats_row(text,graph,position):
       return html.Div(
         
         id=position,
-        className="row metric-row",
+        className="row sneeze-row",
 
         children=[
             html.Div(
@@ -383,7 +384,7 @@ def projectLength():
 #***********QUICK STATS GRAPH FUNCTIONS*******************
 def generate_blessed_sneezes():
     
-    blessedSum = dataTotal.groupby(dataTotal['Blessed'])['Number of Sneezes'].sum()
+    blessedSum = sneezeData2021.groupby(sneezeData2021['Blessed'])['Number of Sneezes'].sum()
     #blessedSum.rename(columns = {'Blessed':'Count'})
 
     data = [go.Bar(
@@ -431,7 +432,7 @@ def generate_blessed_sneezes():
                 color="white"
             ),
         ),
-        margin=dict(t=15, b=15, l=0, r=0),
+        margin=dict(t=20, b=20, l=0, r=0),
         #margin=dict(t=0, b=0, l=0, r=0),
     )
     config = {'displayModeBar': False}
@@ -443,6 +444,7 @@ def generate_location_graph():
     data = []
     tickvalues = [0]
     count = 0
+
     sneezeLocation = sneezeLocation.sort_index()
     sneezeLocation = sneezeLocation.sort_values('Location',ascending=False)
 
@@ -476,7 +478,7 @@ def generate_location_graph():
                     color="white"
                 ),
             ),
-            margin=dict(t=15, b=15, l=0, r=0),
+            margin=dict(t=20, b=20, l=0, r=0),
         )
     config = {'displayModeBar': False}
     return dcc.Graph(id="location-count-chart", figure = go.Figure(data=data,layout=layout),config=config)
@@ -521,7 +523,7 @@ def generate_fit_count():
                     color="white"
                 ),
             ),
-            margin=dict(t=15, b=15, l=0, r=0),
+            margin=dict(t=20, b=20, l=0, r=0),
             #margin=dict(t=0, b=0, l=0, r=0),
         )
     config = {'displayModeBar': False}
@@ -560,12 +562,22 @@ def generate_piechart():
 
 def build_chart_panel():
     return html.Div(
-        id="control-chart-container",
-        className="twelve columns",
+        id="bottom-graph-container",
+        className="bottom graphs",
         children=[
             generate_section_banner("Some Other Graphs"),
-            html.P("I need to figure out what to put here"),     
-            generate_time_plot()
+            html.Div(
+                id="heatmap-div",
+                children=[
+                    generate_time_plot()
+                ]
+            ),
+            html.Div(
+                id="year-line-div",
+                children=[
+                    generate_year_line_graph()
+                ]
+            )
         ],
     )
 
