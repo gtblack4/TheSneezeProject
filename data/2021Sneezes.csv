@@ -453,5 +453,29 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 8/23/2021 13:59:16;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;08/25/2021 3:39:49;41.4979579,-81.6937965;230 W Huron Rd #72, Cleveland, OH 44113, USA
 8/24/2021 16:39:45;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;08/25/2021 6:07:07;41.4980584,-81.6937224;245-235 W Prospect Ave, Cleveland, OH 44115, USA
 8/24/2021 22:41:24;2;Someone else's house;Change in Brightness (Natural);1;1;Charlee ;Cats;;08/25/2021 23:25:44;41.4979474,-81.6936808;230 Huron Rd E, Cleveland, OH 44113, USA
-8/26/2021 11:05:21;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;
+8/26/2021 11:05:21;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;08/27/2021 3:41:01;41.4979436,-81.6937065;230 Huron Rd E, Cleveland, OH 44113, USA
 8/26/2021 11:14:22;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;08/26/2021 22:14:25;41.4979623,-81.6936889;230 W Huron Rd #72, Cleveland, OH 44113, USA
+8/26/2021 16:40:58;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;08/27/2021 22:31:51;41.4979605,-81.6936617;230 W Huron Rd #72, Cleveland, OH 44113, USA
+8/26/2021 18:35:57;3;Car (Driving);Change in Brightness (Natural);0;0;;;;08/27/2021 5:36:01;41.4960674,-81.690287;120 Huron Rd E, Cleveland, OH 44115, USA
+8/27/2021 11:31:45;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;08/28/2021 3:16:11;41.4979731,-81.6936842;230 W Huron Rd #72, Cleveland, OH 44113, USA
+8/27/2021 16:16:07;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;08/28/2021 5:03:19;41.4981856,-81.6939501;50 Public Square #2626, Cleveland, OH 44113, USA
+8/27/2021 18:03:16;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;08/29/2021 2:07:30;41.4846457,-82.6911423;Unnamed Road, Sandusky, OH 44870, USA
+8/27/2021 18:12:09;2;Car (Driving);Change in Brightness (Natural);0;0;;;;08/28/2021 5:12:13;41.4951112,-81.686259;Ontario St & Carnegie Av, Cleveland, OH 44115, USA
+8/28/2021 13:30:40;4;Park;Change in Brightness (Natural);2;2;Charlee, Nick;;;08/29/2021 0:30:45;41.4805116,-82.6817166;Cedar Point Blvd, Sandusky, OH 44870, USA
+8/28/2021 15:07:26;3;Park;Change in Brightness (Natural);3;3;Charlee, nick, Lindsey ;;;08/30/2021 7:18:17;41.4975918,-81.6919913;13 W Prospect Ave, Cleveland, OH 44113, USA
+8/28/2021 18:06:18;3;Park;Change in Brightness (Natural);3;Public Space;Nick, Charlee, Lindsey ;;;08/29/2021 5:06:22;41.4829517,-82.6847676;Cedar Point Blvd, Sandusky, OH 44870, USA
+8/29/2021 23:37:16;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;08/31/2021 18:54:30;41.5099375,-81.5808115;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+8/31/2021 7:54:27;4;Car (Driving);Change in Brightness (Natural);0;0;;;;09/03/2021 3:27:36;40.4276729,-80.0243236;1426 Woodruff St, Pittsburgh, PA 15220, USA
+9/1/2021 10:30:18;5;Car (Driving);Change in Brightness (Natural);0;0;;;;09/01/2021 21:30:29;41.4984481,-81.6938197;50 Public Square, Cleveland, OH 44113, USA
+9/2/2021 15:10:06;3;Someone else's house;Change in Brightness (Natural);1;2;Scott, Troy ;;;09/03/2021 2:10:11;40.4104339,-79.8771476;214 Kenmawr Ave, Braddock, PA 15104, USA
+9/3/2021 17:32:19;4;Car (Driving);Change in Brightness (Natural);0;0;;;;09/04/2021 4:32:24;41.4971658,-81.6940643;230 W Huron Rd #7294, Cleveland, OH 44113, USA
+9/4/2021 12:24:03;5;City Street;Change in Brightness (Natural);1;1;Charlee ;;;09/04/2021 23:24:07;41.5100011,-81.5811353;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+9/4/2021 14:24:41;4;City Street;Change in Brightness (Natural);1;1;Charlee ;;;09/05/2021 1:24:45;41.5112207,-81.579921;1781 Coventry Rd, Cleveland Heights, OH 44118, USA
+9/4/2021 22:10:43;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/05/2021 10:29:59;41.4979523,-81.6937361;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/5/2021 13:08:30;4;City Street;Change in Brightness (Natural);3;3;Charlee, Chloey, Danny;;;09/06/2021 0:08:35;41.4729384,-81.536844;7 Shaker Glen, Shaker Heights, OH 44122, USA
+9/5/2021 15:16:07;2;Car (Passenger);Change in Brightness (Natural);1;1;Charlee;;;09/06/2021 22:36:13;39.4343526,-82.5416081;19988 OH-664 Scenic, Logan, OH 43138, USA
+9/6/2021 11:36:10;5;Car (Driving);Change in Brightness (Natural);1;1;Charlee ;;;09/08/2021 3:30:33;41.4979448,-81.6937291;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/6/2021 12:50:38;2;Park;Change in Brightness (Natural);1;1;Charlee;;;09/06/2021 23:50:43;39.4342487,-82.5417355;19988 OH-664 Scenic, Logan, OH 43138, USA
+9/7/2021 12:01:43;3;City Street;Change in Brightness (Natural);0;Public Space;;;;09/07/2021 23:01:48;41.4990525,-81.6932533;Euclid Av & Ontario St, Cleveland, OH 44113, USA
+9/7/2021 16:30:30;3;Your Home;Cleaning;0;0;;Cats;;09/08/2021 9:04:06;41.4979476,-81.6937396;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/7/2021 22:04:03;2;Your Home;Change in Brightness (Artificial);0;0;;Cats;;;;
