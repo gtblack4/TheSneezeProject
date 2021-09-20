@@ -478,4 +478,26 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 9/6/2021 12:50:38;2;Park;Change in Brightness (Natural);1;1;Charlee;;;09/06/2021 23:50:43;39.4342487,-82.5417355;19988 OH-664 Scenic, Logan, OH 43138, USA
 9/7/2021 12:01:43;3;City Street;Change in Brightness (Natural);0;Public Space;;;;09/07/2021 23:01:48;41.4990525,-81.6932533;Euclid Av & Ontario St, Cleveland, OH 44113, USA
 9/7/2021 16:30:30;3;Your Home;Cleaning;0;0;;Cats;;09/08/2021 9:04:06;41.4979476,-81.6937396;230 W Huron Rd #72, Cleveland, OH 44113, USA
-9/7/2021 22:04:03;2;Your Home;Change in Brightness (Artificial);0;0;;Cats;;;;
+9/7/2021 22:04:03;2;Your Home;Change in Brightness (Artificial);0;0;;Cats;;09/09/2021 1:35:56;41.4974275,-81.693614;1600 W 2nd St, Cleveland, OH 44113, USA
+9/8/2021 12:50:45;1;Office;Change in Brightness (Natural);0;0;;;;09/08/2021 23:50:50;41.4974024,-81.6936071;1600 W 2nd St, Cleveland, OH 44113, USA
+9/8/2021 17:18:27;5;Car (Driving);Change in Brightness (Natural);0;0;;;;09/09/2021 18:57:24;41.5099996,-81.5807755;2774 Hampshire Rd, Cleveland Heights, OH 44106, USA
+9/9/2021 7:57:20;3;Car (Driving);Change in Brightness (Natural);0;0;;;;09/09/2021 20:37:31;41.4979689,-81.6937299;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/9/2021 15:05:02;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/10/2021 3:30:23;41.4979901,-81.6937692;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/9/2021 16:30:19;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/10/2021 9:09:16;41.4979852,-81.6937243;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/10/2021 21:44:45;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/12/2021 11:48:16;41.5100485,-81.5811291;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+9/11/2021 14:00:46;5;Parking Lot;Change in Brightness (Natural);1;1;Charlee ;;;09/12/2021 1:00:49;41.4988956,-81.4902251;27050 Cedar Rd, Beachwood, OH 44122, USA
+9/11/2021 14:45:49;2;Public Store;Change in Brightness (Artificial);1;1;Charlee ;;;09/12/2021 1:45:59;41.4981755,-81.4954485;26300 Cedar Rd, Beachwood, OH 44122, USA
+9/12/2021 14:58:00;2;Parking Lot;Change in Brightness (Natural);1;1;Charlee;;;09/14/2021 10:10:25;41.4979327,-81.6937537;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/13/2021 13:12:27;1;Sports Facility;Change in Brightness (Artificial);0;3;;;;09/14/2021 0:12:37;41.4982757,-81.6936708;50 Public Square #2626, Cleveland, OH 44113, USA
+9/13/2021 13:29:49;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/14/2021 0:29:52;41.4979776,-81.693732;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/13/2021 23:10:22;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/15/2021 4:03:21;41.4979988,-81.693746;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/16/2021 12:08:37;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/17/2021 1:22:17;41.4979891,-81.6938339;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/17/2021 15:16:39;3;Car (Driving);Change in Brightness (Natural);0;0;;;;09/18/2021 2:16:42;41.4981174,-81.6967393;Superior Av & w 6th St, Cleveland, OH 44113, USA
+9/17/2021 15:36:41;3;Car (Driving);Change in Brightness (Natural);0;0;;;;09/18/2021 2:36:45;41.4643719,-81.5699652;Chagrin Blvd & Ludgate Rd, Shaker Heights, OH 44120, USA
+9/17/2021 16:42:56;4;Car (Driving);Change in Brightness (Natural);0;0;;;;09/18/2021 3:43:00;41.4969349,-81.6963045;1500 W 3rd St, Cleveland, OH 44113, USA
+9/18/2021 11:48:51;2;Park;Change in Brightness (Natural);2;2;Charlee, Sam;;;09/18/2021 22:48:55;43.2249427,-78.5589283;2 Becker Farms, Gasport, NY 14067, USA
+9/18/2021 12:07:21;3;Park;Change in Brightness (Natural);2;Public Space;Charlee, Sam;;;09/18/2021 23:07:25;43.2251788,-78.5602009;3724 Quaker Rd, Gasport, NY 14067, USA
+9/18/2021 13:26:12;3;City Street;Change in Brightness (Natural);1;1;Charlee;;;09/19/2021 0:26:16;43.0431755,-78.8102298;30 Grandview Dr, Buffalo, NY 14228, USA
+9/19/2021 10:35:46;5;Someone else's house;Change in Brightness (Natural);0;0;;;;09/20/2021 9:12:04;41.4979676,-81.6937837;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/19/2021 11:17:37;2;Bar/Restaurant;Change in Brightness (Natural);2;3;Charlee, Sam;;;09/19/2021 22:17:41;42.8994493,-78.8720554;495 Franklin St, Buffalo, NY 14202, USA
+9/19/2021 22:12:01;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;
