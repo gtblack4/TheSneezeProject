@@ -500,4 +500,65 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 9/18/2021 13:26:12;3;City Street;Change in Brightness (Natural);1;1;Charlee;;;09/19/2021 0:26:16;43.0431755,-78.8102298;30 Grandview Dr, Buffalo, NY 14228, USA
 9/19/2021 10:35:46;5;Someone else's house;Change in Brightness (Natural);0;0;;;;09/20/2021 9:12:04;41.4979676,-81.6937837;230 W Huron Rd #72, Cleveland, OH 44113, USA
 9/19/2021 11:17:37;2;Bar/Restaurant;Change in Brightness (Natural);2;3;Charlee, Sam;;;09/19/2021 22:17:41;42.8994493,-78.8720554;495 Franklin St, Buffalo, NY 14202, USA
-9/19/2021 22:12:01;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;
+9/19/2021 22:12:01;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/20/2021 20:56:23;41.4980887,-81.6937877;200 W Prospect Ave, Cleveland, OH 44115, USA
+9/20/2021 9:56:21;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/20/2021 22:16:06;41.4979648,-81.6937251;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/20/2021 11:16:04;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/21/2021 23:15:57;41.4979582,-81.6937768;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/21/2021 8:11:10;3;Car (Driving);Change in Brightness (Natural);0;0;;;;09/21/2021 19:11:15;41.50163,-81.6319132;2069 E 81st St, Cleveland, OH 44103, USA
+9/21/2021 12:15:54;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/22/2021 1:27:42;41.4979558,-81.6937605;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/21/2021 14:27:38;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/23/2021 0:47:12;41.497989,-81.6937532;230 W Huron Rd #72, Cleveland, OH 44113, USA
+9/22/2021 13:47:09;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/23/2021 23:59:10;40.8915679,-74.0940708;189 Rt 46, West St, Saddle Brook, NJ 07663, USA
+9/22/2021 19:35:42;2;Car (Driving);Unknown;1;1;Charlee ;Dogs;;09/23/2021 6:35:55;41.2027905,-79.9332265;Z. H. Confair Memorial Hwy, Harrisville, PA 16038, USA
+9/23/2021 9:14:09;3;Car (Driving);Change in Brightness (Natural);1;1;Charlee;Dogs;;09/23/2021 20:14:16;40.9984903,-75.1533116;Z. H. Confair Memorial Hwy, Delaware Water Gap, PA 18327, USA
+9/23/2021 10:13:31;3;Car (Driving);Change in Brightness (Natural);0;1;Charlee ;;;09/23/2021 21:13:39;40.7584163,-74.1770804;168 Ridge St, Newark, NJ 07104, USA
+9/23/2021 17:08:40;3;Car (Driving);Change in Brightness (Natural);1;1;Charlee ;Dogs;;09/24/2021 4:08:44;40.8933145,-74.1239638;60 US-46, Elmwood Park, NJ 07407, USA
+9/24/2021 10:34:15;2;Someone else's house;Change in Brightness (Natural);1;1;;Dogs;;09/25/2021 20:40:09;41.5214064,-72.0912393;360 W Main St, Norwich, CT 06360, USA
+9/25/2021 9:40:06;2;Bar/Restaurant;Change in Brightness (Artificial);2;2;Charlee, Allison ;;;09/26/2021 22:47:17;41.3640172,-72.0966984;45 Lewis St, New London, CT 06320, USA
+9/25/2021 9:58:40;2;Someone else's house;Unknown;0;0;;;;09/25/2021 20:58:44;41.5145716,-72.1164866;39 Wawecus Hill Rd, Norwich, CT 06360, USA
+9/25/2021 11:15:41;4;Parking Lot;Change in Brightness (Natural);2;2;Charlee, Allison ;;;09/25/2021 22:15:48;41.5146332,-72.1163563;39 Wawecus Hill Rd, Norwich, CT 06360, USA
+9/25/2021 14:17:56;2;Someone else's house;Change in Brightness (Natural);2;2;Charlee, Allison ;;;09/26/2021 1:18:11;41.5351435,-72.095008;422 Asylum St, Norwich, CT 06360, USA
+9/25/2021 18:35:41;1;Park;Change in Brightness (Natural);0;Public Space;;;;09/26/2021 5:35:45;41.5863429,-71.4635362;92 Burnt Cedar Dr, North Kingstown, RI 02852, USA
+9/27/2021 13:17:00;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/28/2021 0:17:09;41.495105,-81.691327;351 Larry Doby Way, Cleveland, OH 44113, USA
+9/27/2021 13:21:28;3;Car (Driving);Change in Brightness (Natural);0;0;;;;09/28/2021 0:21:33;41.4949331,-81.6855962;501 Carnegie Ave, Cleveland, OH 44115, USA
+9/28/2021 10:54:04;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/29/2021 3:27:03;41.5099892,-81.5812044;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+9/28/2021 16:27:00;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/29/2021 4:24:38;41.4954329,-81.6741385;2320 E 24th St, Cleveland, OH 44115, USA
+9/28/2021 17:24:34;4;Car (Driving);Change in Brightness (Natural);0;0;;;;09/29/2021 7:05:33;41.5098779,-81.5812402;2752 Hampshire Rd, Cleveland Heights, OH 44106, USA
+9/28/2021 20:05:29;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/29/2021 9:54:49;41.5099981,-81.581182;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+9/28/2021 22:54:46;2;Your Home;Change in Brightness (Natural);1;1;;Cats;;09/30/2021 4:10:47;41.5099397,-81.5811885;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+9/29/2021 8:47:37;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;09/29/2021 19:47:41;41.5099617,-81.5812582;2752 Hampshire Rd, Cleveland Heights, OH 44106, USA
+9/29/2021 23:09:55;3;Your Home;Unknown;0;0;;Cats;;10/01/2021 2:07:17;41.5099983,-81.5811712;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+9/30/2021 8:26:10;4;Car (Driving);Change in Brightness (Natural);0;0;;;;09/30/2021 19:26:14;41.5000624,-81.6660571;3043 Carnegie Ave, Cleveland, OH 44115, USA
+9/30/2021 8:47:02;1;Office;Change in Brightness (Artificial);0;0;;;;09/30/2021 19:47:07;41.497431,-81.6936073;1600 W 2nd St, Cleveland, OH 44113, USA
+9/30/2021 12:23:16;3;Car (Driving);Change in Brightness (Natural);0;0;;;;09/30/2021 23:23:20;41.4981743,-81.6939093;50 Public Square #2626, Cleveland, OH 44113, USA
+9/30/2021 15:07:13;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/01/2021 3:46:57;41.5099762,-81.5813051;2752 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/1/2021 9:53:45;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/01/2021 22:44:31;41.5100297,-81.5811453;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/1/2021 11:44:28;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/02/2021 4:57:58;41.5099801,-81.5811615;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/2/2021 12:00:51;4;Car (Passenger);Change in Brightness (Natural);1;1;Charlee;;;10/02/2021 23:00:55;41.5094032,-81.6046365;11425 Euclid Ave, Cleveland, OH 44106, USA
+10/2/2021 12:42:57;3;Parking Lot;Change in Brightness (Natural);1;1;Charlee ;;;10/04/2021 19:54:48;41.4974369,-81.6936087;1600 W 2nd St, Cleveland, OH 44113, USA
+10/4/2021 8:54:44;1;Office;Change in Brightness (Artificial);0;0;;;;10/05/2021 3:33:15;41.4983395,-81.6938799;West Roadway & Superior Av, Cleveland, OH 44113, USA
+10/4/2021 14:11:48;1;Office;Change in Brightness (Artificial);1;1;Danika;;;10/05/2021 1:11:52;41.4974272,-81.6936197;1600 W 2nd St, Cleveland, OH 44113, USA
+10/4/2021 16:33:11;5;Car (Driving);Change in Brightness (Natural);0;0;;;;10/05/2021 3:33:18;41.4983395,-81.6938799;West Roadway & Superior Av, Cleveland, OH 44113, USA
+10/5/2021 16:33:36;4;Car (Driving);Change in Brightness (Natural);0;0;;;;10/06/2021 3:33:44;41.4978651,-81.696714;Superior Av & w 6th St, Cleveland, OH 44113, USA
+10/5/2021 20:03:22;3;Your Home;Change in Brightness (Natural);1;1;Charlee ;Cats;;10/06/2021 7:40:06;41.5100174,-81.581137;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/6/2021 11:18:52;1;Office;Change in Brightness (Artificial);0;0;;Cats;;10/06/2021 22:19:00;41.4972652,-81.693573;230 W Huron Rd, Cleveland, OH 44113, USA
+10/6/2021 16:31:07;3;Car (Driving);Change in Brightness (Natural);0;0;;;;10/07/2021 3:31:13;41.4972501,-81.6936045;230 W Huron Rd, Cleveland, OH 44113, USA
+10/7/2021 9:26:17;5;City Street;Change in Brightness (Natural);0;0;;;;10/08/2021 7:39:43;41.5099777,-81.5812126;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/7/2021 18:30:42;1;Public Store;Change in Brightness (Artificial);1;1;;;;10/08/2021 5:30:46;41.5010438,-81.5345851;14020 Cedar Rd, Cleveland, OH 44118, USA
+10/7/2021 20:39:39;3;Your Home;Change in Brightness (Artificial);1;1;Charlee;Cats;;10/08/2021 21:21:33;41.5100185,-81.5811511;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/8/2021 10:21:30;3;Your Home;Change in Brightness (Natural);1;1;Charlee ;;;10/09/2021 0:20:36;41.5101108,-81.5808614;2772 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/8/2021 13:20:32;1;Car (Passenger);Change in Brightness (Natural);1;1;Charlee ;Dogs;;10/09/2021 2:06:11;41.5100259,-81.5811613;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/8/2021 15:06:08;2;Your Home;Other (Add in Notes);1;1;Charlee;;;10/09/2021 3:56:52;41.5099643,-81.5811625;2758 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/8/2021 16:56:49;1;Your Home;Other (Add in Notes);1;1;Charlee;;;10/09/2021 21:16:11;41.5083731,-81.5802062;2785 Euclid Heights Blvd, Cleveland, OH 44106, USA
+10/9/2021 10:16:07;4;City Street;Change in Brightness (Natural);1;5;Scott, Ryley, Troy, Charlee, Noah ;;;10/10/2021 4:52:20;41.5041561,-81.6003979;2181 Murray Hill Rd, Cleveland, OH 44106, USA
+10/9/2021 13:15:57;3;Parking Lot;Change in Brightness (Natural);3;3;Scott, Noah, Troy ;;;10/10/2021 0:16:02;41.5097722,-81.5809776;2758 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/9/2021 14:14:07;3;City Street;Change in Brightness (Natural);1;5;Charlee, Scott, Troy, Ryley, Noah ;;;10/10/2021 1:14:11;41.5041561,-81.6003979;2181 Murray Hill Rd, Cleveland, OH 44106, USA
+10/9/2021 17:52:17;1;Your Home;Other (Add in Notes);0;0;;Cats;;10/10/2021 8:31:45;41.5100279,-81.5811544;2760 Hampshire Rd, Cleveland Heights, OH 44106, USA
+10/10/2021 10:10:27;3;Car (Driving);Change in Brightness (Natural);0;0;;;;10/10/2021 21:10:33;41.1954894,-79.4459517;5HW3+5J Clarion, PA, USA
+10/10/2021 21:37:14;3;Your Home;Change in Brightness (Natural);2;2;Scott, Charlee;Cats;;10/11/2021 8:37:18;40.7735227,-74.0379513;1407 28th St, North Bergen, NJ 07047, USA
+10/11/2021 8:23:07;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/11/2021 19:23:10;40.7734042,-74.0380061;1407 28th St, North Bergen, NJ 07047, USA
+10/12/2021 9:16:05;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/12/2021 20:16:11;40.7734901,-74.0378639;1405 28th St, North Bergen, NJ 07047, USA
+10/12/2021 12:56:51;4;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;10/12/2021 23:56:56;40.7733968,-74.0380438;1407 28th St, North Bergen, NJ 07047, USA
+10/13/2021 8:36:03;4;Car (Driving);Change in Brightness (Natural);1;1;Charlee ;;;10/13/2021 20:57:25;40.7733399,-74.0381467;1408 27th St, North Bergen, NJ 07047, USA
+10/13/2021 9:57:23;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/13/2021 23:12:57;40.7734759,-74.0380105;1407 28th St, North Bergen, NJ 07047, USA
+10/13/2021 14:40:34;2;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;10/14/2021 23:43:55;40.7735045,-74.0379387;1407 28th St, North Bergen, NJ 07047, USA
+10/13/2021 23:43:48;2;Your Home;Change in Brightness (Artificial);0;0;;Cats;;10/14/2021 10:44:04;40.7735204,-74.0379426;1407 28th St, North Bergen, NJ 07047, USA
+10/14/2021 15:25:30;3;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;;;
