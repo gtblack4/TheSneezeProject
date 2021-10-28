@@ -10,9 +10,12 @@ import numpy as np
 def updateSpeadsheet():
 	if os.getenv('ENVIRON') == "PROD":
 		gc = gspread.service_account_from_dict(os.getenv('ENVIRON'))
+		print("this is prod")
+		print(os.getenv('ENVIRON'))
 	else:
-		gc = gspread.service_account_from_dict(os.getenv('ENVIRON'))
-		#gc = gspread.service_account(filename='service_account.json')
+		print(os.getenv('ENVIRON'))
+		#gc = gspread.service_account_from_dict(os.getenv('ENVIRON'))
+		gc = gspread.service_account(filename='service_account.json')
 		
 
 	worksheet2020 = gc.open('2020 Sneeze Survey')
