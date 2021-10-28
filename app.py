@@ -14,7 +14,7 @@ import functions as mf
 import pandas as pd
 import math
 from plotly.subplots import make_subplots
-
+import UpdateCSV as UCSV
 app = dash.Dash(
     __name__,
     meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}],
@@ -28,7 +28,12 @@ APP_PATH = str(pathlib.Path(__file__).parent.resolve())
 
 #Map box key, should probabyl make this private, but its free so *shrug* 
 MAPBOXKEY = os.getenv('MAPBOXKEY')
-#MAPBOXKEY = 'pk.eyJ1IjoiZ3RibGFjazQiLCJhIjoiY2txdmdkdW9lMDk3MDJ2bnp0MzVhazM2cCJ9.-i6gkNqdpDeZ-NIrdiYjvA'
+MAPBOXKEY = 'pk.eyJ1IjoiZ3RibGFjazQiLCJhIjoiY2txdmdkdW9lMDk3MDJ2bnp0MzVhazM2cCJ9.-i6gkNqdpDeZ-NIrdiYjvA'
+
+
+
+
+
 
 #reads the separate =year csv's
 sneezeData2020 =pd.read_csv('data/2020Sneezes.csv',sep=";")
