@@ -2,10 +2,10 @@ import os
 import pathlib
 
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 from dash.dependencies import Input, Output, State
-import dash_table
+from dash import dash_table
 import plotly.graph_objs as go
 import plotly.express as px
 import dash_daq as daq
@@ -28,7 +28,7 @@ APP_PATH = str(pathlib.Path(__file__).parent.resolve())
 
 #Map box key, should probabyl make this private, but its free so *shrug* 
 MAPBOXKEY = os.getenv('MAPBOXKEY')
-MAPBOXKEY = 'pk.eyJ1IjoiZ3RibGFjazQiLCJhIjoiY2txdmdkdW9lMDk3MDJ2bnp0MzVhazM2cCJ9.-i6gkNqdpDeZ-NIrdiYjvA'
+#MAPBOXKEY = 'pk.eyJ1IjoiZ3RibGFjazQiLCJhIjoiY2txdmdkdW9lMDk3MDJ2bnp0MzVhazM2cCJ9.-i6gkNqdpDeZ-NIrdiYjvA'
 
 #reads the separate =year csv's
 sneezeData2020 =pd.read_csv('data/2020Sneezes.csv',sep=";")
@@ -38,9 +38,10 @@ sneezeData2021 =pd.read_csv('data/2021Sneezes.csv',sep=";")
 #before I fully understood plotly
 mf.dataBreakdown(sneezeData2020)
 mf.dataBreakdown(sneezeData2021)
+
 dataTotal = sneezeData2020.append(sneezeData2021)
 headers = list(dataTotal.columns.values.tolist())
-
+print(headers)
 #gets the total amount for the counter on the top of the page
 totalSum = sneezeData2021['Cumulative'].tail(1)
 
@@ -229,10 +230,9 @@ def build_quick_stats_panel():
             html.Div(
                 id="card-1",
                 children=[
-                html.Div(id = "graph-label",
+                html.Div(id = "month-graph",
                     children=[
-                html.Button('Cumulative',id="switch-button", n_clicks=0,style=dict(color='white')),
-                  ]),
+                generate_year_line_graph()]),
                 html.Div(id="line-graphs"),
                 ],
             ),
@@ -241,11 +241,14 @@ def build_quick_stats_panel():
             html.Div(
                 id="card-2",
                 children=[
-                    html.P("Where in the World has Gage Sneezed?"),
+                html.P("Where in the World has Gage Sneezed?"),
+                html.Button('Heatmap',id="switch-button", n_clicks=0,style=dict(color='white',width="100%")),
+                    
                     html.Div(
-                    id="map-graph",
+                    id="map-graphs",
                     children=[
                     generate_sneeze_map()
+
                     ]
                     )
                 ],
@@ -259,7 +262,7 @@ def generate_section_banner(title):
     return html.Div(className="section-banner", children=title)
 
 
-def build_top_panel(stopped_interval):
+def build_top_panel():
     return html.Div(
         id="top-section-container",
         className="row",
@@ -575,7 +578,8 @@ def build_chart_panel():
             html.Div(
                 id="year-line-div",
                 children=[
-                    generate_year_line_graph()
+                    generate_month_line_graph()
+
                 ]
             )
         ],
@@ -624,7 +628,7 @@ def generate_time_plot():
 
 
 def generate_year_line_graph():
-
+    fig = go.Figure(
 
     data = [
         go.Scatter(
@@ -636,6 +640,7 @@ def generate_year_line_graph():
                 color='rgb(102, 255, 102)',
                 width=3
             )
+       
         ),
         go.Scatter(
             x=sneezeData2021['Month Day'], 
@@ -647,7 +652,7 @@ def generate_year_line_graph():
                 width=3
             ),
         )
-    ]
+    ],
     layout = go.Layout(
       
         paper_bgcolor='rgba(0,0,0,0)',
@@ -666,13 +671,25 @@ def generate_year_line_graph():
 
         ),
         margin=dict(t=0, b=0, l=0, r=0),
+        hovermode = 'x unified',
 
         xaxis=dict(tickformat="%b",color="white",nticks=12),
         yaxis=dict(color="white") 
-        )
-   
+        ),
+
+   )
+
+    fig.update_traces(hovertemplate='%{x|%b %d} Number of Sneezes: %{y}')
+    fig.update_layout(
+    hoverlabel=dict(
+        bgcolor="black",
+        font_size=16,
+        font_family="Open Sans, sans-serif"
+    )
+)
     config = {'displayModeBar': False}
-    return dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config)
+    
+    return dcc.Graph(figure=fig,config=config)
    
 def day_length(day_of_year, latitude):
     P = math.asin(0.39795 * math.cos(0.2163108 + 2 * math.atan(0.9671396 * math.tan(.00860 * (day_of_year - 186)))))
@@ -697,13 +714,13 @@ def build_daylight_array():
     return dayLightHour
 
 def generate_month_line_graph():
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    #fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     dayLightHours = pd.DataFrame(build_daylight_array())
     week2020 = pd.DataFrame(mf.buildWeekSums(sneezeData2020))
     week2021 = pd.DataFrame(mf.buildWeekSums(sneezeData2021))
   
-    fig.add_trace(
+    fig = go.Figure(
         go.Scatter(
         x=pd.to_datetime(week2020['Month Day']),
         y=week2020['7 Day Average'],
@@ -715,7 +732,7 @@ def generate_month_line_graph():
         ),
         
     ),
-        secondary_y=False,
+       # secondary_y=False,
     )
    
    
@@ -730,25 +747,25 @@ def generate_month_line_graph():
             width=3
             )
         ),
-        secondary_y=False,
+        #secondary_y=False,
     )
-    fig.add_trace(
-        go.Scatter(
-        x=pd.to_datetime(dayLightHours[0]),
-        y=dayLightHours[1],
-        mode= 'lines',
-        name="Cleveland DayLight hours",
-        line=dict(
-            color='rgb(255,255,0)',
-            width=2
-        ),
-        yaxis='y2',
+    # fig.add_trace(
+    #     go.Scatter(
+    #     x=pd.to_datetime(dayLightHours[0]),
+    #     y=dayLightHours[1],
+    #     mode= 'lines',
+    #     name="Cleveland DayLight hours",
+    #     line=dict(
+    #         color='rgb(255,255,0)',
+    #         width=2
+    #     ),
+    #     yaxis='y2',
 
-    ),
+    # ),
         
-        secondary_y=True,
+    #     secondary_y=True,
 
-    )
+    # )
     # regression = pd.ols(y=week2021['date'], x=week2021['sum'])
     # print(regression)
 
@@ -758,6 +775,7 @@ def generate_month_line_graph():
         plot_bgcolor= 'rgba(0,0,0,0)',
         showlegend=True,
         autosize=True,
+        hovermode = 'x unified',
       
 
         #xaxis=dict(tickformat="%m/%d")
@@ -779,6 +797,13 @@ def generate_month_line_graph():
         yaxis2=dict(color="blue",nticks=0, anchor="free",overlaying="y2", side="right",showgrid=False, showticklabels=False,),
         
         )
+    fig.update_traces(hovertemplate='%{x|%b %e} <br>Running Average: %{y}')
+    fig.update_layout(
+    hoverlabel=dict(
+        bgcolor="black",
+        font_size=16,
+        font_family="Open Sans, sans-serif"
+    ))
     fig.update_layout(autotypenumbers='convert types')
     config = {'displayModeBar': False}
 
@@ -788,18 +813,35 @@ def generate_month_line_graph():
    
 
 def generate_sneeze_map():
-    
     fig = go.Figure(go.Scattermapbox(
-        lat=dataTotal['Latitude'],
-        lon=dataTotal['Longitude'],
-        hovertext=dataTotal["Timestamp"],
+        name = "2020",
+        lat=sneezeData2020['Latitude'],
+        lon=sneezeData2020['Longitude'],
+        hovertext=sneezeData2020["Timestamp"],
+        customdata=sneezeData2020['Number of Sneezes'],
+        hovertemplate='%{hovertext| %b %d %Y} <br>%{hovertext| %I:%M %p} <br>Sneezes: %{customdata}',
         marker=go.scattermapbox.Marker(
         size=9,
-
+        color = '#34eb74'
         ),
 
     )
     )
+    fig.add_trace(go.Scattermapbox(
+        name = "2021",
+        lat=sneezeData2021['Latitude'],
+        lon=sneezeData2021['Longitude'],
+        hovertext=sneezeData2021["Timestamp"],
+        customdata=sneezeData2021['Number of Sneezes'],
+        #customdata2=sneezeData2021['Location'],
+        hovertemplate='%{hovertext| %b %d %Y} <br>%{hovertext| %I:%M %p} <br>Sneezes: %{customdata}',
+        marker=go.scattermapbox.Marker(
+        size=9,
+        color = 'green'
+        ),
+
+    )
+        )
     fig.update_layout(mapbox_style="dark",
     mapbox_accesstoken=MAPBOXKEY,
     paper_bgcolor='rgba(0,0,0,0)',
@@ -811,7 +853,18 @@ def generate_sneeze_map():
 
     autosize=True,
     hovermode='closest',
-    showlegend=False,
+    showlegend=True,
+     legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0,
+            font=dict(
+
+            color="white"
+        ),
+            ),
     mapbox=dict(
         accesstoken=MAPBOXKEY,
         bearing=0,
@@ -824,21 +877,37 @@ def generate_sneeze_map():
 
     ),
     )
+    fig.update_layout(
+    hoverlabel=dict(
+        #bgcolor="black",
+        font_size=16,
+       # font_family="Open Sans, sans-serif"
+    ))
     return html.Div(dcc.Graph(figure=fig))
 
+def generate_sneeze_heat_map():
 
+    from urllib.request import urlopen
+    import json
+    with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+            counties = json.load(response)
+
+    df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
+                       dtype={"fips": str})
+    fig = go.Figure(go.Choroplethmapbox(geojson=counties, locations=df.fips, z=df.unemp,
+    colorscale="Viridis", zmin=0, zmax=12, marker_line_width=0))
+    fig.update_layout(mapbox_style="light", mapbox_accesstoken=MAPBOXKEY,
+                  mapbox_zoom=3, mapbox_center = {"lat": 37.0902, "lon": -95.7129})
+    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+    return html.Div(dcc.Graph(figure=fig))    
 
 
 app.layout = html.Div(
     id="big-app-container",
     children=[
         build_banner(),
-        dcc.Interval(
-            id="interval-component",
-            interval=2 * 1000,  # in milliseconds
-            n_intervals=50,  # start at batch 50
-            disabled=True,
-        ),
+     
         html.Div(
             id="app-container",
             children=[
@@ -847,21 +916,19 @@ app.layout = html.Div(
                 html.Div(id="app-content"),
             ],
         ),
-        #dcc.Store(id="value-setter-store", data=init_value_setter_store()),
-        dcc.Store(id="n-interval-stage", data=50),
         generate_modal(),
     ],
 )
 
 #TODO Strip out unneeded variables
 @app.callback(
-    [Output("app-content", "children"), Output("interval-component", "n_intervals")],
+    [Output("app-content", "children")],
     [Input("app-tabs", "value")],
-    [State("n-interval-stage", "data")],
+
 )
-def render_tab_content(tab_switch, stopped_interval):
+def render_tab_content(tab_switch):
     if tab_switch == "tab1":
-        return build_tab_1(), stopped_interval
+        return build_tab_1()
     return (
         html.Div(
             id="status-container",
@@ -869,11 +936,11 @@ def render_tab_content(tab_switch, stopped_interval):
                 build_quick_stats_panel(),
                 html.Div(
                     id="graphs-container",
-                    children=[build_top_panel(stopped_interval), build_chart_panel()],
+                    children=[build_top_panel(), build_chart_panel()],
                 ),
             ],
         ),
-        stopped_interval,
+        
     )
 
 
@@ -885,20 +952,20 @@ def render_tab_content(tab_switch, stopped_interval):
 
 
 
-
-
-
 @app.callback(
-    [Output("switch-button","children"),Output("line-graphs","children")],
+    [Output("switch-button","children"),Output("map-graphs","children")],
     [dash.dependencies.Input('switch-button','n_clicks')]
 )
 
-def line_graph_switch(n_clicks):
+def map_graph_switch(n_clicks):
     if n_clicks % 2 == 1:
-        return "Yearly Cumulative",generate_year_line_graph()
+        return "Scatter Plot",generate_sneeze_heat_map()
     else:
-        return "14 Day Moving Average",generate_month_line_graph()
+        return "Heat Map",generate_sneeze_map()
     #switchback
+
+
+
         
 
 

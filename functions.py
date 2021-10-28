@@ -30,8 +30,7 @@ def dataBreakdown(sneezedata):
 		sneezedata['Latitude'].apply(lambda x: float(x)).round()
 		sneezedata['Longitude'].apply(lambda x: float(x)).round()
 	sneezedata['Blessed'] = sneezedata['Number of Blesses'].apply(blessCount)
-	#sneezedata = sneezedata.sort_values(by='Month Day')
-	#sneezedata = sneezedata.sort_values(by='Timestamp')
+
 
 def buildMonthArray(sneezedata):
 	monthArray =[0,0,0,0,0,0,0,0,0,0,0,0,0]

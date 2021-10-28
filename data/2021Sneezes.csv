@@ -561,4 +561,21 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 10/13/2021 9:57:23;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/13/2021 23:12:57;40.7734759,-74.0380105;1407 28th St, North Bergen, NJ 07047, USA
 10/13/2021 14:40:34;2;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;10/14/2021 23:43:55;40.7735045,-74.0379387;1407 28th St, North Bergen, NJ 07047, USA
 10/13/2021 23:43:48;2;Your Home;Change in Brightness (Artificial);0;0;;Cats;;10/14/2021 10:44:04;40.7735204,-74.0379426;1407 28th St, North Bergen, NJ 07047, USA
-10/14/2021 15:25:30;3;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;;;
+10/14/2021 15:25:30;3;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;10/15/2021 8:32:12;40.7735179,-74.0379321;1407 28th St, North Bergen, NJ 07047, USA
+10/15/2021 12:30:56;4;City Street;Change in Brightness (Natural);0;0;;;;10/16/2021 4:58:45;40.90661,-74.1333568;263 McLean Blvd, Paterson, NJ 07504, USA
+10/15/2021 20:30:16;3;Your Home;Other (Add in Notes);1;1;Charlee ;Cats;;10/17/2021 1:03:14;40.7735037,-74.0379467;1407 28th St, North Bergen, NJ 07047, USA
+10/16/2021 14:03:11;4;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;10/18/2021 19:06:32;40.7735107,-74.0379716;1407 28th St, North Bergen, NJ 07047, USA
+10/16/2021 14:19:09;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/17/2021 1:19:11;40.7735037,-74.0379467;1407 28th St, North Bergen, NJ 07047, USA
+10/18/2021 8:06:29;4;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;10/18/2021 22:52:41;40.7735178,-74.0379351;1407 28th St, North Bergen, NJ 07047, USA
+10/19/2021 14:06:07;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/20/2021 6:34:34;40.7733083,-74.0381404;1408 27th St, North Bergen, NJ 07047, USA
+10/20/2021 8:34:32;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/24/2021 8:58:50;40.7733788,-74.0380222;1407 28th St, North Bergen, NJ 07047, USA
+10/21/2021 11:11:03;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/21/2021 22:11:07;40.7734803,-74.0379459;1407 28th St, North Bergen, NJ 07047, USA
+10/23/2021 12:38:25;3;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;10/23/2021 23:38:28;40.773489,-74.037939;1407 28th St, North Bergen, NJ 07047, USA
+10/23/2021 23:41:07;3;Your Home;Change in Brightness (Artificial);1;1;Charlee ;Cats;;10/24/2021 10:41:10;40.7734653,-74.0379681;1407 28th St, North Bergen, NJ 07047, USA
+10/24/2021 15:26:54;4;Park;Change in Brightness (Natural);1;1;Charlee;;;10/25/2021 2:26:58;40.7611096,-74.020736;1500 Harbor Blvd, Weehawken, NJ 07086, USA
+10/24/2021 19:43:25;2;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;10/25/2021 6:43:27;40.7733879,-74.0381504;1409 28th St, North Bergen, NJ 07047, USA
+10/25/2021 12:20:21;3;Park;Change in Brightness (Natural);0;0;;;;10/25/2021 23:20:29;40.773383,-74.03813;1409 28th St, North Bergen, NJ 07047, USA
+10/25/2021 19:32:40;2;Your Home;Change in Brightness (Natural);1;1;Charlee ;Cats;;10/26/2021 6:32:43;40.7733821,-74.0381463;1409 28th St, North Bergen, NJ 07047, USA
+10/25/2021 21:36:12;2;Your Home;Change in Brightness (Artificial);1;1;Charlee;Cats;;10/26/2021 8:36:15;40.7733797,-74.0381458;1409 28th St, North Bergen, NJ 07047, USA
+10/28/2021 10:05:38;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/28/2021 21:05:49;40.7734399,-74.0380509;1407 28th St, North Bergen, NJ 07047, USA
+10/28/2021 13:37:23;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;
