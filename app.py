@@ -27,7 +27,7 @@ APP_PATH = str(pathlib.Path(__file__).parent.resolve())
 
 
 #Map box key, should probabyl make this private, but its free so *shrug* 
-MAPBOXKEY = os.getenv('MAPBOXKEY')
+#MAPBOXKEY = os.environ['MAPBOXKEY']
 MAPBOXKEY = 'pk.eyJ1IjoiZ3RibGFjazQiLCJhIjoiY2txdmdkdW9lMDk3MDJ2bnp0MzVhazM2cCJ9.-i6gkNqdpDeZ-NIrdiYjvA'
 
 
