@@ -1,10 +1,9 @@
 import os.path
-import requests
+
 import gspread
 import pandas as pd
 import numpy as np
-import datetime as datetime
-import functions as mf
+
 
 
 def updateSpeadsheet():

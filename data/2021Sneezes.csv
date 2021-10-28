@@ -1,13 +1,13 @@
 Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of Nearby People;Nearby Persons (Comma Separated);Nearby Animals;Notes;GeoStamp;GeoCode;GeoAddress
 1/1/2021 14:27:29;1;Someone else's house;Other (Add in Description;0;1;;Dogs;;01/05/2021 21:46:23;41.4978318,-81.6939482;230W Prospect Ave E, Cleveland, OH 44113, USA
-1/1/2021 23:39:33;3;Your Home;Unkown;0;1;Mitch;Cats;;01/05/2021 21:48:08;41.4978285,-81.6939281;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
+1/1/2021 23:39:33;3;Your Home;Unknown;0;1;Mitch;Cats;;01/05/2021 21:48:08;41.4978285,-81.6939281;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
 1/2/2021 11:48:11;2;Your Home;Change in Brightness;0;0 (Alone);;Cats;;01/05/2021 21:50:02;41.4978316,-81.693933;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
-1/2/2021 12:29:15;2;Your Home;Unkown;0;1;Mitch;Cats;;01/05/2021 21:54:12;41.497833899999996,-81.693953;230W Prospect Ave E, Cleveland, OH 44113, USA
-1/2/2021 13:50:48;1;Your Home;Unkown;0;2;Mitch, Noah;;;01/05/2021 21:57:06;41.4978481,-81.6939246;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
-1/3/2021 13:02:56;4;Your Home;Unkown;0;0 (Alone);;Cats;;01/05/2021 21:46:23;41.4978318,-81.6939482;230W Prospect Ave E, Cleveland, OH 44113, USA
+1/2/2021 12:29:15;2;Your Home;Unknown;0;1;Mitch;Cats;;01/05/2021 21:54:12;41.497833899999996,-81.693953;230W Prospect Ave E, Cleveland, OH 44113, USA
+1/2/2021 13:50:48;1;Your Home;Unknown;0;2;Mitch, Noah;;;01/05/2021 21:57:06;41.4978481,-81.6939246;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
+1/3/2021 13:02:56;4;Your Home;Unknown;0;0 (Alone);;Cats;;01/05/2021 21:46:23;41.4978318,-81.6939482;230W Prospect Ave E, Cleveland, OH 44113, USA
 1/3/2021 21:07:19;5;Your Home;Other (Add in Notes);0;0 (Alone);;;Laundry;01/05/2021 21:48:08;41.4978285,-81.6939281;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
-1/4/2021 13:35:50;3;Your Home;Unkown;0;0 (Alone);;Cats;;01/05/2021 21:50:02;41.4978316,-81.693933;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
-1/4/2021 15:22:23;1;Your Home;Unkown;0;0 (Alone);;;;01/05/2021 21:54:12;41.497833899999996,-81.693953;230W Prospect Ave E, Cleveland, OH 44113, USA
+1/4/2021 13:35:50;3;Your Home;Unknown;0;0 (Alone);;Cats;;01/05/2021 21:50:02;41.4978316,-81.693933;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
+1/4/2021 15:22:23;1;Your Home;Unknown;0;0 (Alone);;;;01/05/2021 21:54:12;41.497833899999996,-81.693953;230W Prospect Ave E, Cleveland, OH 44113, USA
 1/5/2021 18:26:50;2;Your Home;Change in Brightness (Artificial);0;0 (Alone);;Cats;;01/06/2021 6:27:00;41.4978846,-81.6936925;230 Huron Rd E, Cleveland, OH 44113, USA
 1/6/2021 10:40:03;3;Your Home;Change in Brightness (Artificial);0;0 (Alone);;Cats;;01/06/2021 22:40:08;41.4978842,-81.6937474;230 Huron Rd E, Cleveland, OH 44113, USA
 1/7/2021 8:00:34;2;Car (Driving);Change in Brightness (Natural);0;0 (Alone);;;;01/07/2021 20:00:38;41.1207573,-80.8466329;Ohio Turnpike, North Jackson, OH 44451, USA
@@ -579,4 +579,4 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 10/25/2021 21:36:12;2;Your Home;Change in Brightness (Artificial);1;1;Charlee;Cats;;10/26/2021 8:36:15;40.7733797,-74.0381458;1409 28th St, North Bergen, NJ 07047, USA
 10/28/2021 10:05:38;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/28/2021 21:05:49;40.7734399,-74.0380509;1407 28th St, North Bergen, NJ 07047, USA
 10/28/2021 13:37:23;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;
-10/28/2021 13:37:23;50;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;
+10/28/2021 13:37:23;200;Your Home;Change in Brightness (Natural);0;0;;Cats;;;;
