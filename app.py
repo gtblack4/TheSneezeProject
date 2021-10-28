@@ -143,7 +143,7 @@ def build_tab_1():
                             id="sneeze-facts-rows",
                             children=[
                                 build_sneeze_facts_rows("What day had the most sneezes?", sneeziestDay(), 1),
-                                build_sneeze_facts_rows("What is the daily average number of sneezes?",averageSneezeDay(),2),
+                                build_sneeze_facts_rows("What is the daily average number of sneezes?", averageSneezeDay(),2),
                                 build_sneeze_facts_rows("What % of days did Gage sneeze on?", sneezLessDays(), 3),
                             ],
                         ),
