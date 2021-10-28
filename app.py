@@ -34,7 +34,7 @@ MAPBOXKEY = 'pk.eyJ1IjoiZ3RibGFjazQiLCJhIjoiY2txdmdkdW9lMDk3MDJ2bnp0MzVhazM2cCJ9
 
 
 
-
+mf.checkLastRun()
 #reads the separate =year csv's
 sneezeData2020 =pd.read_csv('data/2020Sneezes.csv',sep=";")
 sneezeData2021 =pd.read_csv('data/2021Sneezes.csv',sep=";")
@@ -49,7 +49,7 @@ headers = list(dataTotal.columns.values.tolist())
 
 #gets the total amount for the counter on the top of the page
 totalSum = sneezeData2021['Cumulative'].tail(1)
-mf.checkLastRun()
+
 
 
 
