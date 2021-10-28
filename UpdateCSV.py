@@ -1,15 +1,19 @@
 import os.path
-
+import json
 import gspread
 import pandas as pd
 import numpy as np
-
+from oauth2client.service_account import ServiceAccountCredentials
 
 
 
 def updateSpeadsheet():
 	if os.getenv('ENVIRON') == "PROD":
-		gc = gspread.service_account_from_dict(os.getenv('CREDS'))
+		json_creds = os.getenv("CREDS")
+		creds_dict = json.loads(json_creds)
+		creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
+		creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scopes)
+		gc = gspread.authorize(creds)
 		print("this is prod")
 		print(os.getenv('ENVIRON'))
 	else:
