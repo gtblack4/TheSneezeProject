@@ -14,7 +14,7 @@ import functions as mf
 import pandas as pd
 import math
 from plotly.subplots import make_subplots
-import UpdateCSV as UCSV
+
 app = dash.Dash(
     __name__,
     meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}],
@@ -46,9 +46,13 @@ mf.dataBreakdown(sneezeData2021)
 
 dataTotal = sneezeData2020.append(sneezeData2021)
 headers = list(dataTotal.columns.values.tolist())
-print(headers)
+
 #gets the total amount for the counter on the top of the page
 totalSum = sneezeData2021['Cumulative'].tail(1)
+mf.checkLastRun()
+
+
+
 
 
 

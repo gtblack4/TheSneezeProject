@@ -4,6 +4,7 @@ import pandas as pd
 import datetime as datetime
 #import altair as alt
 import calendar
+import UpdateCSV as UCSV
 dateFormat = "%I:%M %p %m/%d/%Y"
 
 #TODO finish this function to get the number of days elapsed in the year
@@ -185,3 +186,20 @@ def buildWeekSums(sneezedata):
 	#print(weekdata)
 	#weekdata['Month Day'] = pd.to_datetime(sneezedata['Timestamp']).dt.strftime('%m/%d/%Y')
 	return weekdata
+#Checks the last run date, and updates the spreadsheets if it was not today
+
+def checkLastRun():
+	today = pd.Timestamp.today()
+	with open("data/lastRunDate.txt", "r") as file:
+		if file.mode=='r':
+			lastrun = file.read()
+			lastrun = pd.to_datetime(lastrun)
+
+		if today.date() > lastrun.date():
+			UCSV.updateSpeadsheet()
+
+	with open('data/lastRunDate.txt', "w") as myfile:
+	    myfile.write(today.strftime("%m/%d/%Y"))
+
+
+  
