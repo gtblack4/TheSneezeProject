@@ -12,7 +12,7 @@ def updateSpeadsheet():
 		json_creds = os.getenv("CREDS")
 		creds_dict = json.loads(json_creds)
 		creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
-		creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scopes)
+		creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict)
 		gc = gspread.authorize(creds)
 		print("this is prod")
 		print(os.getenv('ENVIRON'))
