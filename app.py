@@ -241,6 +241,7 @@ def build_quick_stats_panel():
                 children=[
                 html.Div(id = "month-graph",
                     children=[
+                html.P("Cumulative Comparison"),
                 generate_year_line_graph()]),
                 html.Div(id="line-graphs"),
                 ],
@@ -291,8 +292,8 @@ def build_top_panel():
                                 children=[
 
                                     build_sneeze_stats_row("How many sneezes go unblessed?",generate_blessed_sneezes(),1),
-                                    build_sneeze_stats_row("Sneeze fit size",generate_fit_count(),2),
-                                    build_sneeze_stats_row("Sneeze fit location",generate_location_graph(),3),
+                                    build_sneeze_stats_row("Am I allergic to people?",generate_fit_count(),2),
+                                    build_sneeze_stats_row("Where are the sneezes?",generate_location_graph(),3),
                                     #build_sneeze_stats_row("Time of Day ",generate_time_plot(),4),
                                 
                                 ],
@@ -314,16 +315,7 @@ def build_top_panel():
             ),
         ],
     )
-def generate_time_heat_graph():
-    sneezeHours = []
-    for x in range(0,24):
-        sneezeHours.append(x)
-    
-    fig = go.Figure(data=go.Heatmap(
-                    x=pd.to_datetime(dataTotal['Timestamp']).dt.strftime('%H:%M'),
-                    z=dataTotal['Number of Sneezes']))
-    config = {'displayModeBar': False}
-    return dcc.Graph(id="fit-count-chart", figure = fig,config=config)
+
 
 def build_sneeze_stats_row(text,graph,position):
       position = "sneeze-stats-row-" + str(position)
@@ -351,8 +343,6 @@ def build_sneeze_stats_row(text,graph,position):
 
             ])
 
-def generate_sneeze_time():
-    print('fart')
 #***********Functions for the Fun Facts Panel*********
 def sneeziestDay():
 
@@ -405,6 +395,7 @@ def generate_blessed_sneezes():
     width=[1,1],
     name='Blessed',
     orientation='h',
+    hovertemplate='Blessed Sneezes: %{x}<extra></extra>',
     marker=dict(
         color='rgba(246, 78, 139, 0.6)',
         line=dict(color='rgba(246, 78, 139, 1.0)', width=3)
@@ -416,6 +407,7 @@ def generate_blessed_sneezes():
         width=[1,1],
         name='Unblessed',
         orientation='h',
+        hovertemplate='Unblessed Sneezes: %{x}<extra></extra>',
         marker=dict(
             color='rgba(58, 71, 80, 0.6)',
             line=dict(color='rgba(58, 71, 80, 1.0)', width=3)
@@ -430,7 +422,7 @@ def generate_blessed_sneezes():
         autosize=True,
       
 
-        #xaxis=dict(tickformat="%m/%d")
+
         yaxis = dict(showticklabels=False),
         xaxis = dict(tickvals=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed']+blessedSum['Blessed'])], ticktext=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed'])],
             showgrid = True, tickangle = 0, color = 'white',ticklabelposition='outside left',ticklabeloverflow='hide past div'),
@@ -445,42 +437,92 @@ def generate_blessed_sneezes():
             ),
         ),
         margin=dict(t=20, b=20, l=0, r=0),
-        #margin=dict(t=0, b=0, l=0, r=0),
+
     )
     config = {'displayModeBar': False}
     return dcc.Graph(id="blessed-chart", figure = go.Figure(data=data,layout=layout),config=config)
 
 
+class Sneeze:
+    pass
+
+
 def generate_location_graph():
-    sneezeLocation = pd.DataFrame(dataTotal['Location'].value_counts())
+    sneezeLocationSum = dataTotal.groupby(['Location']).sum()
+    sneezeLocation = pd.DataFrame(columns=["Location", "Sneezes"])
     data = []
     tickvalues = [0]
+    ticktext = [0]
     count = 0
+    sum = 0
+    sneezeLocationSum = sneezeLocationSum['Number of Sneezes']
 
-    sneezeLocation = sneezeLocation.sort_index()
-    sneezeLocation = sneezeLocation.sort_values('Location',ascending=False)
+    # add the different locations together
+    #In a car
+    sneezeLocation.loc[len(sneezeLocation.index)] = ['Car', int(sneezeLocationSum['Car (Driving)']) + int(sneezeLocationSum['Car (Passenger)'])]
+    #Indoors
+    sneezeLocation.loc[len(sneezeLocation.index)] = ['Inside', int(sneezeLocationSum["Someone else's house"]) + int(sneezeLocationSum['Bar/Restaurant'])+ int(sneezeLocationSum['Office']) + int(sneezeLocationSum['Bar/Restaurant'])  + int(sneezeLocationSum['Hotel']) + int(sneezeLocationSum['Public Store']) + int(sneezeLocationSum['Hospital'])+ int(sneezeLocationSum['Parking Garage'])+ int(sneezeLocationSum['Your Home'])]
+    #Outdoors
+    sneezeLocation.loc[len(sneezeLocation.index)] = ['Outside', int(sneezeLocationSum['City Street']) + int(sneezeLocationSum['Park'])+ int(sneezeLocationSum['Parking Lot'])+ int(sneezeLocationSum['Sports Facility']+ int(sneezeLocationSum['Waterfront']))]
+
+
 
     for row in sneezeLocation.index:
-        tickvalues.append(int(int(sneezeLocation['Location'][row])+int(tickvalues[count])))
-        data.append(
-        go.Bar(
-        y=['Sneezes'],
-        x=[sneezeLocation['Location'][row]],
-        name=row,
-        orientation='h',
-        ))
-        count = count+1
 
-   
+
+        sum = sneezeLocation['Sneezes'][row] + sum
+        ticktext.append(int(int(sneezeLocation['Sneezes'][row])+int(ticktext[count])))
+
+        tickvalues.append(sum)
+        # data.append(
+        # go.Bar(
+        # y=['Sneezes'],
+        # x=[sneezeLocation['Sneezes'][row]],
+        # name=row,
+        # orientation='h',
+        # ))
+        # count = count+1
+    fig = go.Figure(data=[go.Bar(
+                        y=['Sneezes'],
+                        x=[sneezeLocation['Sneezes'][0]],
+                        width=[1, 1],
+                        name='Car',
+                        orientation='h',
+                        hovertemplate='Number of Car Sneezes: %{x}<extra></extra>',
+                        marker_color='#0b1d78',
+
+
+                    ),
+                        go.Bar(
+                            y=['Sneezes'],
+                            x=[sneezeLocation['Sneezes'][1]],
+                            width=[1, 1],
+                            name='Indoors',
+                            orientation='h',
+                            marker_color='#0069c0',
+                            hovertemplate='Number of Indoor Sneezes: %{x}<extra></extra>',
+                        ),
+                        go.Bar(
+                            y=['Sneezes'],
+                            x=[sneezeLocation['Sneezes'][2]],
+                            width=[1, 1],
+                            name='Outdoors',
+                            orientation='h',
+                            marker_color='#00c698',
+                            hovertemplate='Number of Outdoor Sneezes: %{x}<extra></extra>',
+
+                        ),
+                    ],
     layout = go.Layout(barmode='stack',
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor= 'rgba(0,0,0,0)',
-            showlegend=False,
+            showlegend=True,
             autosize=True,
             yaxis = dict(showticklabels=False),
-            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=tickvalues,showgrid = True, tickangle = 0,color='white',ticklabelposition='outside left',ticklabeloverflow='hide past div')),
+            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=ticktext,showgrid = True, tickangle = 0,color='white',ticklabelposition='outside left',ticklabeloverflow='hide past div')),
             #xaxis=dict(tickformat="%m/%d")
             legend=dict(
+                traceorder ='normal',
                 orientation="h",
                 yanchor="bottom",
                 y=1.02,
@@ -490,31 +532,56 @@ def generate_location_graph():
                     color="white"
                 ),
             ),
+
+
             margin=dict(t=20, b=20, l=0, r=0),
+
+                       ),
         )
+    #fig.update_traces(hovertemplate='Number of %{y} Sneezes: %{x}')
+    # fig.update_layout(
+    #     hoverlabel=dict(
+    #         bgcolor="black",
+    #         font_size=16,
+    #         font_family="Open Sans, sans-serif"
+    #     )
+    # )
+    #fig.update_layout(hovermode="y")
     config = {'displayModeBar': False}
-    return dcc.Graph(id="location-count-chart", figure = go.Figure(data=data,layout=layout),config=config)
+
+    return dcc.Graph(id="location-count-chart", figure = fig,config=config)
 
 def generate_fit_count():
-    sneezeFit = pd.DataFrame(dataTotal['Number of Sneezes'].value_counts())
-    data = []
-    tickvalues = [0]
-    count = 0
-    sneezeFit = sneezeFit.sort_index()
-   
-    for row in sneezeFit.index:
-        tickvalues.append(int(int(sneezeFit['Number of Sneezes'][row])+int(tickvalues[count])))
-        data.append(
-        go.Bar(
-        y=['Sneezes'],
-        x=[sneezeFit['Number of Sneezes'][row]],
-        name=row,
-        orientation='h',
-        width=[3]
+    sneezeAlone = dataTotal.groupby(['Number of Nearby People']).sum()
 
-        ))
-        count = count+1
-   
+    sneezeFriends = pd.DataFrame(columns=["Friends", "Sneezes"])
+
+    sneezeFriends.loc[len(sneezeFriends.index)] = ['Alone', sneezeAlone['Number of Sneezes'][0]]
+    sneezeFriends.loc[len(sneezeFriends.index)] = ['With Nearby People', int(sneezeAlone['Number of Sneezes'].sum())-int(sneezeAlone['Number of Sneezes'][0])]
+
+
+    tickvalues =[0,sneezeFriends['Sneezes'][0],sneezeFriends['Sneezes'].sum()]
+    ticktext =[0,sneezeAlone['Number of Sneezes'][0],int(sneezeAlone['Number of Sneezes'].sum())-int(sneezeAlone['Number of Sneezes'][0])]
+    fig = go.Figure(data=[go.Bar(
+        y=['Sneezes'],
+        x=[sneezeFriends['Sneezes'][0]],
+        width=[1, 1],
+        name='Alone',
+        orientation='h',
+        hovertemplate='Sneezes While Alone: %{x}<extra></extra>',
+        marker_color='#FFC30B',
+
+    ),
+        go.Bar(
+            y=['Sneezes'],
+            x=[sneezeFriends['Sneezes'][1]],
+            width=[1, 1],
+            name='With Others',
+            orientation='h',
+            marker_color='#C49102',
+            hovertemplate='Sneezes Near Others: %{x}<extra></extra>',
+        )
+    ],
     layout = go.Layout(barmode='stack',
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor= 'rgba(0,0,0,0)',
@@ -538,8 +605,9 @@ def generate_fit_count():
             margin=dict(t=20, b=20, l=0, r=0),
             #margin=dict(t=0, b=0, l=0, r=0),
         )
+    )
     config = {'displayModeBar': False}
-    return dcc.Graph(id="fit-count-chart", figure = go.Figure(data=data,layout=layout),config=config)
+    return dcc.Graph(id="fit-count-chart", figure = fig,config=config)
 
 def generate_piechart():
 
@@ -586,7 +654,7 @@ def build_chart_panel():
             ),
             html.Div(
                 id="year-line-div",
-                children=[
+                children=[html.P("Running 14 Day Average"),
                     generate_month_line_graph()
 
                 ]
@@ -605,6 +673,13 @@ def generate_time_plot():
             y=timeFrame['Year'],
             colorscale='blugrn',
             showscale=False,
+            hovertemplate='Time: %{x}<br>Sneezing Fits: %{z}<extra></extra>',
+            hoverinfo='x+y+text',
+            hoverlabel=dict(
+                    bgcolor="black",
+                    font_size=16,
+                    font_family="Open Sans, sans-serif"
+                )
             )
         ]
 
@@ -630,8 +705,9 @@ def generate_time_plot():
 
         xaxis=dict(tickformat="%I:00",color="white",nticks=4),
         yaxis=dict(tickformat='Y',color="white",nticks=3),
-      
+
         )
+
     config = {'displayModeBar': False}
     return dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config)
 
@@ -828,9 +904,9 @@ def generate_sneeze_map():
         lon=sneezeData2020['Longitude'],
         hovertext=sneezeData2020["Timestamp"],
         customdata=sneezeData2020['Number of Sneezes'],
-        hovertemplate='%{hovertext| %b %d %Y} <br>%{hovertext| %I:%M %p} <br>Sneezes: %{customdata}',
+        hovertemplate='%{hovertext| %b %d %Y}<br>%{hovertext| %I:%M %p}<br>Sneezes: %{customdata}<extra></extra>',
         marker=go.scattermapbox.Marker(
-        size=9,
+        size=6,
         color = '#34eb74'
         ),
 
@@ -843,9 +919,9 @@ def generate_sneeze_map():
         hovertext=sneezeData2021["Timestamp"],
         customdata=sneezeData2021['Number of Sneezes'],
         #customdata2=sneezeData2021['Location'],
-        hovertemplate='%{hovertext| %b %d %Y} <br>%{hovertext| %I:%M %p} <br>Sneezes: %{customdata}',
+        hovertemplate='%{hovertext| %b %d %Y}<br>%{hovertext| %I:%M %p}<br>Sneezes: %{customdata}<extra></extra>',
         marker=go.scattermapbox.Marker(
-        size=9,
+        size=6,
         color = 'green'
         ),
 
@@ -882,7 +958,7 @@ def generate_sneeze_map():
             lon=-81.5
         ),
         pitch=0,
-        zoom=4.5,
+        zoom=4,
 
     ),
     )
@@ -898,16 +974,31 @@ def generate_sneeze_heat_map():
 
     from urllib.request import urlopen
     import json
-    with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+    with open('data/counties-fips.json') as response:
             counties = json.load(response)
 
-    df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
+    df = pd.read_csv("data/allFips.csv",
                        dtype={"fips": str})
-    fig = go.Figure(go.Choroplethmapbox(geojson=counties, locations=df.fips, z=df.unemp,
-    colorscale="Viridis", zmin=0, zmax=12, marker_line_width=0))
-    fig.update_layout(mapbox_style="light", mapbox_accesstoken=MAPBOXKEY,
-                  mapbox_zoom=3, mapbox_center = {"lat": 37.0902, "lon": -95.7129})
-    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+    fig = go.Figure(go.Choroplethmapbox(geojson=counties, locations=df.fips, z=np.log10(df.sneezes),text=df.sneezes,
+    colorscale="Greens",marker_line_width=0,colorbar=dict(
+                            tickvals=[0, .5, 1, 1.5, 2, 2.5,3],
+                            ticktext=['1', '10', '15', '20', '50', '100','1000'],
+                            thickness=20,
+
+                            )
+                        ),)
+    fig.update_layout(mapbox_zoom=4,
+                        mapbox_center = {"lat": 40, "lon": -81.5},
+                        margin={"r":0,"t":0,"l":0,"b":0},
+                        mapbox_style="dark",
+                        mapbox_accesstoken=MAPBOXKEY,
+                        paper_bgcolor='rgba(0,0,0,0)',
+                        plot_bgcolor='rgba(0,0,0,0)',
+                        autosize=True,
+                        coloraxis_showscale=False,)
+
+
+
 
     return html.Div(dcc.Graph(figure=fig))    
 

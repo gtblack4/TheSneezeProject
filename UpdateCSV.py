@@ -14,10 +14,9 @@ def updateSpeadsheet():
 		creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
 		creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict)
 		gc = gspread.authorize(creds)
-		print("this is prod")
-		print(os.getenv('ENVIRON'))
+
 	else:
-		print(os.getenv('ENVIRON'))
+
 		#gc = gspread.service_account_from_dict(os.getenv('ENVIRON'))
 		gc = gspread.service_account(filename='service_account.json')
 		

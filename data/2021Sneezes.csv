@@ -1,28 +1,28 @@
 Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of Nearby People;Nearby Persons (Comma Separated);Nearby Animals;Notes;GeoStamp;GeoCode;GeoAddress
 1/1/2021 14:27:29;1;Someone else's house;Other (Add in Description;0;1;;Dogs;;01/05/2021 21:46:23;41.4978318,-81.6939482;230W Prospect Ave E, Cleveland, OH 44113, USA
 1/1/2021 23:39:33;3;Your Home;Unknown;0;1;Mitch;Cats;;01/05/2021 21:48:08;41.4978285,-81.6939281;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
-1/2/2021 11:48:11;2;Your Home;Change in Brightness;0;0 (Alone);;Cats;;01/05/2021 21:50:02;41.4978316,-81.693933;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
+1/2/2021 11:48:11;2;Your Home;Change in Brightness;0;0;;Cats;;01/05/2021 21:50:02;41.4978316,-81.693933;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
 1/2/2021 12:29:15;2;Your Home;Unknown;0;1;Mitch;Cats;;01/05/2021 21:54:12;41.497833899999996,-81.693953;230W Prospect Ave E, Cleveland, OH 44113, USA
 1/2/2021 13:50:48;1;Your Home;Unknown;0;2;Mitch, Noah;;;01/05/2021 21:57:06;41.4978481,-81.6939246;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
-1/3/2021 13:02:56;4;Your Home;Unknown;0;0 (Alone);;Cats;;01/05/2021 21:46:23;41.4978318,-81.6939482;230W Prospect Ave E, Cleveland, OH 44113, USA
-1/3/2021 21:07:19;5;Your Home;Other (Add in Notes);0;0 (Alone);;;Laundry;01/05/2021 21:48:08;41.4978285,-81.6939281;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
-1/4/2021 13:35:50;3;Your Home;Unknown;0;0 (Alone);;Cats;;01/05/2021 21:50:02;41.4978316,-81.693933;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
-1/4/2021 15:22:23;1;Your Home;Unknown;0;0 (Alone);;;;01/05/2021 21:54:12;41.497833899999996,-81.693953;230W Prospect Ave E, Cleveland, OH 44113, USA
-1/5/2021 18:26:50;2;Your Home;Change in Brightness (Artificial);0;0 (Alone);;Cats;;01/06/2021 6:27:00;41.4978846,-81.6936925;230 Huron Rd E, Cleveland, OH 44113, USA
-1/6/2021 10:40:03;3;Your Home;Change in Brightness (Artificial);0;0 (Alone);;Cats;;01/06/2021 22:40:08;41.4978842,-81.6937474;230 Huron Rd E, Cleveland, OH 44113, USA
-1/7/2021 8:00:34;2;Car (Driving);Change in Brightness (Natural);0;0 (Alone);;;;01/07/2021 20:00:38;41.1207573,-80.8466329;Ohio Turnpike, North Jackson, OH 44451, USA
-1/7/2021 10:28:14;4;Car (Driving);Change in Brightness (Natural);0;0 (Alone);;;;01/07/2021 22:28:18;41.2535203,-81.5655653;Ohio Turnpike, Peninsula, OH 44264, USA
-1/7/2021 22:44:31;3;Your Home;Unknown;0;0 (Alone);;Cats;;01/08/2021 10:44:35;41.4978914,-81.6937625;230 Huron Rd E, Cleveland, OH 44113, USA
-1/8/2021 9:59:07;3;Your Home;Change in Brightness (Artificial);0;0 (Alone);;Cats;;01/08/2021 21:59:11;41.4978943,-81.6937173;230 Huron Rd E, Cleveland, OH 44113, USA
-1/8/2021 10:10:25;4;Your Home;Other (Add in Notes);0;0 (Alone);;Cats;;01/08/2021 22:10:29;41.4978943,-81.6937173;230 Huron Rd E, Cleveland, OH 44113, USA
-1/8/2021 21:09:12;3;Your Home;Change in Brightness (Artificial);0;0 (Alone);;Cats;;01/09/2021 9:09:16;41.4978872,-81.6937181;230 Huron Rd E, Cleveland, OH 44113, USA
-1/9/2021 11:57:02;3;Your Home;Change in Brightness (Artificial);0;0 (Alone);;Cats;;01/09/2021 23:57:06;41.4978885,-81.693748;230 Huron Rd E, Cleveland, OH 44113, USA
-1/9/2021 12:49:22;3;Car (Driving);Change in Brightness (Natural);0;0 (Alone);;;;01/10/2021 0:49:26;41.4978887,-81.693743;230 Huron Rd E, Cleveland, OH 44113, USA
+1/3/2021 13:02:56;4;Your Home;Unknown;0;0;;Cats;;01/05/2021 21:46:23;41.4978318,-81.6939482;230W Prospect Ave E, Cleveland, OH 44113, USA
+1/3/2021 21:07:19;5;Your Home;Other (Add in Notes);0;0;;;Laundry;01/05/2021 21:48:08;41.4978285,-81.6939281;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
+1/4/2021 13:35:50;3;Your Home;Unknown;0;0;;Cats;;01/05/2021 21:50:02;41.4978316,-81.693933;Tower City Center, 230 W Huron Rd, Cleveland, OH 44113, USA
+1/4/2021 15:22:23;1;Your Home;Unknown;0;0;;;;01/05/2021 21:54:12;41.497833899999996,-81.693953;230W Prospect Ave E, Cleveland, OH 44113, USA
+1/5/2021 18:26:50;2;Your Home;Change in Brightness (Artificial);0;0;;Cats;;01/06/2021 6:27:00;41.4978846,-81.6936925;230 Huron Rd E, Cleveland, OH 44113, USA
+1/6/2021 10:40:03;3;Your Home;Change in Brightness (Artificial);0;0;;Cats;;01/06/2021 22:40:08;41.4978842,-81.6937474;230 Huron Rd E, Cleveland, OH 44113, USA
+1/7/2021 8:00:34;2;Car (Driving);Change in Brightness (Natural);0;0;;;;01/07/2021 20:00:38;41.1207573,-80.8466329;Ohio Turnpike, North Jackson, OH 44451, USA
+1/7/2021 10:28:14;4;Car (Driving);Change in Brightness (Natural);0;0;;;;01/07/2021 22:28:18;41.2535203,-81.5655653;Ohio Turnpike, Peninsula, OH 44264, USA
+1/7/2021 22:44:31;3;Your Home;Unknown;0;0;;Cats;;01/08/2021 10:44:35;41.4978914,-81.6937625;230 Huron Rd E, Cleveland, OH 44113, USA
+1/8/2021 9:59:07;3;Your Home;Change in Brightness (Artificial);0;0;;Cats;;01/08/2021 21:59:11;41.4978943,-81.6937173;230 Huron Rd E, Cleveland, OH 44113, USA
+1/8/2021 10:10:25;4;Your Home;Other (Add in Notes);0;0;;Cats;;01/08/2021 22:10:29;41.4978943,-81.6937173;230 Huron Rd E, Cleveland, OH 44113, USA
+1/8/2021 21:09:12;3;Your Home;Change in Brightness (Artificial);0;0;;Cats;;01/09/2021 9:09:16;41.4978872,-81.6937181;230 Huron Rd E, Cleveland, OH 44113, USA
+1/9/2021 11:57:02;3;Your Home;Change in Brightness (Artificial);0;0;;Cats;;01/09/2021 23:57:06;41.4978885,-81.693748;230 Huron Rd E, Cleveland, OH 44113, USA
+1/9/2021 12:49:22;3;Car (Driving);Change in Brightness (Natural);0;0;;;;01/10/2021 0:49:26;41.4978887,-81.693743;230 Huron Rd E, Cleveland, OH 44113, USA
 1/10/2021 14:00:31;1;Someone else's house;Unknown;1;1;Charlee ;Dogs;;01/11/2021 2:00:42;41.510051,-81.5811509;2758 Hampshire Rd, Cleveland Heights, OH 44106, USA
-1/10/2021 15:07:15;4;Car (Driving);Change in Brightness (Natural);0;0 (Alone);;;;01/11/2021 3:07:25;41.5100587,-81.5811379;2758 Hampshire Rd, Cleveland Heights, OH 44106, USA
-1/11/2021 11:44:56;1;Your Home;Unknown;0;0 (Alone);;Cats;;01/11/2021 23:45:04;41.4978796,-81.6937383;230 Huron Rd E, Cleveland, OH 44113, USA
-1/12/2021 9:14:46;4;Your Home;Change in Brightness (Artificial);0;0 (Alone);;Cats;;01/12/2021 21:14:49;41.497899,-81.693756;230 Huron Rd E, Cleveland, OH 44113, USA
-1/12/2021 9:27:43;1;Your Home;Change in Brightness (Artificial);0;0 (Alone);;;;01/12/2021 21:27:46;41.4978823,-81.6937576;230 Huron Rd E, Cleveland, OH 44113, USA
+1/10/2021 15:07:15;4;Car (Driving);Change in Brightness (Natural);0;0;;;;01/11/2021 3:07:25;41.5100587,-81.5811379;2758 Hampshire Rd, Cleveland Heights, OH 44106, USA
+1/11/2021 11:44:56;1;Your Home;Unknown;0;0;;Cats;;01/11/2021 23:45:04;41.4978796,-81.6937383;230 Huron Rd E, Cleveland, OH 44113, USA
+1/12/2021 9:14:46;4;Your Home;Change in Brightness (Artificial);0;0;;Cats;;01/12/2021 21:14:49;41.497899,-81.693756;230 Huron Rd E, Cleveland, OH 44113, USA
+1/12/2021 9:27:43;1;Your Home;Change in Brightness (Artificial);0;0;;;;01/12/2021 21:27:46;41.4978823,-81.6937576;230 Huron Rd E, Cleveland, OH 44113, USA
 1/13/2021 3:24:39;3;Your Home;Change in Brightness (Artificial);0;0;;Cats;;01/13/2021 15:24:43;41.4978938,-81.6937569;230 Huron Rd E, Cleveland, OH 44113, USA
 1/17/2021 16:40:31;2;Someone else's house;Unknown;2;4;Arastasia, Adam, Dan, Ike;;;01/18/2021 4:40:37;41.5002661,-81.6858989;1006 US-20, Cleveland, OH 44115, USA
 1/18/2021 11:57:56;3;Your Home;Unknown;0;0;;;;01/18/2021 23:58:00;41.4979117,-81.6937308;230 Huron Rd E, Cleveland, OH 44113, USA
@@ -579,4 +579,4 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 10/25/2021 21:36:12;2;Your Home;Change in Brightness (Artificial);1;1;Charlee;Cats;;10/26/2021 8:36:15;40.7733797,-74.0381458;1409 28th St, North Bergen, NJ 07047, USA
 10/28/2021 10:05:38;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/28/2021 21:05:49;40.7734399,-74.0380509;1407 28th St, North Bergen, NJ 07047, USA
 10/28/2021 13:37:23;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/28/2021 21:05:49;40.7734399,-74.0380509;1407 28th St, North Bergen, NJ 07047, USA
-10/28/2021 13:37:23;69;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/28/2021 21:05:49;40.7734399,-74.0380509;1407 28th St, North Bergen, NJ 07047, USA
+10/29/2021 13:33:35;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/30/2021 0:33:41;40.7734396,-74.0380317;1407 28th St, North Bergen, NJ 07047, USA
