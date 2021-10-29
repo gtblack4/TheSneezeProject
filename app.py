@@ -89,7 +89,7 @@ def build_banner():
                         id="learn-more-button", children="LEARN MORE ABOUT THE PROJECT", n_clicks=0
                     ),
                     html.A(
-                        html.Img(id="logo", src=app.get_asset_url("sneezeLogo.png")),
+                        #html.Img(id="logo", src=app.get_asset_url("favicon.png")),
                         href="https://plotly.com/dash/",
                     ),
                 ],
@@ -145,6 +145,7 @@ def build_tab_1():
                                 build_sneeze_facts_rows("What day had the most sneezes?", sneeziestDay(), 1),
                                 build_sneeze_facts_rows("What is the daily average number of sneezes?", averageSneezeDay(),2),
                                 build_sneeze_facts_rows("What % of days did Gage sneeze on?", sneezLessDays(), 3),
+                                build_sneeze_facts_rows("How many people think Gage tracking his sneezes is weird.", "100% of People.",4)
                             ],
                         ),
                     ],
@@ -266,6 +267,8 @@ def build_quick_stats_panel():
            
         ],
     )
+
+
 
 
 def generate_section_banner(title):
@@ -764,7 +767,7 @@ def generate_year_line_graph():
 
    )
 
-    fig.update_traces(hovertemplate='%{x|%b %d} Number of Sneezes: %{y}')
+    fig.update_traces(hovertemplate='%{x|%b %d} Number of Sneezes: %{y}<extra></extra>')
     fig.update_layout(
     hoverlabel=dict(
         bgcolor="black",
@@ -976,17 +979,27 @@ def generate_sneeze_heat_map():
     import json
     with open('data/counties-fips.json') as response:
             counties = json.load(response)
-
+    print(counties["features"][0]["properties"]["COUNTY"])
     df = pd.read_csv("data/allFips.csv",
                        dtype={"fips": str})
-    fig = go.Figure(go.Choroplethmapbox(geojson=counties, locations=df.fips, z=np.log10(df.sneezes),text=df.sneezes,
-    colorscale="Greens",marker_line_width=0,colorbar=dict(
-                            tickvals=[0, .5, 1, 1.5, 2, 2.5,3],
-                            ticktext=['1', '10', '15', '20', '50', '100','1000'],
-                            thickness=20,
-
-                            )
-                        ),)
+    fig = go.Figure(go.Choroplethmapbox(
+        geojson=counties,
+        locations=df.fips,
+        z=np.log10(df.sneezes),
+        text=df.sneezes,
+        colorscale="Greens",
+        #featureidkey="properties.COUNTY",
+        marker_line_width=0,
+        #customdata='counties.properties.COUNTY',
+        hovertext=df.sneezes,
+        #hoverdata="County",
+        colorbar=dict(
+            tickvals=[0, .5, 1, 1.5, 2, 2.5,3],
+            ticktext=['1', '10', '15', '20', '50', '100','1000'],
+            thickness=20,
+        ),
+        hovertemplate='%{hovertext} Sneezes<extra></extra>',
+    ),)
     fig.update_layout(mapbox_zoom=4,
                         mapbox_center = {"lat": 40, "lon": -81.5},
                         margin={"r":0,"t":0,"l":0,"b":0},
@@ -995,7 +1008,8 @@ def generate_sneeze_heat_map():
                         paper_bgcolor='rgba(0,0,0,0)',
                         plot_bgcolor='rgba(0,0,0,0)',
                         autosize=True,
-                        coloraxis_showscale=False,)
+                        coloraxis_showscale=False,
+                      )
 
 
 
@@ -1019,7 +1033,7 @@ app.layout = html.Div(
         generate_modal(),
     ],
 )
-
+app._favicon = ("favicon.png")
 #TODO Strip out unneeded variables
 @app.callback(
     [Output("app-content", "children")],
@@ -1038,9 +1052,10 @@ def render_tab_content(tab_switch):
                     id="graphs-container",
                     children=[build_top_panel(), build_chart_panel()],
                 ),
+
             ],
         ),
-        
+
     )
 
 
@@ -1059,9 +1074,9 @@ def render_tab_content(tab_switch):
 
 def map_graph_switch(n_clicks):
     if n_clicks % 2 == 1:
-        return "Scatter Plot",generate_sneeze_heat_map()
+        return "Switch to Scatter Plot",generate_sneeze_heat_map()
     else:
-        return "Heat Map",generate_sneeze_map()
+        return "Switch to Heat Map",generate_sneeze_map()
     #switchback
 
 
