@@ -144,7 +144,7 @@ def build_tab_1():
                             children=[
                                 build_sneeze_facts_rows("What day had the most sneezes?", sneeziestDay(), 1),
                                 build_sneeze_facts_rows("What is the daily average number of sneezes?", averageSneezeDay(),2),
-                                build_sneeze_facts_rows("What % of days did Gage sneeze on?", sneezLessDays(), 3),
+                                build_sneeze_facts_rows("What % of days did Gage sneeze on?", sneezeLessDays(), 3),
                                 build_sneeze_facts_rows("How many people think Gage tracking his sneezes is weird.", "100% of People.",4)
                             ],
                         ),
@@ -210,9 +210,9 @@ def generate_modal():
                         children=dcc.Markdown(
                             children=(
                                 """
-                        ###### What is this dashboard all about?
+                        ###### What is this project all about?
 
-                        I built this dashboard for real-time monitoring of my sneezes.
+                        In late 2019 I noticed that I was sneezing more frequently than my coworkers. In an effort to keep my 
 
                         ###### But why?
 
@@ -307,7 +307,7 @@ def build_top_panel():
             ),
             # Piechart
             html.Div(
-                id="ooc-piechart-outer",
+                id="piechart-outer",
                 className="four columns",
                 children=[
                    generate_section_banner("Weekday Breakdown"),
@@ -357,7 +357,7 @@ def sneeziestDay():
 
 
 
-def sneezLessDays():
+def sneezeLessDays():
     uniqueDays = dataTotal["Timestamp"].map(pd.Timestamp.date).unique()
     totalDays = projectLength()
     sneezeDays = len(uniqueDays)
@@ -562,19 +562,10 @@ def generate_fit_count():
     sneezeFriends.loc[len(sneezeFriends.index)] = ['Alone', sneezeAlone['Number of Sneezes'][0]]
     sneezeFriends.loc[len(sneezeFriends.index)] = ['With Nearby People', int(sneezeAlone['Number of Sneezes'].sum())-int(sneezeAlone['Number of Sneezes'][0])]
 
-
-    tickvalues =[0,sneezeFriends['Sneezes'][0],sneezeFriends['Sneezes'].sum()]
-    ticktext =[0,sneezeAlone['Number of Sneezes'][0],int(sneezeAlone['Number of Sneezes'].sum())-int(sneezeAlone['Number of Sneezes'][0])]
-    fig = go.Figure(data=[go.Bar(
-        y=['Sneezes'],
-        x=[sneezeFriends['Sneezes'][0]],
-        width=[1, 1],
-        name='Alone',
-        orientation='h',
-        hovertemplate='Sneezes While Alone: %{x}<extra></extra>',
-        marker_color='#FFC30B',
-
-    ),
+   # print(sneezeFriends)
+    tickvalues =[0,sneezeFriends['Sneezes'][1],sneezeFriends['Sneezes'].sum()]
+    ticktext =[0,int(sneezeAlone['Number of Sneezes'].sum())-int(sneezeAlone['Number of Sneezes'][0]),sneezeAlone['Number of Sneezes'][0],]
+    fig = go.Figure(data=[
         go.Bar(
             y=['Sneezes'],
             x=[sneezeFriends['Sneezes'][1]],
@@ -583,7 +574,18 @@ def generate_fit_count():
             orientation='h',
             marker_color='#C49102',
             hovertemplate='Sneezes Near Others: %{x}<extra></extra>',
-        )
+        ),
+        go.Bar(
+            y=['Sneezes'],
+            x=[sneezeFriends['Sneezes'][0]],
+            width=[1, 1],
+            name='Alone',
+            orientation='h',
+            hovertemplate='Sneezes While Alone: %{x}<extra></extra>',
+            marker_color='#FFC30B',
+
+        ),
+
     ],
     layout = go.Layout(barmode='stack',
             paper_bgcolor='rgba(0,0,0,0)',
@@ -591,7 +593,7 @@ def generate_fit_count():
             showlegend=True,
             autosize=True,
             yaxis = dict(showticklabels=False),
-            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=tickvalues,showgrid = True, tickangle = 0,color = 'white',ticklabelposition='outside left',ticklabeloverflow='hide past div')),
+            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=ticktext,showgrid = True, tickangle = 0,color = 'white',ticklabelposition='outside left',ticklabeloverflow='hide past div')),
             #xaxis=dict(tickformat="%m/%d")
             legend=dict(
                 orientation="h",
@@ -648,7 +650,7 @@ def build_chart_panel():
         id="bottom-graph-container",
         className="bottom graphs",
         children=[
-            generate_section_banner("Some Other Graphs"),
+            generate_section_banner("More Graphs to look at"),
             html.Div(
                 id="heatmap-div",
                 children=[
@@ -664,6 +666,103 @@ def build_chart_panel():
             )
         ],
     )
+def build_bottom_panel():
+    return html.Div(
+            id="bottom-panel",
+            className="bottom-panel-container",
+            children=[html.Div(
+                          id="sneeze-fit-size",
+                          children=[html.P("Number of Sneezes Per Sneezing Fit"),
+                              generate_sneeze_fit_size_graph()
+                          ]
+                      ),
+                      html.Div(
+                          id="monthly-comparison",
+                          children=[html.P("Number of Sneezes in a Day"),
+                                   generate_sneeze_day_count()
+                                        ]
+                        )
+        ]
+    )
+def generate_sneeze_day_count():
+    sneezeSize2020 = sneezeData2020.groupby(pd.to_datetime(sneezeData2020['Timestamp']).dt.strftime('%y-%m-%d'))['Number of Sneezes'].sum().reset_index(
+        name='Number of Sneezes').sort_values(['Timestamp'], ascending=True)
+    sneezeSize2021 = sneezeData2021.groupby(pd.to_datetime(sneezeData2021['Timestamp']).dt.strftime('%y-%m-%d'))['Number of Sneezes'].sum().reset_index(
+        name='Number of Sneezes').sort_values(['Timestamp'], ascending=True)
+
+    #These three lines create a dataframe of the number of days with x number of sneezes
+    #Then add in the number of days without sneezes and then sort that data
+
+    daySum2020 = sneezeSize2020['Number of Sneezes'].value_counts().rename_axis('Number of Sneezes').reset_index(name="Count")
+    daySum2020.loc[len(daySum2020.index)] = [0, 366-daySum2020['Count'].sum()]
+    daySum2020 = daySum2020.sort_values(by="Number of Sneezes",ascending=True)
+
+    daySum2021 = sneezeSize2021['Number of Sneezes'].value_counts().rename_axis('Number of Sneezes').reset_index(name="Count")
+    daySum2021.loc[len(daySum2020.index)] = [0, 366-daySum2021['Count'].sum()]
+    daySum2021 = daySum2021.sort_values(by="Number of Sneezes",ascending=True)
+
+    colorArray = ['#3ddbd9', '#08bdba', '#009d9a', '#007d79', '#004144', '#022b30']
+
+
+    fig = go.Figure(data=[
+
+        go.Bar(name='2020',
+
+               x=daySum2020['Number of Sneezes'],
+               y=daySum2020['Count'],
+
+               marker=dict(color='rgb(102, 255, 102)'),
+               hovertemplate='Year: 2020 <br>There are %{y} days with %{x} sneezes<extra></extra>',
+               hoverinfo='x+y+text',
+               hoverlabel=dict(
+                   bgcolor="black",
+                   font_size=16,
+                   font_family="Open Sans, sans-serif"
+               ),
+
+               ),
+        go.Bar(name='2021',
+
+               x=daySum2021['Number of Sneezes'],
+               y=daySum2021['Count'],
+               marker=dict(color='rgb(0, 153, 51)'),
+               hovertemplate='Year: 2021 <br>There are %{y} days with %{x} sneezes<extra></extra>',
+               hoverinfo='x+y+text',
+               hoverlabel=dict(
+                   bgcolor="black",
+                   font_size=16,
+                   font_family="Open Sans, sans-serif"
+               ),
+
+               )
+
+    ])
+    # Change the bar mode
+    fig.update_layout(barmode='group',
+                      paper_bgcolor='rgba(0,0,0,0)',
+                      plot_bgcolor='rgba(0,0,0,0)',
+                      showlegend=True,
+                      autosize=True,
+
+                      legend=dict(
+                          orientation="h",
+                          yanchor="bottom",
+                          y=1.02,
+                          xanchor="right",
+                          x=1,
+                          font=dict(
+                              color="white"
+                          ),
+
+                      ),
+
+                      margin=dict(t=0, b=0, l=0, r=15),
+                      xaxis=dict(color="white",tickmode="linear",tick0=0,dtick=1 ),
+                      yaxis=dict(color="white", ),
+
+                      )
+    return html.Div(dcc.Graph(figure=fig))
+
 
 def generate_time_plot():
 #.dt.strftime('%H')
@@ -979,7 +1078,7 @@ def generate_sneeze_heat_map():
     import json
     with open('data/counties-fips.json') as response:
             counties = json.load(response)
-    print(counties["features"][0]["properties"]["COUNTY"])
+    #print(counties["features"][0]["properties"]["COUNTY"])
     df = pd.read_csv("data/allFips.csv",
                        dtype={"fips": str})
     fig = go.Figure(go.Choroplethmapbox(
@@ -1016,6 +1115,79 @@ def generate_sneeze_heat_map():
 
     return html.Div(dcc.Graph(figure=fig))    
 
+def generate_sneeze_fit_size_graph():
+
+    sneezeSize2020 = sneezeData2020.groupby(['Number of Sneezes'])['Number of Sneezes'].count().reset_index(
+  name='Count').sort_values(['Number of Sneezes'], ascending=True)
+    sneezeSize2021 = sneezeData2021.groupby(['Number of Sneezes'])['Number of Sneezes'].count().reset_index(
+        name='Count').sort_values(['Number of Sneezes'], ascending=True)
+
+
+
+    colorArray = ['#3ddbd9','#08bdba','#009d9a','#007d79','#004144','#022b30']
+    #print(sneezeSize)
+
+
+
+    fig = go.Figure(data=[
+
+
+        go.Bar(name='Sneeze Fit Size: 2020',
+
+               x=sneezeSize2020['Number of Sneezes'],
+               y=sneezeSize2020['Count'],
+
+               marker=dict(color='rgb(102, 255, 102)'),
+               hovertemplate='Year: 2020 <br>Sneeze Fit Size: %{x}<br>Number of Fits: %{y}<extra></extra>',
+               hoverinfo='x+y+text',
+               hoverlabel=dict(
+                   bgcolor="black",
+                   font_size=16,
+                   font_family="Open Sans, sans-serif"
+               ),
+
+               ),
+        go.Bar(name='Sneeze Fit Size: 2021',
+
+               x=sneezeSize2021['Number of Sneezes'],
+               y=sneezeSize2021['Count'],
+               marker=dict(color='rgb(0, 153, 51)'),
+               hovertemplate='Year: 2021 <br>Sneeze Fit Size: %{x}<br>Number of Fits: %{y}<extra></extra>',
+               hoverinfo='x+y+text',
+               hoverlabel=dict(
+                   bgcolor="black",
+                   font_size=16,
+                   font_family="Open Sans, sans-serif"
+               ),
+
+               )
+
+        ])
+    # Change the bar mode
+    fig.update_layout(barmode='group',
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        showlegend=False,
+        autosize=True,
+
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1,
+            font=dict(
+                color="white"
+            ),
+
+        ),
+
+        margin=dict(t=0, b=0, l=0, r=15),
+        xaxis=dict( color="white", ),
+        yaxis=dict( color="white",),
+
+    )
+    return html.Div(dcc.Graph(figure=fig))
 
 app.layout = html.Div(
     id="big-app-container",
@@ -1048,16 +1220,17 @@ def render_tab_content(tab_switch):
             id="status-container",
             children=[
                 build_quick_stats_panel(),
+
                 html.Div(
                     id="graphs-container",
-                    children=[build_top_panel(), build_chart_panel()],
+                    children=[build_top_panel(), build_chart_panel(),],
                 ),
-
+                build_bottom_panel(),
             ],
         ),
 
-    )
 
+    )
 
 # Update interval
 

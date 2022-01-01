@@ -580,3 +580,96 @@ Timestamp;Number of Sneezes;Location;Probable Cause;Number of Blesses;Number of 
 10/28/2021 10:05:38;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/28/2021 21:05:49;40.7734399,-74.0380509;1407 28th St, North Bergen, NJ 07047, USA
 10/28/2021 13:37:23;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/28/2021 21:05:49;40.7734399,-74.0380509;1407 28th St, North Bergen, NJ 07047, USA
 10/29/2021 13:33:35;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;10/30/2021 0:33:41;40.7734396,-74.0380317;1407 28th St, North Bergen, NJ 07047, USA
+10/29/2021 16:23:36;2;Your Home;Change in Brightness (Artificial);0;0;;Cats;;10/31/2021 23:23:50;40.7734859,-74.0380757;1409 28th St, North Bergen, NJ 07047, USA
+10/30/2021 12:10:06;4;Car (Driving);Change in Brightness (Natural);1;1;Charlee ;;;10/30/2021 23:10:16;41.5145585,-72.1164552;39 Wawecus Hill Rd, Norwich, CT 06360, USA
+10/31/2021 8:08:03;1;Bar/Restaurant;Change in Brightness (Artificial);2;4;Charlee, Allison, Rich, Sherri;Cats;;10/31/2021 19:08:07;41.5213639,-72.0912857;364 W Main St, Norwich, CT 06360, USA
+10/31/2021 9:56:39;5;Parking Lot;Change in Brightness (Natural);1;1;Charlee ;;;10/31/2021 20:56:45;41.2468447,-73.0100875;2 Connecticut Turnpike, Milford, CT 06460, USA
+10/31/2021 12:23:47;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/02/2021 8:45:25;40.7734692,-74.0379287;1407 28th St, North Bergen, NJ 07047, USA
+10/31/2021 12:47:27;1;Your Home;Change in Brightness (Natural);1;1;Charlee ;;;10/31/2021 23:47:31;40.7733806,-74.0380475;1407 28th St, North Bergen, NJ 07047, USA
+10/31/2021 14:17:13;4;Car (Passenger);Change in Brightness (Natural);1;1;Charlee ;;;11/01/2021 1:17:17;40.774763,-74.038727;2801 Grand Ave, North Bergen, NJ 07047, USA
+11/1/2021 9:31:43;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/01/2021 20:31:48;40.7735193,-74.0380048;1407 28th St, North Bergen, NJ 07047, USA
+11/2/2021 8:13:10;3;Your Home;Change in Brightness (Natural);1;1;Charlee ;Cats;;11/02/2021 19:13:14;40.7734702,-74.0380531;1407 28th St, North Bergen, NJ 07047, USA
+11/2/2021 14:15:41;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/03/2021 1:15:45;40.7735137,-74.0381305;1409 28th St, North Bergen, NJ 07047, USA
+11/3/2021 9:20:26;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/04/2021 8:01:04;40.773467,-74.0380224;1407 28th St, North Bergen, NJ 07047, USA
+11/4/2021 8:38:30;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/06/2021 5:36:22;40.7735423,-74.0379994;1409 28th St, North Bergen, NJ 07047, USA
+11/5/2021 7:26:50;3;Your Home;Change in Brightness (Natural);1;1;;Cats;;11/05/2021 18:26:52;40.7734603,-74.0381148;1409 28th St, North Bergen, NJ 07047, USA
+11/6/2021 13:29:48;3;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;11/08/2021 7:09:56;40.7687942,-74.0364702;2301 Summit Ave, Union City, NJ 07087, USA
+11/6/2021 20:02:33;3;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;11/07/2021 7:02:35;40.773466,-74.0381404;1409 28th St, North Bergen, NJ 07047, USA
+11/7/2021 13:39:59;4;City Street;Change in Brightness (Natural);1;1;Charlee;;;11/08/2021 1:40:04;40.7745759,-74.0345272;3105 John F. Kennedy Blvd, North Bergen, NJ 07047, USA
+11/9/2021 7:59:10;4;Your Home;Change in Brightness (Natural);1;1;Charlee ;Cats;;11/09/2021 19:59:14;40.7734304,-74.038113;1409 28th St, North Bergen, NJ 07047, USA
+11/9/2021 9:20:40;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/10/2021 6:29:09;40.7734292,-74.0381313;1409 28th St, North Bergen, NJ 07047, USA
+11/9/2021 20:25:55;1;Your Home;Change in Brightness (Artificial);1;1;Charlee ;Cats;;11/10/2021 10:46:14;40.7734316,-74.0380599;1407 28th St, North Bergen, NJ 07047, USA
+11/9/2021 22:46:11;3;Your Home;Change in Brightness (Artificial);0;0;Charlee;Cats;;11/10/2021 22:02:17;40.7734128,-74.0380989;1409 28th St, North Bergen, NJ 07047, USA
+11/10/2021 10:02:14;2;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;11/10/2021 22:37:10;40.7733908,-74.0380997;1409 28th St, North Bergen, NJ 07047, USA
+11/10/2021 13:55:06;3;Car (Passenger);Change in Brightness (Natural);1;1;Charlee ;Cats;;11/11/2021 4:59:35;40.7734134,-74.0380656;1407 28th St, North Bergen, NJ 07047, USA
+11/10/2021 14:50:20;3;Car (Passenger);Change in Brightness (Natural);1;1;Charlee ;Cats;;11/11/2021 2:50:25;40.7053439,-73.8113061;14415 NY-25, Jamaica, NY 11435, USA
+11/10/2021 16:59:32;2;Your Home;Change in Brightness (Artificial);1;1;Charlee;Cats;;11/11/2021 20:28:08;40.7737802,-74.0379977;1411 28th St, North Bergen, NJ 07047, USA
+11/11/2021 8:28:04;5;City Street;Change in Brightness (Natural);1;1;Charlee ;;;11/14/2021 0:09:17;40.7735859,-74.0378631;1407 28th St, North Bergen, NJ 07047, USA
+11/11/2021 12:43:47;2;Your Home;Change in Brightness (Natural);1;3;Noah, Nick, Mitch;Cats;;11/12/2021 0:43:51;40.7737802,-74.0379977;1411 28th St, North Bergen, NJ 07047, USA
+11/11/2021 14:13:13;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/12/2021 2:13:17;40.7734537,-74.038071;1407 28th St, North Bergen, NJ 07047, USA
+11/12/2021 13:59:23;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/13/2021 1:59:26;40.7734422,-74.0380682;1407 28th St, North Bergen, NJ 07047, USA
+11/12/2021 14:50:02;2;Your Home;Change in Brightness (Natural);1;3;Noah, Mitch, alex;Cats;;11/13/2021 2:50:06;40.773523,-74.0378822;1405 28th St, North Bergen, NJ 07047, USA
+11/13/2021 11:09:54;4;City Street;Change in Brightness (Natural);1;1;Charlee ;Cats;;11/13/2021 23:10:00;40.7713616,-74.0344505;2709 Summit Ave, Union City, NJ 07087, USA
+11/14/2021 19:54:28;2;Your Home;Change in Brightness (Artificial);1;1;;Cats;;11/15/2021 7:54:32;40.7734212,-74.0379586;1407 28th St, North Bergen, NJ 07047, USA
+11/16/2021 8:18:32;5;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;11/17/2021 7:44:57;40.7751765,-74.0386416;2800 Columbia Ave, North Bergen, NJ 07047, USA
+11/17/2021 8:35:41;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/18/2021 0:21:55;40.7734027,-74.0380062;1407 28th St, North Bergen, NJ 07047, USA
+11/17/2021 12:21:52;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/18/2021 5:47:53;40.7733922,-74.0379774;1405 28th St, North Bergen, NJ 07047, USA
+11/17/2021 17:47:51;1;Your Home;Change in Brightness (Artificial);0;0;;Cats;;11/19/2021 8:01:58;40.7732913,-74.0380735;1406 27th St, North Bergen, NJ 07047, USA
+11/18/2021 20:01:55;2;Your Home;Change in Brightness (Artificial);1;1;Charlee ;Cats;;11/19/2021 10:09:56;40.7734711,-74.0380353;1407 28th St, North Bergen, NJ 07047, USA
+11/18/2021 20:24:22;2;Your Home;Change in Brightness (Natural);1;1;Charlee ;Cats;;11/19/2021 8:24:24;40.7734714,-74.0382067;1409 28th St, North Bergen, NJ 07047, USA
+11/19/2021 11:13:49;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/19/2021 23:13:54;40.7734635,-74.0380523;1407 28th St, North Bergen, NJ 07047, USA
+11/19/2021 20:08:49;2;Your Home;Change in Brightness (Artificial);0;3;Charlee, Jojo, Malia;Cats;;11/20/2021 8:08:52;40.7734769,-74.0380384;1407 28th St, North Bergen, NJ 07047, USA
+11/20/2021 13:46:54;2;Car (Driving);Change in Brightness (Natural);3;3;Jojo, Charlee, Malia;;;11/21/2021 1:46:59;40.7917719,-74.0454117;300 Park Plaza Dr, Secaucus, NJ 07096, USA
+11/21/2021 12:53:46;4;Your Home;Change in Brightness (Natural);3;3;Charlee, Jojo, Malia;Cats;;11/22/2021 2:46:42;40.773409,-74.0380978;1409 28th St, North Bergen, NJ 07047, USA
+11/21/2021 23:10:31;1;Your Home;Change in Brightness (Artificial);1;1;Charlee;Cats;;11/22/2021 11:10:34;40.7734419,-74.0381696;1409 28th St, North Bergen, NJ 07047, USA
+11/22/2021 9:09:23;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/23/2021 6:59:58;40.7734519,-74.0380753;1407 28th St, North Bergen, NJ 07047, USA
+11/22/2021 11:44:43;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/22/2021 23:44:46;40.773436,-74.0381066;1409 28th St, North Bergen, NJ 07047, USA
+11/22/2021 18:59:55;2;Your Home;Cleaning;0;0;;Cats;;11/24/2021 1:27:03;40.7734438,-74.0380919;1409 28th St, North Bergen, NJ 07047, USA
+11/23/2021 13:26:59;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/24/2021 7:25:42;40.7691024,-74.0362782;2312 Summit Ave, Union City, NJ 07087, USA
+11/23/2021 23:54:41;5;Your Home;Change in Brightness (Natural);1;1;Charlee ;Cats;;11/24/2021 20:38:49;40.7734548,-74.0380692;1409 28th St, North Bergen, NJ 07047, USA
+11/24/2021 8:38:46;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;11/27/2021 8:35:37;40.7734332,-74.0380845;1407 28th St, North Bergen, NJ 07047, USA
+11/24/2021 13:54:30;3;Car (Driving);Change in Brightness (Natural);0;0;;;;11/25/2021 1:54:34;40.7749601,-74.0336517;703 32nd St, Union City, NJ 07087, USA
+11/25/2021 7:31:35;4;City Street;Change in Brightness (Natural);1;1;Charlee;;;11/25/2021 19:31:41;40.7751245,-74.0382744;2913 Grand Ave, North Bergen, NJ 07047, USA
+11/25/2021 9:14:01;1;City Street;Change in Brightness (Natural);3;Public Space;Charlee, Mom, Dad, Allison, Jojo, Malia;;;11/25/2021 21:14:05;40.7554305,-73.9852346;125 W 42nd St, New York, NY 10036, USA
+11/25/2021 11:32:53;4;City Street;Change in Brightness (Natural);3;3;Allison, mom, Charlee;;;11/25/2021 23:32:59;40.772656,-74.0357497;JFK Blvd at 28th St, North Bergen, NJ 07047, USA
+11/26/2021 12:19:56;3;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;11/27/2021 0:20:01;40.7733152,-74.037991;1406 27th St, North Bergen, NJ 07047, USA
+11/26/2021 20:35:34;3;Your Home;Change in Brightness (Artificial);1;1;Charlee;Cats;;11/28/2021 0:29:35;40.7734149,-74.038129;1409 28th St, North Bergen, NJ 07047, USA
+11/27/2021 11:15:52;2;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;11/27/2021 23:15:58;40.7734547,-74.0380591;1409 28th St, North Bergen, NJ 07047, USA
+11/27/2021 12:29:32;3;Your Home;Change in Brightness (Natural);1;1;;Cats;;11/28/2021 1:12:12;40.7734735,-74.0380453;1409 28th St, North Bergen, NJ 07047, USA
+11/28/2021 14:15:11;4;Your Home;Change in Brightness (Artificial);1;1;Charlee ;Cats;;11/30/2021 7:22:42;40.7734414,-74.0380862;1409 28th St, North Bergen, NJ 07047, USA
+11/29/2021 19:22:37;2;Your Home;Change in Brightness (Artificial);0;0;;Cats;;11/30/2021 22:59:14;40.7730321,-74.0379889;1400 27th St, North Bergen, NJ 07047, USA
+11/29/2021 20:19:38;2;Car (Driving);Change in Brightness (Artificial);0;0;;;;11/30/2021 8:19:42;40.7712446,-74.0363922;1102 26th St, North Bergen, NJ 07047, USA
+11/30/2021 10:59:10;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/01/2021 7:10:34;40.7734206,-74.0380906;1407 28th St, North Bergen, NJ 07047, USA
+12/2/2021 17:56:03;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/03/2021 5:56:05;40.7734449,-74.0380657;1409 28th St, North Bergen, NJ 07047, USA
+12/3/2021 9:15:57;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/04/2021 3:33:06;40.7734347,-74.0380767;1407 28th St, North Bergen, NJ 07047, USA
+12/3/2021 10:08:05;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/03/2021 22:08:14;40.7734412,-74.0380779;1409 28th St, North Bergen, NJ 07047, USA
+12/3/2021 10:40:13;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/03/2021 22:40:15;40.7734394,-74.038068;1409 28th St, North Bergen, NJ 07047, USA
+12/3/2021 15:33:03;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/04/2021 23:50:24;40.7734829,-74.0381632;1409 28th St, North Bergen, NJ 07047, USA
+12/4/2021 11:50:21;3;Your Home;Change in Brightness (Natural);1;1;;Cats;;12/05/2021 4:35:36;40.7734667,-74.0380237;1407 28th St, North Bergen, NJ 07047, USA
+12/4/2021 15:36:05;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/05/2021 3:36:26;40.773448,-74.0381221;1409 28th St, North Bergen, NJ 07047, USA
+12/5/2021 10:19:21;5;Parking Lot;Change in Brightness (Natural);1;1;Charlee;Cats;;12/05/2021 22:19:25;40.8885883,-74.2541465;76 Willowbrook Blvd, Wayne, NJ 07470, USA
+12/5/2021 19:52:33;1;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;12/07/2021 4:21:08;40.773553,-74.0379883;1407 28th St, North Bergen, NJ 07047, USA
+12/6/2021 16:21:05;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/09/2021 8:25:09;40.7734429,-74.0380871;1409 28th St, North Bergen, NJ 07047, USA
+12/8/2021 13:43:57;2;Your Home;Change in Brightness (Artificial);1;1;Nick Bennett ;Cats;;12/09/2021 1:44:00;40.7832136,-74.0474541;251 Paterson Plank Rd, Secaucus, NJ 07094, USA
+12/8/2021 20:25:06;3;Your Home;Change in Brightness (Artificial);1;1;Charlee;Cats;;12/09/2021 22:17:08;40.7734489,-74.0380622;1409 28th St, North Bergen, NJ 07047, USA
+12/9/2021 10:17:05;5;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/10/2021 22:12:19;40.7734484,-74.0380627;1409 28th St, North Bergen, NJ 07047, USA
+12/9/2021 23:02:00;3;Your Home;Change in Brightness (Artificial);1;1;Charlee ;Cats;;12/10/2021 11:02:02;40.7734771,-74.0380261;1407 28th St, North Bergen, NJ 07047, USA
+12/10/2021 10:12:16;2;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/16/2021 8:41:57;40.7734803,-74.0380124;1407 28th St, North Bergen, NJ 07047, USA
+12/10/2021 15:20:29;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/11/2021 3:20:33;40.773442,-74.03807;1409 28th St, North Bergen, NJ 07047, USA
+12/13/2021 11:54:10;3;City Street;Change in Brightness (Natural);0;0;;;;12/13/2021 23:54:14;40.781706,-74.0326541;4213 Bergen Turnpike, North Bergen, NJ 07047, USA
+12/14/2021 22:01:11;4;Your Home;Change in Brightness (Artificial);1;1;Charlee;Cats;;12/15/2021 10:01:14;40.7734759,-74.0380286;1407 28th St, North Bergen, NJ 07047, USA
+12/15/2021 8:48:56;4;City Street;Change in Brightness (Natural);0;0;;;;12/15/2021 20:48:59;40.7734328,-74.0380718;1407 28th St, North Bergen, NJ 07047, USA
+12/17/2021 14:44:29;6;Car (Driving);Change in Brightness (Natural);0;0;;;;12/20/2021 8:03:29;40.7734545,-74.038045;1407 28th St, North Bergen, NJ 07047, USA
+12/19/2021 9:14:52;5;Car (Driving);Change in Brightness (Natural);1;1;Charlee ;Dogs;;12/19/2021 21:14:57;40.8110895,-74.1014939;851 Rutherford Ave, Rutherford, NJ 07070, USA
+12/19/2021 20:03:27;3;Your Home;Change in Brightness (Artificial);1;1;Charlee ;Cats;;12/21/2021 9:20:54;40.7734561,-74.0380315;1407 28th St, North Bergen, NJ 07047, USA
+12/20/2021 8:56:40;4;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/20/2021 20:56:44;40.7734307,-74.0380516;1407 28th St, North Bergen, NJ 07047, USA
+12/22/2021 12:33:09;3;Your Home;Change in Brightness (Natural);1;4;Noah, Mitch, nick, tyler;Cats;;12/23/2021 0:33:12;40.773459,-74.0380558;1407 28th St, North Bergen, NJ 07047, USA
+12/22/2021 16:31:22;3;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/23/2021 4:31:26;40.7733341,-74.0382083;1410 27th St, North Bergen, NJ 07047, USA
+12/22/2021 19:06:43;1;Your Home;Change in Brightness (Natural);0;0;;Cats;;12/23/2021 7:06:47;40.7734483,-74.0380564;1407 28th St, North Bergen, NJ 07047, USA
+12/23/2021 23:29:43;3;Your Home;Change in Brightness (Natural);1;1;Charlee;Cats;;12/24/2021 11:29:46;40.7733181,-74.0381082;1408 27th St, North Bergen, NJ 07047, USA
+12/24/2021 13:51:36;4;Car (Driving);Change in Brightness (Natural);0;0;;;;12/25/2021 1:51:38;39.7043836,-78.3281162;35206 National Pike NE, Little Orleans, MD 21766, USA
+12/26/2021 9:25:24;4;Backyard;Change in Brightness (Natural);1;1;Charlee ;;;12/26/2021 21:25:31;38.2950487,-80.9131952;608 Camp Fork Rd, Gilboa, WV 26671, USA
+12/26/2021 15:37:03;2;Someone else's house;Change in Brightness (Artificial);1;2;Charlee, Granny Thomas ;;;12/27/2021 3:37:53;38.2952185,-80.9131041;608 Camp Fork Rd, Gilboa, WV 26671, USA
+12/30/2021 12:27:03;2;Someone else's house;Change in Brightness (Natural);1;6-10;Charlee, Sherri, Rich, Tom, Katie ;Cats;;12/31/2021 0:27:07;41.5145638,-72.116463;39 Wawecus Hill Rd, Norwich, CT 06360, USA
+12/30/2021 16:08:25;4;Someone else's house;Change in Brightness (Artificial);1;4;Sherri, Rich, Katie, Tom;;;12/31/2021 4:09:51;41.5145654,-72.1164635;39 Wawecus Hill Rd, Norwich, CT 06360, USA
+12/31/2021 11:44:16;4;Someone else's house;Change in Brightness (Natural);3;3;Charlee, Sherri, Rich ;Cats;;12/31/2021 23:44:20;41.1636772,-73.3690299;14 Quarter Mile Rd, Westport, CT 06880, USA

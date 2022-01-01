@@ -22,6 +22,7 @@ def dataBreakdown(sneezedata):
 	sneezedata['Week Number'] = pd.to_datetime(sneezedata['Timestamp']).dt.isocalendar().week
 	sneezedata['Month'] = pd.to_datetime(sneezedata['Timestamp']).dt.month
 	sneezedata['Year'] = pd.to_datetime(sneezedata['Timestamp']).dt.year
+
 	sneezedata['Cumulative'] = sneezedata['Number of Sneezes'].cumsum(skipna=False)
 	sneezedata['Month Day'] = pd.to_datetime(sneezedata['Timestamp']).dt.strftime('1900-%m-%d')
 	sneezedata['Month Cum'] = sneezedata.groupby(['Year','Month'])['Number of Sneezes'].cumsum()

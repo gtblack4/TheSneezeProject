@@ -239,18 +239,6 @@ position: left;
   background-color: #0F1328;
 }
 
-/*Dash Daq Graduatebar */
-#Diameter_OOC_graph > div > div,
-#Etch1_OOC_graph > div > div,
-#Film-Thickness_OOC_graph > div > div,
-#Metric4_OOC_graph > div > div,
-#Etch2_OOC_graph > div > div,
-#Line-Width_OOC_graph > div > div,
-#Overlay_OOC_graph > div > div,
-#Volume_OOC_graph > div > div {
-  width: 100%;
-  background-color: #1e2130 !important;
-}
 
 /*#blessed-chart {
     width: 100%;
@@ -295,7 +283,7 @@ position: left;
   flex: 1 1 auto;
 }
 
-#ooc-piechart-outer {
+#piechart-outer {
   height: 100%;
   margin: 0;
   border-left: #1E2130 solid 0.8rem;
@@ -487,6 +475,7 @@ position: left;
   padding: 0;
   width: 100%;
   max-width: 100%;
+
 }
 
 #settings-menu {
@@ -518,6 +507,7 @@ position: left;
   position:relative;
   margin: 0;
   padding: 0;
+  flex-flow: row wrap;
 }
 
 #graphs-container {
@@ -526,18 +516,41 @@ position: left;
   flex: 3 1;
   max-width: calc(70%);
   width: 100%;
+  height: 70%;
 }
-#bottom-section {
+/*#bottom-container {
   display: flex;
   align-items: bottom;
+  flex-direction:column;
   justify-content: flex-start;
   border-right: #1E2130 solid 0.8rem;
-  position: absolute;
+  position: relative;
   bottom: 0;
   padding: 1rem;
   max-width: 100%;
+  flex-flow: row wrap;
+}*/
+#sneeze-fit-size{
+width: 50%
 }
 
+#monthly-comparison{
+width: 50%
+}
+#bottom-panel {
+  display: flex;
+  align-items: bottom;
+  flex-direction: row;
+  padding: 1rem;
+  max-width: 100%;
+  flex-flow: row wrap;
+  border-top: #1E2130 solid 0.8rem;
+/*  flex: 3 1;*/
+
+  width: 100%;
+  height: 30%;
+  bottom:0;
+}
 /* Tab 2 Quick stats
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #quick-stats {
@@ -549,6 +562,7 @@ position: left;
   flex: 3 1;
   padding: 1rem;
   max-width: 40%;
+  height: 70%;
 }
 
 #graphs-label{
@@ -843,7 +857,13 @@ margin-bottom: 0;
     flex-direction: column;
     height: auto;
   }
-
+  #bottom-panel {
+    flex-direction: column;
+    height: auto;
+  }
+  #bottom-panel > div {
+    width: 100%;
+  }
   #quick-stats {
     max-width: 100%;
   }
@@ -864,10 +884,10 @@ margin-bottom: 0;
   }
 
   /*Removing borders}*/
-  #ooc-piechart-outer {
+  #piechart-outer {
     border-left: none;
   }
-#ooc-piechart-outer >div {
+#piechart-outer >div {
     margin-top: 0;
     margin-bottom: 0;
   }
