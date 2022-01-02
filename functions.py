@@ -57,7 +57,7 @@ def getDaysElapsed():
 
 
 def totalSum(sneezedata):
-	sneezeSum = sneezedata.sum(axis=0)['Number of Sneezes']
+	sneezeSum = sneezedata['Number of Sneezes'].sum()
 	return sneezeSum
 
 #Takes the array of sneezedata and returns the daily average

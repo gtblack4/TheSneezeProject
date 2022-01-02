@@ -19,6 +19,10 @@ app = dash.Dash(
     __name__,
     meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}],
 )
+
+
+
+
 app.title = "The Sneeze Project"
 server = app.server
 app.config["suppress_callback_exceptions"] = True
@@ -136,16 +140,28 @@ def build_tab_1():
             children=[
                 generate_section_banner("A collection of fun information about my sneezes."),
                 html.Div(
+                    id="stats-table-div",
+                    children=[
+                        html.Div(
+                            id="stats-table-rows",
+                            children=[
+                                build_sneeze_stats_table(),
+                            ]
+                        )
+                    ]
+                ),
+                html.Div(
                     id="facts-div",
                     children=[
                         #                           
                         html.Div(
                             id="sneeze-facts-rows",
                             children=[
-                                build_sneeze_facts_rows("What day had the most sneezes?", sneeziestDay(), 1),
-                                build_sneeze_facts_rows("What is the daily average number of sneezes?", averageSneezeDay(),2),
+                                #build_sneeze_facts_rows("What day had the most sneezes?", sneeziestDay(), 1),
+                                #build_sneeze_facts_rows("What is the daily average number of sneezes?", averageSneezeDay(),2),
                                 build_sneeze_facts_rows("What % of days did Gage sneeze on?", sneezeLessDays(), 3),
-                                build_sneeze_facts_rows("How many people think Gage tracking his sneezes is weird.", "100% of People.",4)
+                                #build_sneeze_facts_rows("How many people think Gage tracking his sneezes is weird.", "99.8% of People.",4),
+                                #build_sneeze_facts_rows("")
                             ],
                         ),
                     ],
@@ -153,6 +169,59 @@ def build_tab_1():
             ],
         ),
     ]
+def buildSneezeTable(sneezes):
+
+    sneezeEvents = mf.sneezeFitCount(sneezes)
+    sneezeSum= mf.totalSum(sneezes)
+    sneezeLessDays = mf.sneezeLessDays(sneezes)
+    sneeziestDate = sneeziestDay(sneezes)
+    sneezeTable = [sneezeEvents,sneezeSum,sneeziestDate,round(sneezeSum/sneezeEvents,2),round(sneezeSum/365,2),365-sneezeLessDays,sneezeLessDays]
+    return sneezeTable
+def build_sneeze_stats_table():
+
+    sneezeTable2020 = buildSneezeTable(sneezeData2020)
+    sneezeTable2021 = buildSneezeTable(sneezeData2021)
+
+    data=[go.Table(
+        header=dict(values=["","2020","2021"],
+                    line_color='white',
+                    font=dict(color='white',size=28),
+                    fill_color='#1e2130',
+                    height=35),
+        cells=dict(values=[
+            ["Total Number of Sneezing Events","Total Number of Sneezes","Date with the most Sneezes","Average Sneezes Per Sneezing Event","Average Sneezes Per Day",
+             "Number of Days With Sneezes","Number of Days Without Sneezes"],#Fact Title
+            sneezeTable2020,#2020
+            sneezeTable2021#2021
+                   ],
+        fill_color='#161a28',
+        font=dict(color='white',size=20),
+        height = 70,
+        align='left')
+
+    )]
+    layout = go.Layout(
+                       paper_bgcolor='rgba(0,0,0,0)',
+                       plot_bgcolor='rgba(0,0,0,0)',
+                       showlegend=True,
+                       autosize=True,
+                       height=600,
+                       legend=dict(
+                           orientation="h",
+                           yanchor="bottom",
+                           y=1.02,
+                           xanchor="right",
+                           x=1,
+                           font=dict(
+                               color="white"
+                           ),
+                       ),
+                       margin=dict(t=20, b=20, l=3, r=3),
+
+                       )
+    config = {'displayModeBar': False}
+    return dcc.Graph(id = "stats_table",figure=go.Figure(data=data,layout=layout))
+
 def build_sneeze_facts_rows(title,value,position):
     position = "sneeze-facts-row-" + str(position)
     return html.Div(
@@ -212,16 +281,20 @@ def generate_modal():
                                 """
                         ###### What is this project all about?
 
-                        In late 2019 I noticed that I was sneezing more frequently than my coworkers. In an effort to keep my 
+                        In late 2019 I noticed that I was sneezing more frequently than my coworkers. In an effort to find out the truth, I began tracking every sneeze. 
+                        It quickly evolved from a simple notepad into spreadsheets and further in to the website you see now. Development is ongoing to discover the dirty truth about why I sneeze so much.
+                        
 
                         ###### But why?
-
+                        To be determined at a later date.
 
 
                         ###### Source Code
 
                         You can find the source code of this app on my [Github repository](https://github.com/gtblack4/TheSneezeProject).
-
+                       
+                        ###### Business Inquiries, Job offers, and Suggestions
+                        Email: gtblack4@gmail.com
                     """
                             )
                         ),
@@ -347,13 +420,12 @@ def build_sneeze_stats_row(text,graph,position):
             ])
 
 #***********Functions for the Fun Facts Panel*********
-def sneeziestDay():
-
-    byDay = dataTotal.groupby(pd.Grouper(key='Timestamp',freq='D')).sum()
+def sneeziestDay(sneezes):
+    byDay = sneezes.groupby(pd.Grouper(key='Timestamp',freq='D')).sum()
     highestDay = byDay['Number of Sneezes'].max()
     highestCount = byDay['Number of Sneezes'].idxmax().strftime('%B %d, %Y')
-    text = '{} had the most sneezes at {}'.format(highestCount,highestDay)
-    return text
+    #text = '{} had the most sneezes at {}'.format(highestCount,highestDay)
+    return highestCount
 
 
 
