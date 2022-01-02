@@ -787,7 +787,7 @@ def generate_sneeze_day_count():
     daySum2020 = daySum2020.sort_values(by="Number of Sneezes",ascending=True)
 
     daySum2021 = sneezeSize2021['Number of Sneezes'].value_counts().rename_axis('Number of Sneezes').reset_index(name="Count")
-    daySum2021.loc[len(daySum2020.index)] = [0, 366-daySum2021['Count'].sum()]
+    daySum2021.loc[len(daySum2020.index)] = [0, 365-daySum2021['Count'].sum()]
     daySum2021 = daySum2021.sort_values(by="Number of Sneezes",ascending=True)
 
     colorArray = ['#3ddbd9', '#08bdba', '#009d9a', '#007d79', '#004144', '#022b30']
