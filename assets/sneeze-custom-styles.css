@@ -45,7 +45,10 @@ body {
   padding: 1rem 10rem;
   width: 100%;
 }
-
+#LED2021{
+padding:3px;}
+#LED2020{
+Padding:3px;}
 
 .banner h5 {
   font-family: 'Open Sans Semi Bold', sans-serif;
@@ -522,6 +525,7 @@ position: left;
   margin: 0;
   padding: 0;
   flex-flow: row wrap;
+  font-weight: bold;
 }
 
 #graphs-container {
@@ -575,7 +579,7 @@ width: 50%
   border-right: #1E2130 solid 0.8rem;
   flex: 3 1;
   padding: 1rem;
-  max-width: 40%;
+  max-width: 100%;
   height: 70%;
 }
 
@@ -800,7 +804,7 @@ margin-bottom: 0;
   }
 
   .banner {
-    flex-direction: column-reverse;
+    /*flex-direction: column-reverse;*/
     padding: 1rem 0.5rem;
   }
 
@@ -835,17 +839,17 @@ margin-bottom: 0;
   }
  #stats-table-div >div{
 width: 100%;
-height: 830px;
+height: 580px;
 align-items: center;
 position: relative;
 margin: auto;
 padding: 3px;
 font-size:3rem;
 }
- #stats-table-div >div>div{
+/* #stats-table-div >div>div{
 width: 100%;
-height: 830px;
-}
+height: 580px;
+}*/
   #settings-menu {
     margin: 2rem;
     flex-direction: column;
@@ -882,6 +886,7 @@ height: 830px;
   #status-container, #top-section-container {
     flex-direction: column;
     height: auto;
+    font-weight:bold;
   }
   #bottom-panel {
     flex-direction: column;
@@ -922,7 +927,10 @@ height: 830px;
   }
 
 }
-
+#LED2021{
+padding:3px;}
+#LED2020{
+Padding:3px;}
 @media only screen and (max-width: 600px) {
   /* Display measurement row contents block-level on mobile*/
   /** Display every row content in block*!*/
@@ -932,6 +940,17 @@ height: 830px;
   justify-content: space-evenly;
   align-items: center;
   height: 8rem;
+}
+#LED2020{
+display: none;
+}
+ #stats-table-div >div{
+width: 100%;
+height: 955px;
+}
+ #stats-table-div >div>div{
+width: 100%;
+height: 955px;
 }
 #sneeze-facts-title {
   position: center;

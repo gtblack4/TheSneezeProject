@@ -74,18 +74,33 @@ def build_banner():
                 ],
             ),
             html.Div(
-                
+                id = "LED2020",
                 children=[
-                    html.H6("Total Sneezes This Year"),
+                    html.H6("2020 Sneeze Count"),
                     daq.LEDDisplay(
                         id="operator-led",
-                        value=totalSum,
-                        color="#32c95b",
+                        value=mf.totalSum(sneezeData2020),
+
+                        color="rgb(102, 255, 102)",
                         backgroundColor="#1e2130",
-                        size=50,
+                        size=40,
+                    ),
+                ],
+            ), html.Div(
+                id="LED2021",
+                children=[
+                    html.H6("2021 Sneeze Count"),
+                    daq.LEDDisplay(
+                        id="operator-led2",
+
+                        value=mf.totalSum(sneezeData2021),
+                        color="rgb(0, 153, 51)",
+                        backgroundColor="#1e2130",
+                        size=40,
                     ),
                 ],
             ),
+
             html.Div(
                 id="banner-logo",
                 children=[
@@ -138,7 +153,7 @@ def build_tab_1():
             id="fun-facts-container",
            
             children=[
-                generate_section_banner("A collection of fun information about my sneezes."),
+                generate_section_banner("Fun Information About Gage's Sneezes"),
                 html.Div(
                     id="stats-table-div",
                     children=[
@@ -159,9 +174,10 @@ def build_tab_1():
                             children=[
                                 #build_sneeze_facts_rows("What day had the most sneezes?", sneeziestDay(), 1),
                                 #build_sneeze_facts_rows("What is the daily average number of sneezes?", averageSneezeDay(),2),
-                                build_sneeze_facts_rows("What % of days did Gage sneeze on?", sneezeLessDays(), 3),
-                                #build_sneeze_facts_rows("How many people think Gage tracking his sneezes is weird.", "99.8% of People.",4),
-                                #build_sneeze_facts_rows("")
+                                build_sneeze_facts_rows("What percent of days did Gage sneeze?", sneezeLessDays(), 3),
+                                build_sneeze_facts_rows("What percent of people think Gage tracking his sneezes is weird?", "99.8% of people.",4),
+                                build_sneeze_facts_rows("What holiday had the most sneezes?","Veterans Day 2021: 10 sneezes.",5),
+                                build_sneeze_facts_rows("How many sneezes were blessed by strangers?","24 sneezes.",6)
                             ],
                         ),
                     ],
@@ -189,8 +205,8 @@ def build_sneeze_stats_table():
                     fill_color='#1e2130',
                     height=35),
         cells=dict(values=[
-            ["Total Number of Sneezing Events","Total Number of Sneezes","Date with the most Sneezes","Average Sneezes Per Sneezing Event","Average Sneezes Per Day",
-             "Number of Days With Sneezes","Number of Days Without Sneezes"],#Fact Title
+            ["Total Number of Sneezing Events","Total Number of Sneezes","Date with the Most Sneezes","Average Sneezes per Sneezing Event","Average Sneezes per Day",
+             "Number of Days with Sneezes","Number of Days without Sneezes",],#Fact Title
             sneezeTable2020,#2020
             sneezeTable2021#2021
                    ],
@@ -282,7 +298,7 @@ def generate_modal():
                         ###### What is this project all about?
 
                         In late 2019 I noticed that I was sneezing more frequently than my coworkers. In an effort to find out the truth, I began tracking every sneeze. 
-                        It quickly evolved from a simple notepad into spreadsheets and further in to the website you see now. Development is ongoing to discover the dirty truth about why I sneeze so much.
+                        It quickly evolved from a simple notepad into spreadsheets and further into the website you see now. Development is ongoing to discover the dirty truth behind why I sneeze so frequently.
                         
 
                         ###### But why?
@@ -358,7 +374,7 @@ def build_top_panel():
                 id="metric-summary-session",
                 className="eight columns",
                 children=[
-                    generate_section_banner("Quick Stats"),
+                    generate_section_banner("2021 Quick Stats"),
                     html.Div(
                         id="quick-graph-div",
                         children=[
@@ -367,9 +383,9 @@ def build_top_panel():
                                 id="bar-graph-rows",
                                 children=[
 
-                                    build_sneeze_stats_row("How many sneezes go unblessed?",generate_blessed_sneezes(),1),
-                                    build_sneeze_stats_row("Am I allergic to people?",generate_fit_count(),2),
-                                    build_sneeze_stats_row("Where are the sneezes?",generate_location_graph(),3),
+                                    build_sneeze_stats_row("How Many Sneezes go Unblessed?",generate_blessed_sneezes(),1),
+                                    build_sneeze_stats_row("Is Gage Allergic to People?",generate_fit_count(),2),
+                                    build_sneeze_stats_row("Where are the Sneezes?",generate_location_graph(),3),
                                     #build_sneeze_stats_row("Time of Day ",generate_time_plot(),4),
                                 
                                 ],
@@ -434,7 +450,7 @@ def sneezeLessDays():
     totalDays = projectLength()
     sneezeDays = len(uniqueDays)
     percentDays =  round((sneezeDays/ totalDays) * 100,2)
-    text = 'Gage sneezed on {} out of {} days. Which is {}% of days'.format(sneezeDays,totalDays,percentDays)
+    text = 'Gage sneezed on {} out of {} days, which is {}% of days.'.format(sneezeDays,totalDays,percentDays)
     return text
 
 def averageSneezeDay():
@@ -498,9 +514,9 @@ def generate_blessed_sneezes():
       
 
 
-        yaxis = dict(showticklabels=False),
+        yaxis = dict(showticklabels=False,fixedrange=True),
         xaxis = dict(tickvals=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed']+blessedSum['Blessed'])], ticktext=[int(0),int(blessedSum['Blessed']),int(blessedSum['Unblessed'])],
-            showgrid = True, tickangle = 0, color = 'white',ticklabelposition='outside left',ticklabeloverflow='hide past div'),
+            showgrid = True, tickangle = 0, color = 'white',ticklabelposition='outside left',ticklabeloverflow='hide past div',fixedrange=True),
         legend=dict(
             orientation="h",
             yanchor="bottom",
@@ -536,9 +552,9 @@ def generate_location_graph():
     #In a car
     sneezeLocation.loc[len(sneezeLocation.index)] = ['Car', int(sneezeLocationSum['Car (Driving)']) + int(sneezeLocationSum['Car (Passenger)'])]
     #Indoors
-    sneezeLocation.loc[len(sneezeLocation.index)] = ['Inside', int(sneezeLocationSum["Someone else's house"]) + int(sneezeLocationSum['Bar/Restaurant'])+ int(sneezeLocationSum['Office']) + int(sneezeLocationSum['Bar/Restaurant'])  + int(sneezeLocationSum['Hotel']) + int(sneezeLocationSum['Public Store']) + int(sneezeLocationSum['Hospital'])+ int(sneezeLocationSum['Parking Garage'])+ int(sneezeLocationSum['Your Home'])]
+    sneezeLocation.loc[len(sneezeLocation.index)] = ['Inside', int(sneezeLocationSum["Someone else's house"]) +  int(sneezeLocationSum['Office']) + int(sneezeLocationSum['Bar/Restaurant'])  + int(sneezeLocationSum['Hotel']) + int(sneezeLocationSum['Public Store']) + int(sneezeLocationSum['Hospital'])+ int(sneezeLocationSum['Parking Garage'])+ int(sneezeLocationSum['Your Home'])]
     #Outdoors
-    sneezeLocation.loc[len(sneezeLocation.index)] = ['Outside', int(sneezeLocationSum['City Street']) + int(sneezeLocationSum['Park'])+ int(sneezeLocationSum['Parking Lot'])+ int(sneezeLocationSum['Sports Facility']+ int(sneezeLocationSum['Waterfront']))]
+    sneezeLocation.loc[len(sneezeLocation.index)] = ['Outside', int(sneezeLocationSum['City Street']) + int(sneezeLocationSum['Park'])+ int(sneezeLocationSum['Parking Lot'])+ int(sneezeLocationSum['Sports Facility']+ int(sneezeLocationSum['Waterfront']) + int(sneezeLocationSum['Backyard']))]
 
 
 
@@ -593,8 +609,8 @@ def generate_location_graph():
             plot_bgcolor= 'rgba(0,0,0,0)',
             showlegend=True,
             autosize=True,
-            yaxis = dict(showticklabels=False),
-            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=ticktext,showgrid = True, tickangle = 0,color='white',ticklabelposition='outside left',ticklabeloverflow='hide past div')),
+            yaxis = dict(showticklabels=False,fixedrange=True),
+            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=ticktext,showgrid = True, tickangle = 0,color='white',ticklabelposition='outside left',ticklabeloverflow='hide past div',fixedrange=True)),
             #xaxis=dict(tickformat="%m/%d")
             legend=dict(
                 traceorder ='normal',
@@ -664,8 +680,8 @@ def generate_fit_count():
             plot_bgcolor= 'rgba(0,0,0,0)',
             showlegend=True,
             autosize=True,
-            yaxis = dict(showticklabels=False),
-            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=ticktext,showgrid = True, tickangle = 0,color = 'white',ticklabelposition='outside left',ticklabeloverflow='hide past div')),
+            yaxis = dict(showticklabels=False,fixedrange=True),
+            xaxis = (dict(tickmode= 'array',tickvals=tickvalues, ticktext=ticktext,showgrid = True, tickangle = 0,color = 'white',ticklabelposition='outside left',ticklabeloverflow='hide past div',fixedrange=True)),
             #xaxis=dict(tickformat="%m/%d")
             legend=dict(
                 orientation="h",
@@ -722,7 +738,8 @@ def build_chart_panel():
         id="bottom-graph-container",
         className="bottom graphs",
         children=[
-            generate_section_banner("More Graphs to look at"),
+            generate_section_banner("More Graphs for Your Viewing Pleasure"),
+            html.P("Time of Day Heat Map"),
             html.Div(
                 id="heatmap-div",
                 children=[
@@ -744,7 +761,7 @@ def build_bottom_panel():
             className="bottom-panel-container",
             children=[html.Div(
                           id="sneeze-fit-size",
-                          children=[html.P("Number of Sneezes Per Sneezing Fit"),
+                          children=[html.P("Number of Sneezes per Sneezing Fit"),
                               generate_sneeze_fit_size_graph()
                           ]
                       ),
@@ -776,7 +793,7 @@ def generate_sneeze_day_count():
     colorArray = ['#3ddbd9', '#08bdba', '#009d9a', '#007d79', '#004144', '#022b30']
 
 
-    fig = go.Figure(data=[
+    data=[
 
         go.Bar(name='2020',
 
@@ -808,9 +825,9 @@ def generate_sneeze_day_count():
 
                )
 
-    ])
+    ]
     # Change the bar mode
-    fig.update_layout(barmode='group',
+    layout = go.Layout(barmode='group',
                       paper_bgcolor='rgba(0,0,0,0)',
                       plot_bgcolor='rgba(0,0,0,0)',
                       showlegend=True,
@@ -829,11 +846,14 @@ def generate_sneeze_day_count():
                       ),
 
                       margin=dict(t=0, b=0, l=0, r=15),
-                      xaxis=dict(color="white",tickmode="linear",tick0=0,dtick=1 ),
-                      yaxis=dict(color="white", ),
+                      xaxis=dict(color="white",tickmode="linear",tick0=0,dtick=1,fixedrange=True),
+                      yaxis=dict(color="white",fixedrange=True ),
+                       xaxis_title="Number of Sneezes per Day",
+                       yaxis_title="Number of Days",
 
-                      )
-    return html.Div(dcc.Graph(figure=fig))
+                       )
+    config = {'displayModeBar': False,}
+    return html.Div(dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config))
 
 
 def generate_time_plot():
@@ -858,10 +878,10 @@ def generate_time_plot():
         ]
 
     layout = go.Layout(
-      
+        title = "fart",
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor= 'rgba(0,0,0,0)',
-        showlegend=False,
+        showlegend=True,
         autosize=True,
         legend=dict(
             orientation="h",
@@ -875,14 +895,14 @@ def generate_time_plot():
 
         ),
         
-        margin=dict(t=0, b=0, l=0, r=15),
+        margin=dict(t=0, b=6, l=0, r=15),
 
-        xaxis=dict(tickformat="%I:00",color="white",nticks=4),
-        yaxis=dict(tickformat='Y',color="white",nticks=3),
+        xaxis=dict(tickformat="%I:00",color="white",nticks=4,fixedrange=True),
+        yaxis=dict(tickformat='Y',color="white",nticks=3,fixedrange=True),
 
         )
 
-    config = {'displayModeBar': False}
+    config = {'displayModeBar': True}
     return dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config)
 
 
@@ -932,8 +952,8 @@ def generate_year_line_graph():
         margin=dict(t=0, b=0, l=0, r=0),
         hovermode = 'x unified',
 
-        xaxis=dict(tickformat="%b",color="white",nticks=12),
-        yaxis=dict(color="white") 
+        xaxis=dict(tickformat="%b",color="white",nticks=12,fixedrange=True),
+        yaxis=dict(color="white",fixedrange=True)
         ),
 
    )
@@ -1051,8 +1071,8 @@ def generate_month_line_graph():
         ),
 
         margin=dict(t=0, b=0, l=0, r=0),
-        xaxis=dict(tickformat="%b",color="white",nticks=12),
-        yaxis=dict(tickvals = [0,1,2,3,4, 5,6,7,8,9,10,11],color="white",nticks=20),
+        xaxis=dict(tickformat="%b",color="white",nticks=12,fixedrange=True),
+        yaxis=dict(tickvals = [0,1,2,3,4, 5,6,7,8,9,10,11],color="white",nticks=20,fixedrange=True),
         yaxis2=dict(color="blue",nticks=0, anchor="free",overlaying="y2", side="right",showgrid=False, showticklabels=False,),
         
         )
@@ -1201,7 +1221,7 @@ def generate_sneeze_fit_size_graph():
 
 
 
-    fig = go.Figure(data=[
+    data=[
 
 
         go.Bar(name='Sneeze Fit Size: 2020',
@@ -1234,9 +1254,9 @@ def generate_sneeze_fit_size_graph():
 
                )
 
-        ])
+        ]
     # Change the bar mode
-    fig.update_layout(barmode='group',
+    layout = go.Layout (barmode='group',
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         showlegend=False,
@@ -1255,11 +1275,14 @@ def generate_sneeze_fit_size_graph():
         ),
 
         margin=dict(t=0, b=0, l=0, r=15),
-        xaxis=dict( color="white", ),
-        yaxis=dict( color="white",),
+        xaxis=dict( color="white",fixedrange=True ),
+        yaxis=dict( color="white",fixedrange=True),
+        xaxis_title="Number of Sneezes per Fit",
+        yaxis_title="Number of Sneezing Fits",
 
     )
-    return html.Div(dcc.Graph(figure=fig))
+    config = {'displayModeBar': False}
+    return html.Div(dcc.Graph(figure=go.Figure(data=data,layout=layout),config=config))
 
 app.layout = html.Div(
     id="big-app-container",
@@ -1321,7 +1344,7 @@ def map_graph_switch(n_clicks):
     if n_clicks % 2 == 1:
         return "Switch to Scatter Plot",generate_sneeze_heat_map()
     else:
-        return "Switch to Heat Map",generate_sneeze_map()
+        return "Switch to Heat Map (Slow loading)",generate_sneeze_map()
     #switchback
 
 
