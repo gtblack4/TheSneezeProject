@@ -1,5 +1,3 @@
-alert("This might");
-
 function loadGoogleAnalytics(){
     var ga = document.createElement('script');
     ga.type = 'text/javascript';
