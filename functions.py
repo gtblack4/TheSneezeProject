@@ -34,6 +34,7 @@ def dataBreakdown(sneezedata):
 	sneezedata['Blessed'] = sneezedata['Number of Blesses'].apply(blessCount)
 
 
+
 def buildMonthArray(sneezedata):
 	monthArray =[0,0,0,0,0,0,0,0,0,0,0,0,0]
 	for row in sneezedata.iterrows():
@@ -93,16 +94,16 @@ def sneezeLessDays(sneezedata):
 	sneezeYear = pd.to_datetime(sneezedata['Timestamp'][0]).year
 	thisYear = pd.to_datetime(datetime.date.today()).year
 	dayOfYear = pd.to_datetime(datetime.date.today()).dayofyear
-#	if(sneezeYear == thisYear):
-#		numDays = np.unique(pd.DatetimeIndex(sneezedata['Timestamp']).date).size
-#		numDays = dayOfYear - numDays
-#	else:
-	if(calendar.isleap(sneezeYear)):
+	if(sneezeYear == thisYear):
 		numDays = np.unique(pd.DatetimeIndex(sneezedata['Timestamp']).date).size
-		numDays = 366 - numDays
+		numDays = dayOfYear - numDays
 	else:
-		numDays = np.unique(pd.DatetimeIndex(sneezedata['Timestamp']).date).size
-		numDays = 365 - numDays
+		if(calendar.isleap(sneezeYear)):
+			numDays = np.unique(pd.DatetimeIndex(sneezedata['Timestamp']).date).size
+			numDays = 366 - numDays
+		else:
+			numDays = np.unique(pd.DatetimeIndex(sneezedata['Timestamp']).date).size
+			numDays = 365 - numDays
 	return(numDays)
 
 def dayBreakdown(sneezedata):

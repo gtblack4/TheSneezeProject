@@ -1,0 +1,31 @@
+Timestamp;Number of Sneezes;Current Activity;Location;Number of Blesses;Other Responses;Number of Nearby People;Notes;GeoStamp;GeoCode;GeoAddress
+1/1/2022 17:34:49;4;Programming;Home (Office);1;Yay;1;;01/02/2022 5:34:52;40.7734554,-74.0380526;1407 28th St, North Bergen, NJ 07047, USA
+1/1/2022 23:58:41;4;Folding Laundry;Home (Bedroom);1;;1;;01/02/2022 19:41:14;40.7734632,-74.0380331;1407 28th St, North Bergen, NJ 07047, USA
+1/2/2022 8:39:37;3;Driving ;Car (Driving);1;;1;;01/02/2022 20:39:41;40.7735735,-74.2407899;390 Valley Rd, West Orange, NJ 07052, USA
+1/4/2022 14:54:23;4;Working;Home (Office);0;;0;;01/05/2022 0:54:37;40.7734536,-74.0380513;1407 28th St, North Bergen, NJ 07047, USA
+1/5/2022 22:28:04;4;Showering;Home (Bathroom);1;Lordy;1;Eucalyptus Bath Bomb;01/06/2022 19:45:16;40.7734648,-74.0380443;1407 28th St, North Bergen, NJ 07047, USA
+1/6/2022 8:22:21;4;Making Lunch;Home (Kitchen);0;;0;;01/06/2022 20:22:24;40.773514,-74.0382124;1409 28th St, North Bergen, NJ 07047, USA
+1/6/2022 13:26:01;3;Working;Home (Office);0;;0;;01/07/2022 1:26:04;40.7734509,-74.0380497;1407 28th St, North Bergen, NJ 07047, USA
+1/6/2022 19:28:27;2;Cooking ;Home (Kitchen);1;;1;Pepper;01/07/2022 7:28:30;40.7734498,-74.0381177;1409 28th St, North Bergen, NJ 07047, USA
+1/7/2022 11:03:25;5;Heating coffee;Home (Kitchen);1;;1;Snow;01/07/2022 23:03:27;40.7734631,-74.0380595;1407 28th St, North Bergen, NJ 07047, USA
+1/7/2022 20:48:15;2;Watching TV;Home (Living Room);1;;1;Ginger Beer;01/08/2022 8:48:18;40.7734577,-74.0380194;1407 28th St, North Bergen, NJ 07047, USA
+1/8/2022 12:24:30;4;Drinking coffee;Home (Kitchen);1;;1;;01/09/2022 0:24:33;40.7734392,-74.0380442;1407 28th St, North Bergen, NJ 07047, USA
+1/9/2022 20:29:01;4;Puting away groceries;Home (Kitchen);1;;1;Charlee Cooking;01/10/2022 8:29:04;40.7733446,-74.0381872;1409 28th St, North Bergen, NJ 07047, USA
+1/10/2022 9:53:06;3;Working;Home (Office);0;;0;;01/10/2022 21:53:10;40.773444,-74.038051;1407 28th St, North Bergen, NJ 07047, USA
+1/10/2022 14:57:10;5;Working;Home (Office);0;;0;;01/11/2022 2:57:13;40.773437,-74.0381143;1409 28th St, North Bergen, NJ 07047, USA
+1/10/2022 16:31:47;1;Programming ;Home (Kitchen);0;;0;;01/11/2022 4:31:51;40.7734321,-74.0380276;1407 28th St, North Bergen, NJ 07047, USA
+1/11/2022 11:41:31;3;Working;Home (Office);0;;0;;01/11/2022 23:41:34;40.7735217,-74.0381719;1409 28th St, North Bergen, NJ 07047, USA
+1/12/2022 14:57:42;3;Showering ;Home (Bathroom);0;;0;;01/13/2022 2:57:45;40.7734711,-74.0380397;1407 28th St, North Bergen, NJ 07047, USA
+1/12/2022 16:30:37;1;Working;Home (Office);0;;0;;01/13/2022 4:30:40;40.7734611,-74.0380581;1407 28th St, North Bergen, NJ 07047, USA
+1/13/2022 10:14:51;4;Walking the dog;City Street;1;;1;Sunny;01/13/2022 22:14:54;40.7734484,-74.0380482;1407 28th St, North Bergen, NJ 07047, USA
+1/13/2022 20:10:05;3;Dishes;Home (Kitchen);1;;1;;01/14/2022 8:10:09;40.7734938,-74.0381716;1409 28th St, North Bergen, NJ 07047, USA
+1/15/2022 14:19:31;4;Driving;Car (Driving);1;;1;;01/16/2022 2:19:35;40.9238243,-74.0762778;WWFF+GF Paramus, NJ, USA
+1/16/2022 11:44:35;5;Driving;Car (Driving);1;;1;;01/16/2022 23:44:38;40.7727248,-74.0359284;JFK Blvd at 28th St, North Bergen, NJ 07047, USA
+1/16/2022 23:27:57;5;Hanging jacket up;Home (Hallway);1;;1;;01/17/2022 11:28:00;40.7734724,-74.0380321;1407 28th St, North Bergen, NJ 07047, USA
+1/17/2022 9:06:45;1;In a meeting ;Home (Office);0;;0;;01/18/2022 3:02:03;40.7734316,-74.0380343;1407 28th St, North Bergen, NJ 07047, USA
+1/17/2022 19:56:23;4;Cooking fried chicken;Home (Kitchen);1;;1;;01/18/2022 7:56:26;40.7734644,-74.0380299;1407 28th St, North Bergen, NJ 07047, USA
+1/20/2022 10:09:21;4;Coding;Home (Office);0;;0;;01/20/2022 22:09:24;40.7734546,-74.0380533;1407 28th St, North Bergen, NJ 07047, USA
+1/20/2022 12:06:37;4;Eating cereal ;Home (Office);0;;0;;01/21/2022 0:06:40;40.7734488,-74.0380351;1407 28th St, North Bergen, NJ 07047, USA
+1/20/2022 15:50:20;2;Working;Home (Office);0;;0;;01/21/2022 23:39:36;40.77346,-74.0380516;1407 28th St, North Bergen, NJ 07047, USA
+1/21/2022 11:39:32;3;Working;Home (Office);0;;0;;01/21/2022 23:39:36;40.77346,-74.0380516;1407 28th St, North Bergen, NJ 07047, USA
+1/22/2022 11:53:33;3;Working;Home (Office);0;;0;;01/05/2022 23:53:37;40.7734539,-74.0380517;1407 28th St, North Bergen, NJ 07047, USA

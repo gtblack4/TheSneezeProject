@@ -39,16 +39,21 @@ MAPBOXKEY = 'pk.eyJ1IjoiZ3RibGFjazQiLCJhIjoiY2txdmdkdW9lMDk3MDJ2bnp0MzVhazM2cCJ9
 
 
 mf.checkLastRun()
-#reads the separate =year csv's
+#reads the separate year csv's
 sneezeData2020 =pd.read_csv('data/2020Sneezes.csv',sep=";")
 sneezeData2021 =pd.read_csv('data/2021Sneezes.csv',sep=";")
+sneezeData2022 =pd.read_csv('data/2022Sneezes.csv',sep=";")
+
 
 #dataBreakdown does a number of operations to get more information from the spreadsheet. Creating separate columns for cumulative data, time data (day,week,month). This probably isn't needed anymore. I created this
 #before I fully understood plotly
 mf.dataBreakdown(sneezeData2020)
 mf.dataBreakdown(sneezeData2021)
+mf.dataBreakdown(sneezeData2022)
 
-dataTotal = sneezeData2020.append(sneezeData2021)
+
+dataTotal = sneezeData2020.append(sneezeData2021).append(sneezeData2022)
+
 headers = list(dataTotal.columns.values.tolist())
 
 #gets the total amount for the counter on the top of the page
@@ -74,27 +79,27 @@ def build_banner():
                 ],
             ),
             html.Div(
-                id = "LED2020",
+                id = "LED2021",
                 children=[
-                    html.H6("2020 Sneeze Count"),
+                    html.H6("2021 Sneeze Count"),
                     daq.LEDDisplay(
                         id="operator-led",
-                        value=mf.totalSum(sneezeData2020),
+                        value=mf.totalSum(sneezeData2021),
 
-                        color="rgb(102, 255, 102)",
+                        color="rgb(0, 153, 51)",
                         backgroundColor="#1e2130",
                         size=40,
                     ),
                 ],
             ), html.Div(
-                id="LED2021",
+                id="LED2022",
                 children=[
-                    html.H6("2021 Sneeze Count"),
+                    html.H6("2022 Sneeze Count"),
                     daq.LEDDisplay(
                         id="operator-led2",
 
-                        value=mf.totalSum(sneezeData2021),
-                        color="rgb(0, 153, 51)",
+                        value=mf.totalSum(sneezeData2022),
+                        color="#C49102",
                         backgroundColor="#1e2130",
                         size=40,
                     ),
@@ -645,12 +650,12 @@ def generate_location_graph():
 def generate_fit_count():
     sneezeAlone = dataTotal.groupby(['Number of Nearby People']).sum()
 
+    #np.savetxt("data/dataTotal.csv", dataTotal, delimiter=";", fmt='%s')
     sneezeFriends = pd.DataFrame(columns=["Friends", "Sneezes"])
 
     sneezeFriends.loc[len(sneezeFriends.index)] = ['Alone', sneezeAlone['Number of Sneezes'][0]]
     sneezeFriends.loc[len(sneezeFriends.index)] = ['With Nearby People', int(sneezeAlone['Number of Sneezes'].sum())-int(sneezeAlone['Number of Sneezes'][0])]
 
-   # print(sneezeFriends)
     tickvalues =[0,sneezeFriends['Sneezes'][1],sneezeFriends['Sneezes'].sum()]
     ticktext =[0,int(sneezeAlone['Number of Sneezes'].sum())-int(sneezeAlone['Number of Sneezes'][0]),sneezeAlone['Number of Sneezes'][0],]
     fig = go.Figure(data=[
@@ -778,7 +783,8 @@ def generate_sneeze_day_count():
         name='Number of Sneezes').sort_values(['Timestamp'], ascending=True)
     sneezeSize2021 = sneezeData2021.groupby(pd.to_datetime(sneezeData2021['Timestamp']).dt.strftime('%y-%m-%d'))['Number of Sneezes'].sum().reset_index(
         name='Number of Sneezes').sort_values(['Timestamp'], ascending=True)
-
+    sneezeSize2022 = sneezeData2022.groupby(pd.to_datetime(sneezeData2022['Timestamp']).dt.strftime('%y-%m-%d'))['Number of Sneezes'].sum().reset_index(
+        name='Number of Sneezes').sort_values(['Timestamp'], ascending=True)
     #These three lines create a dataframe of the number of days with x number of sneezes
     #Then add in the number of days without sneezes and then sort that data
 
@@ -787,9 +793,12 @@ def generate_sneeze_day_count():
     daySum2020 = daySum2020.sort_values(by="Number of Sneezes",ascending=True)
 
     daySum2021 = sneezeSize2021['Number of Sneezes'].value_counts().rename_axis('Number of Sneezes').reset_index(name="Count")
-    daySum2021.loc[len(daySum2020.index)] = [0, 365-daySum2021['Count'].sum()]
+    daySum2021.loc[len(daySum2021.index)] = [0, 365-daySum2021['Count'].sum()]
     daySum2021 = daySum2021.sort_values(by="Number of Sneezes",ascending=True)
 
+    daySum2022 = sneezeSize2022['Number of Sneezes'].value_counts().rename_axis('Number of Sneezes').reset_index(name="Count")
+    daySum2022.loc[len(daySum2022.index)] = mf.sneezeLessDays(sneezeData2022)
+    daySum2022 = daySum2022.sort_values(by="Number of Sneezes", ascending=True)
     colorArray = ['#3ddbd9', '#08bdba', '#009d9a', '#007d79', '#004144', '#022b30']
 
 
@@ -816,6 +825,20 @@ def generate_sneeze_day_count():
                y=daySum2021['Count'],
                marker=dict(color='rgb(0, 153, 51)'),
                hovertemplate='Year: 2021 <br>There are %{y} days with %{x} sneezes<extra></extra>',
+               hoverinfo='x+y+text',
+               hoverlabel=dict(
+                   bgcolor="black",
+                   font_size=16,
+                   font_family="Open Sans, sans-serif"
+               ),
+
+               ),
+        go.Bar(name='2022',
+
+               x=daySum2022['Number of Sneezes'],
+               y=daySum2022['Count'],
+               marker=dict(color='#C49102'),
+               hovertemplate='Year: 2022 <br>There are %{y} days with %{x} sneezes<extra></extra>',
                hoverinfo='x+y+text',
                hoverlabel=dict(
                    bgcolor="black",
@@ -898,7 +921,7 @@ def generate_time_plot():
         margin=dict(t=0, b=6, l=0, r=15),
 
         xaxis=dict(tickformat="%I:00",color="white",nticks=4,fixedrange=True),
-        yaxis=dict(tickformat='Y',color="white",nticks=3,fixedrange=True),
+        yaxis=dict(tickformat='Y',color="white",nticks=4,fixedrange=True),
 
         )
 
@@ -907,6 +930,7 @@ def generate_time_plot():
 
 
 def generate_year_line_graph():
+
     fig = go.Figure(
 
     data = [
@@ -928,6 +952,16 @@ def generate_year_line_graph():
             name="2021", 
             line=dict(
                 color='rgb(0, 153, 51)',
+                width=3
+            ),
+        ),
+        go.Scatter(
+            x=sneezeData2022['Month Day'],
+            y=sneezeData2022['Cumulative'],
+            mode='lines',
+            name="2022",
+            line=dict(
+                color='#C49102',
                 width=3
             ),
         )
@@ -998,7 +1032,8 @@ def generate_month_line_graph():
     dayLightHours = pd.DataFrame(build_daylight_array())
     week2020 = pd.DataFrame(mf.buildWeekSums(sneezeData2020))
     week2021 = pd.DataFrame(mf.buildWeekSums(sneezeData2021))
-  
+    week2022 = pd.DataFrame(mf.buildWeekSums(sneezeData2022))
+
     fig = go.Figure(
         go.Scatter(
         x=pd.to_datetime(week2020['Month Day']),
@@ -1018,7 +1053,7 @@ def generate_month_line_graph():
     fig.add_trace(
     go.Scatter(
         x=pd.to_datetime(week2021['Month Day']),
-        y=week2021['7 Day Average'], 
+        y=week2021['7 Day Average'],
         mode= 'lines',
         name="2021",
         line=dict(
@@ -1028,25 +1063,19 @@ def generate_month_line_graph():
         ),
         #secondary_y=False,
     )
-    # fig.add_trace(
-    #     go.Scatter(
-    #     x=pd.to_datetime(dayLightHours[0]),
-    #     y=dayLightHours[1],
-    #     mode= 'lines',
-    #     name="Cleveland DayLight hours",
-    #     line=dict(
-    #         color='rgb(255,255,0)',
-    #         width=2
-    #     ),
-    #     yaxis='y2',
-
-    # ),
-        
-    #     secondary_y=True,
-
-    # )
-    # regression = pd.ols(y=week2021['date'], x=week2021['sum'])
-    # print(regression)
+    fig.add_trace(
+    go.Scatter(
+        x=pd.to_datetime(week2022['Month Day']),
+        y=week2022['7 Day Average'],
+        mode= 'lines',
+        name="2021",
+        line=dict(
+            color='#C49102',
+            width=3
+            )
+        ),
+        #secondary_y=False,
+    )
 
 
     fig.update_layout(
@@ -1100,12 +1129,11 @@ def generate_sneeze_map():
         customdata=sneezeData2020['Number of Sneezes'],
         hovertemplate='%{hovertext| %b %d %Y}<br>%{hovertext| %I:%M %p}<br>Sneezes: %{customdata}<extra></extra>',
         marker=go.scattermapbox.Marker(
-        size=6,
-        color = '#34eb74'
+            size=6,
+            color = '#34eb74'
         ),
 
-    )
-    )
+    ))
     fig.add_trace(go.Scattermapbox(
         name = "2021",
         lat=sneezeData2021['Latitude'],
@@ -1115,12 +1143,23 @@ def generate_sneeze_map():
         #customdata2=sneezeData2021['Location'],
         hovertemplate='%{hovertext| %b %d %Y}<br>%{hovertext| %I:%M %p}<br>Sneezes: %{customdata}<extra></extra>',
         marker=go.scattermapbox.Marker(
-        size=6,
-        color = 'green'
+            size=6,
+            color = 'green'
+            ),
+    ))
+    fig.add_trace(go.Scattermapbox(
+        name="2022",
+        lat=sneezeData2022['Latitude'],
+        lon=sneezeData2022['Longitude'],
+        hovertext=sneezeData2022["Timestamp"],
+        customdata=sneezeData2022['Number of Sneezes'],
+        # customdata2=sneezeData2021['Location'],
+        hovertemplate='%{hovertext| %b %d %Y}<br>%{hovertext| %I:%M %p}<br>Sneezes: %{customdata}<extra></extra>',
+        marker=go.scattermapbox.Marker(
+            size=6,
+            color='#C49102'
         ),
-
-    )
-        )
+    ))
     fig.update_layout(mapbox_style="dark",
     mapbox_accesstoken=MAPBOXKEY,
     paper_bgcolor='rgba(0,0,0,0)',
@@ -1213,7 +1252,8 @@ def generate_sneeze_fit_size_graph():
   name='Count').sort_values(['Number of Sneezes'], ascending=True)
     sneezeSize2021 = sneezeData2021.groupby(['Number of Sneezes'])['Number of Sneezes'].count().reset_index(
         name='Count').sort_values(['Number of Sneezes'], ascending=True)
-
+    sneezeSize2022 = sneezeData2022.groupby(['Number of Sneezes'])['Number of Sneezes'].count().reset_index(
+        name='Count').sort_values(['Number of Sneezes'], ascending=True)
 
 
     colorArray = ['#3ddbd9','#08bdba','#009d9a','#007d79','#004144','#022b30']
@@ -1245,6 +1285,20 @@ def generate_sneeze_fit_size_graph():
                y=sneezeSize2021['Count'],
                marker=dict(color='rgb(0, 153, 51)'),
                hovertemplate='Year: 2021 <br>Sneeze Fit Size: %{x}<br>Number of Fits: %{y}<extra></extra>',
+               hoverinfo='x+y+text',
+               hoverlabel=dict(
+                   bgcolor="black",
+                   font_size=16,
+                   font_family="Open Sans, sans-serif"
+               ),
+
+               ),
+        go.Bar(name='Sneeze Fit Size: 2022',
+
+               x=sneezeSize2022['Number of Sneezes'],
+               y=sneezeSize2022['Count'],
+               marker=dict(color='#C49102'),
+               hovertemplate='Year: 2022 <br>Sneeze Fit Size: %{x}<br>Number of Fits: %{y}<extra></extra>',
                hoverinfo='x+y+text',
                hoverlabel=dict(
                    bgcolor="black",
