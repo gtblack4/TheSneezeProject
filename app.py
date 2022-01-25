@@ -52,7 +52,7 @@ mf.dataBreakdown(sneezeData2021)
 mf.dataBreakdown(sneezeData2022)
 
 
-dataTotal = sneezeData2020.append(sneezeData2021).append(sneezeData2022)
+dataTotal = sneezeData2020.append(sneezeData2021)
 
 headers = list(dataTotal.columns.values.tolist())
 
