@@ -60,11 +60,6 @@ headers = list(dataTotal.columns.values.tolist())
 totalSum = sneezeData2021['Cumulative'].tail(1)
 
 
-
-
-
-
-
 #Creates the header for the whole site
 def build_banner():
     return html.Div(
